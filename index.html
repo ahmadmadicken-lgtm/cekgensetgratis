@@ -291,7 +291,7 @@
             // ==========================================
             // GANTI URL INI DENGAN WEBHOOK URL DARI n8n ANDA
             // ==========================================
-            const n8nWebhookUrl = 'https://YOUR_N8N_INSTANCE_URL/webhook/genset-booking'; 
+            const n8nWebhookUrl = 'https://n8n.adaai.id/webhook/genset-booking'; 
             
             // Collect Form Data
             const formData = new FormData(this);
@@ -306,9 +306,15 @@
             error.classList.add('hidden');
 
             try {
-                // Simulasi pengiriman data
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                console.log("Data siap dikirim ke n8n:", data);
+            
+                await fetch(n8nWebhookUrl, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(data)
+});
+
 
                 // UI State: Success
                 this.reset();
