@@ -483,6 +483,18 @@
             animation: ticker-reveal 0.6s ease 1.0s both;
         }
 
+        /* Blink for Rental Genset */
+        @keyframes rental-blink {
+            0%, 100% { background: rgba(251,113,133,0.2); border-color: rgba(251,113,133,0.35); box-shadow: none; }
+            40%      { background: rgba(251,113,133,0.35); border-color: rgba(251,113,133,0.6); box-shadow: 0 0 14px rgba(251,113,133,0.4); }
+        }
+        .pill-rental {
+            animation: rental-blink 1.6s ease-in-out infinite !important;
+        }
+        .pill-rental span {
+            color: #fda4af !important;
+        }
+
         /* Separator dot */
         .ticker-sep {
             display: flex;
@@ -552,7 +564,7 @@
                             Jadwalkan Sekarang
                             <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
                         </a>
-                        <a href="#trust-section" class="hero-cta-secondary">
+                        <a href="portfolio.html" class="hero-cta-secondary">
                             Lihat Portofolio Kami
                             <i data-lucide="chevron-down" style="width:18px;height:18px;"></i>
                         </a>
@@ -821,14 +833,14 @@
                         <div class="sticker-icon" style="background:rgba(37,99,235,0.25);">
                                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
                             </div>
-                            <span>New Genset Unit &amp; Instalasi</span>
+                            <span>New Genset Unit &amp; Installation</span>
                         </div>
                     <span class="ticker-sep">·</span>
                     <div class="sticker-pill">
                         <div class="sticker-icon" style="background:rgba(245,158,11,0.2);">
                                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
                             </div>
-                            <span>ATS / Panel</span>
+                            <span>ATS / Panel Cos &amp; Synchron</span>
                         </div>
                     <span class="ticker-sep">·</span>
                     <div class="sticker-pill">
@@ -842,7 +854,7 @@
                         <div class="sticker-icon" style="background:rgba(34,197,94,0.2);">
                                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                             </div>
-                            <span>Maintenance &amp; Servis</span>
+                            <span>Maintenance &amp; Service</span>
                         </div>
                     <span class="ticker-sep">·</span>
                     <div class="sticker-pill">
@@ -857,14 +869,14 @@
                         <div class="sticker-icon" style="background:rgba(37,99,235,0.25);">
                                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
                             </div>
-                            <span>New Genset Unit &amp; Instalasi</span>
+                            <span>New Genset Unit &amp; Installation</span>
                         </div>
                     <span class="ticker-sep">·</span>
                     <div class="sticker-pill">
                         <div class="sticker-icon" style="background:rgba(245,158,11,0.2);">
                                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
                             </div>
-                            <span>ATS / Panel</span>
+                            <span>ATS / Panel Cos &amp; Synchron</span>
                         </div>
                     <span class="ticker-sep">·</span>
                     <div class="sticker-pill">
@@ -878,7 +890,7 @@
                         <div class="sticker-icon" style="background:rgba(34,197,94,0.2);">
                                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                             </div>
-                            <span>Maintenance &amp; Servis</span>
+                            <span>Maintenance &amp; Service</span>
                         </div>
                     <span class="ticker-sep">·</span>
                     <div class="sticker-pill">
@@ -948,6 +960,25 @@
                     <span class="client-name">RS JIS Solo</span>
                     <span style="color:#e2e8f0;font-size:1.1rem;" class="hidden sm:block">·</span>
                     <span class="client-name">Bank DKI</span>
+                </div>
+                <!-- See More -->
+                <div style="text-align:center;margin-top:24px;">
+                    <a href="portfolio.html" style="
+                        display:inline-flex;align-items:center;gap:6px;
+                        font-family:'Plus Jakarta Sans',sans-serif;
+                        font-size:0.8125rem;font-weight:700;
+                        color:var(--blue-light);letter-spacing:0.03em;
+                        text-decoration:none;
+                        padding:8px 20px;
+                        border:1.5px solid rgba(37,99,235,0.25);
+                        border-radius:999px;
+                        background:rgba(37,99,235,0.04);
+                        transition:background 0.2s,border-color 0.2s,transform 0.15s;
+                    " onmouseover="this.style.background='rgba(37,99,235,0.09)';this.style.borderColor='rgba(37,99,235,0.5)';this.style.transform='translateY(-1px)'"
+                       onmouseout="this.style.background='rgba(37,99,235,0.04)';this.style.borderColor='rgba(37,99,235,0.25)';this.style.transform='none'">
+                        See More
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
                 </div>
             </div>
         </div>
