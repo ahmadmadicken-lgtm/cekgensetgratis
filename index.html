@@ -3,1438 +3,799 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audit Sistem Kelistrikan & Genset — PT Multi Guna Persada</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>Pemeriksaan Genset Gratis - PT Multi Guna Persada</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --black: #050A0E;
-            --deep: #0A1628;
-            --navy: #0F2240;
-            --steel: #1A3A5C;
-            --accent: #E8A020;
-            --accent-hot: #F5C842;
-            --electric: #00BFFF;
-            --white: #F0F4F8;
-            --gray: #8A9BAD;
-            --light: #C8D8E8;
+            --navy: #0f2557;
+            --navy-mid: #1a3a7a;
+            --blue: #1d54c4;
+            --blue-light: #2563eb;
+            --accent: #f59e0b;
+            --accent-hover: #d97706;
+            --surface: #f8faff;
+            --border: #e2e8f0;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --text-light: #9ca3af;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html { scroll-behavior: smooth; }
+        * { box-sizing: border-box; }
 
         body {
-            background: var(--black);
-            color: var(--white);
-            font-family: 'Barlow', sans-serif;
-            font-weight: 400;
-            overflow-x: hidden;
+            font-family: 'DM Sans', sans-serif;
+            background-color: #f8faff;
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* === NOISE OVERLAY === */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.4;
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* === NAV === */
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            padding: 0 5%;
-            height: 72px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(5, 10, 14, 0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(232, 160, 32, 0.15);
+        /* ─── NAV ─── */
+        .nav-bar {
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
         }
 
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .logo-badge {
+        .logo-mark {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--blue-light) 100%);
+            color: white;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
             width: 44px;
             height: 44px;
-            background: linear-gradient(135deg, var(--accent), #B8780F);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 900;
-            font-size: 14px;
-            letter-spacing: 1px;
-            color: var(--black);
-            clip-path: polygon(10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%, 0% 10%);
-        }
-
-        .logo-text {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 700;
-            font-size: 13px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--light);
-            line-height: 1.3;
-        }
-
-        .logo-text span {
-            display: block;
-            color: var(--gray);
-            font-weight: 400;
-            font-size: 10px;
-            letter-spacing: 3px;
+            letter-spacing: -0.5px;
+            flex-shrink: 0;
         }
 
         .nav-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--accent);
-            color: var(--black);
-            font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 700;
-            font-size: 13px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            background: var(--blue-light);
+            color: white;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.875rem;
             padding: 10px 22px;
-            text-decoration: none;
-            transition: all 0.2s;
-            clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+            border-radius: 8px;
+            transition: background 0.2s, transform 0.15s;
+            letter-spacing: 0.01em;
         }
-
         .nav-cta:hover {
-            background: var(--accent-hot);
+            background: var(--navy-mid);
             transform: translateY(-1px);
         }
 
-        /* === HERO === */
+        /* ─── HERO ─── */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 120px 5% 80px;
+            background: linear-gradient(160deg, var(--navy) 0%, #0d1f4a 55%, #162d6f 100%);
             position: relative;
             overflow: hidden;
         }
 
-        .hero-bg {
+        .hero::before {
+            content: '';
             position: absolute;
             inset: 0;
-            background: 
-                radial-gradient(ellipse 60% 70% at 85% 50%, rgba(0, 191, 255, 0.06) 0%, transparent 60%),
-                radial-gradient(ellipse 40% 50% at 10% 80%, rgba(232, 160, 32, 0.08) 0%, transparent 50%),
-                linear-gradient(180deg, var(--deep) 0%, var(--black) 100%);
+            background-image:
+                radial-gradient(ellipse 60% 50% at 80% 20%, rgba(37,99,235,0.25) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 10% 80%, rgba(245,158,11,0.1) 0%, transparent 60%);
         }
 
-        /* Grid lines */
-        .hero-grid {
-            position: absolute;
-            inset: 0;
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 60px 60px;
-            mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
-        }
-
-        /* Diagonal accent line */
+        /* subtle grid pattern */
         .hero::after {
             content: '';
             position: absolute;
-            top: 0;
-            right: 20%;
-            width: 1px;
-            height: 100%;
-            background: linear-gradient(180deg, transparent, rgba(232,160,32,0.3), transparent);
-            transform: skewX(-15deg);
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 48px 48px;
         }
 
-        .hero-tag {
+        .hero-content { position: relative; z-index: 10; }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(245,158,11,0.15);
+            border: 1px solid rgba(245,158,11,0.35);
+            border-radius: 999px;
+            padding: 5px 14px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #fcd34d;
+        }
+
+        .badge-dot {
+            width: 6px; height: 6px;
+            background: #fbbf24;
+            border-radius: 50%;
+            animation: pulse-dot 1.8s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.7); }
+        }
+
+        .hero-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            line-height: 1.12;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-title .highlight {
+            color: var(--accent);
+            position: relative;
+        }
+
+        .hero-cta-primary {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            font-family: 'Space Mono', monospace;
-            font-size: 11px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--accent);
-            padding: 6px 14px;
-            border: 1px solid rgba(232,160,32,0.4);
-            background: rgba(232,160,32,0.05);
-            margin-bottom: 28px;
-            animation: fadeUp 0.6s ease both;
-        }
-
-        .hero-tag::before {
-            content: '';
-            width: 6px;
-            height: 6px;
             background: var(--accent);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.8); }
-        }
-
-        .hero-headline {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 900;
-            font-size: clamp(52px, 8vw, 110px);
-            line-height: 0.92;
-            letter-spacing: -2px;
-            text-transform: uppercase;
-            color: var(--white);
-            margin-bottom: 32px;
-            animation: fadeUp 0.6s 0.1s ease both;
-        }
-
-        .hero-headline .line-accent {
-            color: var(--accent);
-            display: block;
-            -webkit-text-stroke: 2px var(--accent);
-            color: transparent;
-        }
-
-        .hero-headline .line-solid {
-            display: block;
-        }
-
-        .hero-sub {
-            font-size: 16px;
-            font-weight: 300;
-            color: var(--gray);
-            max-width: 520px;
-            line-height: 1.7;
-            margin-bottom: 48px;
-            animation: fadeUp 0.6s 0.2s ease both;
-        }
-
-        .hero-sub strong {
-            color: var(--light);
-            font-weight: 500;
-        }
-
-        .hero-ctas {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            animation: fadeUp 0.6s 0.3s ease both;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--accent);
-            color: var(--black);
-            font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 800;
-            font-size: 14px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 16px 32px;
-            text-decoration: none;
-            transition: all 0.25s;
-            position: relative;
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            background: rgba(232,160,32,0.3);
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
-
-        .btn-primary:hover { background: var(--accent-hot); transform: translateY(-2px); }
-        .btn-primary:hover::before { opacity: 1; }
-
-        .btn-ghost {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: transparent;
-            color: var(--light);
-            font-family: 'Barlow Condensed', sans-serif;
+            color: var(--navy);
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            font-size: 1rem;
             padding: 16px 32px;
-            text-decoration: none;
-            border: 1px solid rgba(200,216,232,0.25);
-            transition: all 0.25s;
+            border-radius: 10px;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(245,158,11,0.4);
+            letter-spacing: 0.01em;
+        }
+        .hero-cta-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(245,158,11,0.45);
         }
 
-        .btn-ghost:hover {
-            border-color: rgba(200,216,232,0.6);
-            background: rgba(200,216,232,0.05);
+        .hero-cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            color: rgba(255,255,255,0.85);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 15px 28px;
+            border-radius: 10px;
+            border: 1.5px solid rgba(255,255,255,0.2);
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+        }
+        .hero-cta-secondary:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.4);
+            color: white;
         }
 
-        /* Stats strip */
-        .hero-stats {
-            position: absolute;
-            bottom: 40px;
-            left: 0; right: 0;
-            padding: 0 5%;
-            display: flex;
-            gap: 40px;
-            animation: fadeUp 0.6s 0.5s ease both;
+        /* ─── TRUST ─── */
+        .stat-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .stat-card:hover {
+            box-shadow: 0 8px 32px rgba(15,37,87,0.1);
+            transform: translateY(-2px);
         }
 
-        .stat-item {
-            display: flex;
-            flex-direction: column;
+        .stat-icon-wrap {
+            width: 52px; height: 52px;
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 16px;
         }
 
-        .stat-num {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 900;
-            font-size: 32px;
-            color: var(--accent);
-            letter-spacing: -1px;
+        .stat-number {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 2rem;
+            color: var(--navy);
+            letter-spacing: -0.03em;
             line-height: 1;
+            margin-bottom: 6px;
         }
 
         .stat-label {
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--gray);
-            margin-top: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            letter-spacing: 0.01em;
         }
 
-        .stat-divider {
-            width: 1px;
-            background: rgba(255,255,255,0.1);
-            align-self: stretch;
+        .clients-strip {
+            border-top: 1px solid var(--border);
+            padding-top: 40px;
+            margin-top: 48px;
         }
 
-        /* Right side visual */
-        .hero-visual {
-            position: absolute;
-            right: 5%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 380px;
-            opacity: 0.9;
-            animation: fadeLeft 0.8s 0.4s ease both;
-        }
-
-        @keyframes fadeLeft {
-            from { opacity: 0; transform: translateY(-50%) translateX(30px); }
-            to { opacity: 0.9; transform: translateY(-50%) translateX(0); }
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .circuit-card {
-            background: rgba(26,58,92,0.4);
-            border: 1px solid rgba(0,191,255,0.2);
-            padding: 32px;
-            backdrop-filter: blur(10px);
-            position: relative;
-        }
-
-        .circuit-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--electric), transparent);
-        }
-
-        .circuit-label {
-            font-family: 'Space Mono', monospace;
-            font-size: 10px;
-            letter-spacing: 2px;
-            color: var(--electric);
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            opacity: 0.7;
-        }
-
-        .circuit-metric {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-
-        .circuit-metric:last-child { border-bottom: none; }
-
-        .metric-name {
-            font-size: 12px;
-            color: var(--gray);
-            letter-spacing: 1px;
-        }
-
-        .metric-bar-wrap {
-            flex: 1;
-            margin: 0 16px;
-            height: 3px;
-            background: rgba(255,255,255,0.08);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .metric-bar {
-            height: 100%;
-            border-radius: 2px;
-            background: linear-gradient(90deg, var(--electric), var(--accent));
-            animation: barGrow 1.5s ease both;
-        }
-
-        @keyframes barGrow {
-            from { width: 0; }
-        }
-
-        .metric-val {
-            font-family: 'Space Mono', monospace;
-            font-size: 11px;
-            color: var(--accent);
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #22C55E;
-            box-shadow: 0 0 8px #22C55E;
-            animation: pulse 2s infinite;
-            display: inline-block;
-            margin-right: 8px;
-        }
-
-        /* === SECTION BASE === */
-        section { padding: 100px 5%; }
-
-        .section-eyebrow {
-            font-family: 'Space Mono', monospace;
-            font-size: 11px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 16px;
-        }
-
-        .section-title {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 900;
-            font-size: clamp(36px, 5vw, 64px);
-            line-height: 0.95;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-            color: var(--white);
-        }
-
-        /* === RISKS SECTION === */
-        .risks-section {
-            background: var(--deep);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .risks-section::before {
-            content: '';
-            position: absolute;
-            top: -200px;
-            right: -200px;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(232,160,32,0.04) 0%, transparent 70%);
-        }
-
-        .risks-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: start;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .risk-card {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.07);
-            padding: 28px;
-            position: relative;
-            transition: all 0.3s;
-            cursor: default;
-        }
-
-        .risk-card::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 0; bottom: 0;
-            width: 3px;
-            background: var(--accent);
-            transform: scaleY(0);
-            transform-origin: bottom;
-            transition: transform 0.3s;
-        }
-
-        .risk-card:hover {
-            background: rgba(232,160,32,0.04);
-            border-color: rgba(232,160,32,0.2);
-            transform: translateX(4px);
-        }
-
-        .risk-card:hover::before { transform: scaleY(1); }
-
-        .risk-number {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 900;
-            font-size: 11px;
-            letter-spacing: 3px;
-            color: var(--accent);
-            opacity: 0.6;
-            margin-bottom: 10px;
-        }
-
-        .risk-title {
-            font-family: 'Barlow Condensed', sans-serif;
+        .clients-label {
+            font-size: 0.7rem;
             font-weight: 700;
-            font-size: 20px;
-            letter-spacing: 0.5px;
-            color: var(--white);
-            margin-bottom: 8px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 24px;
         }
 
-        .risk-desc {
-            font-size: 14px;
-            color: var(--gray);
-            line-height: 1.6;
+        .client-name {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #94a3b8;
+            transition: color 0.2s;
+            white-space: nowrap;
+        }
+        .clients-strip:hover .client-name {
+            color: #64748b;
         }
 
-        /* Solution panel */
-        .solution-panel {
-            background: linear-gradient(135deg, rgba(26,58,92,0.6), rgba(15,34,64,0.8));
-            border: 1px solid rgba(0,191,255,0.15);
-            padding: 44px;
+        /* ─── FORM SECTION ─── */
+        .form-section {
+            background: linear-gradient(180deg, #f0f4ff 0%, #f8faff 100%);
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.04), 0 20px 60px rgba(15,37,87,0.1);
+            overflow: hidden;
+        }
+
+        .info-panel {
+            background: linear-gradient(160deg, var(--navy) 0%, #162d6f 100%);
             position: relative;
+            overflow: hidden;
         }
 
-        .solution-panel::after {
+        .info-panel::before {
             content: '';
             position: absolute;
-            bottom: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--electric), transparent);
+            top: -40px; right: -40px;
+            width: 200px; height: 200px;
+            background: radial-gradient(circle, rgba(37,99,235,0.3) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .info-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -60px; left: -60px;
+            width: 240px; height: 240px;
+            background: radial-gradient(circle, rgba(29,84,196,0.25) 0%, transparent 70%);
+            border-radius: 50%;
         }
 
-        .solution-item {
+        .info-panel-inner { position: relative; z-index: 10; }
+
+        .check-item {
             display: flex;
             align-items: flex-start;
-            gap: 16px;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-
-        .solution-item:last-of-type { border-bottom: none; }
-
-        .solution-icon {
-            width: 32px;
-            height: 32px;
-            background: rgba(0,191,255,0.1);
-            border: 1px solid rgba(0,191,255,0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        .solution-icon svg { width: 14px; height: 14px; stroke: var(--electric); }
-
-        .solution-text {
-            font-size: 14px;
-            color: var(--light);
-            line-height: 1.6;
-        }
-
-        .solution-text strong {
-            display: block;
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--white);
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
-        }
-
-        /* === PROCESS === */
-        .process-section {
-            background: var(--black);
-        }
-
-        .process-wrap { max-width: 1200px; margin: 0 auto; }
-
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0;
-            position: relative;
-            margin-top: 60px;
-        }
-
-        .process-steps::before {
-            content: '';
-            position: absolute;
-            top: 28px;
-            left: 12%;
-            right: 12%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(232,160,32,0.4), var(--accent), rgba(232,160,32,0.4), transparent);
-        }
-
-        .process-step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-            position: relative;
-        }
-
-        .step-circle {
-            width: 56px;
-            height: 56px;
-            background: var(--deep);
-            border: 2px solid var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 900;
-            font-size: 20px;
-            color: var(--accent);
-            margin-bottom: 24px;
-            position: relative;
-            z-index: 1;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-        }
-
-        .step-title {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 700;
-            font-size: 18px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--white);
-            margin-bottom: 8px;
-        }
-
-        .step-desc {
-            font-size: 13px;
-            color: var(--gray);
-            line-height: 1.6;
-        }
-
-        /* === FORM SECTION === */
-        .form-section {
-            background: var(--deep);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .form-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-
-        .form-wrap {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 380px 1fr;
-            gap: 0;
-            position: relative;
-            border: 1px solid rgba(232,160,32,0.2);
-        }
-
-        .form-info {
-            background: var(--accent);
-            padding: 52px 44px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .form-info::after {
-            content: '';
-            position: absolute;
-            bottom: -100px;
-            right: -100px;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: rgba(0,0,0,0.15);
-        }
-
-        .form-info-eyebrow {
-            font-family: 'Space Mono', monospace;
-            font-size: 10px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: rgba(0,0,0,0.5);
-            margin-bottom: 16px;
-        }
-
-        .form-info-title {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 900;
-            font-size: 38px;
-            line-height: 1;
-            text-transform: uppercase;
-            color: var(--black);
-            letter-spacing: -1px;
-            margin-bottom: 24px;
-        }
-
-        .form-info-text {
-            font-size: 14px;
-            color: rgba(0,0,0,0.65);
-            line-height: 1.7;
-            margin-bottom: 36px;
-        }
-
-        .info-feature {
-            display: flex;
-            align-items: center;
             gap: 12px;
-            margin-bottom: 14px;
         }
 
-        .info-feature-icon {
-            width: 28px;
-            height: 28px;
-            background: rgba(0,0,0,0.1);
+        .check-icon {
+            width: 22px; height: 22px;
+            background: rgba(245,158,11,0.2);
+            border: 1.5px solid rgba(245,158,11,0.4);
+            border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .contact-row {
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 10px;
+            font-size: 0.875rem;
+        }
+
+        .contact-icon-wrap {
+            width: 34px; height: 34px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
             flex-shrink: 0;
         }
 
-        .info-feature-icon svg { width: 13px; height: 13px; stroke: var(--black); }
-
-        .info-feature-text {
-            font-size: 13px;
-            font-weight: 600;
-            color: rgba(0,0,0,0.75);
-            letter-spacing: 0.3px;
-        }
-
-        .info-contacts {
-            margin-top: 44px;
-            padding-top: 28px;
-            border-top: 1px solid rgba(0,0,0,0.2);
-            position: relative;
-            z-index: 1;
-        }
-
-        .info-contact-link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-            text-decoration: none;
-            color: rgba(0,0,0,0.7);
-            font-size: 13px;
-            transition: color 0.2s;
-        }
-
-        .info-contact-link:hover { color: var(--black); }
-        .info-contact-link svg { width: 14px; height: 14px; stroke: currentColor; flex-shrink: 0; }
-
-        /* Form */
-        .form-body {
-            background: rgba(5,10,14,0.95);
-            padding: 52px 44px;
-        }
-
-        .form-title {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 800;
-            font-size: 28px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--white);
-            margin-bottom: 8px;
-        }
-
-        .form-subtitle {
-            font-size: 13px;
-            color: var(--gray);
-            margin-bottom: 36px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-
-        .form-group { margin-bottom: 0; }
-
-        .form-label {
+        /* ─── FORM FIELDS ─── */
+        .field-label {
             display: block;
-            font-family: 'Space Mono', monospace;
-            font-size: 10px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--gray);
-            margin-bottom: 8px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 6px;
+            letter-spacing: 0.01em;
         }
 
-        .form-label span { color: var(--accent); }
-
-        .form-input, .form-textarea {
+        .field-input {
             width: 100%;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: var(--white);
-            font-family: 'Barlow', sans-serif;
-            font-size: 14px;
-            padding: 12px 16px;
+            padding: 11px 14px;
+            background: #f9fafb;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 9px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9375rem;
+            color: var(--text-main);
+            transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
             outline: none;
-            transition: all 0.2s;
+            -webkit-appearance: none;
         }
 
-        .form-input::placeholder, .form-textarea::placeholder {
-            color: rgba(255,255,255,0.2);
+        .field-input::placeholder { color: #9ca3af; }
+
+        .field-input:focus {
+            border-color: var(--blue-light);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
         }
 
-        .form-input:focus, .form-textarea:focus {
-            border-color: rgba(232,160,32,0.5);
-            background: rgba(232,160,32,0.04);
-            box-shadow: 0 0 0 3px rgba(232,160,32,0.06);
+        .field-input:hover:not(:focus) {
+            border-color: #cbd5e1;
+            background: white;
         }
 
-        .form-textarea { resize: vertical; min-height: 90px; }
+        textarea.field-input { resize: vertical; min-height: 100px; line-height: 1.6; }
 
-        .form-submit {
+        .submit-btn {
             width: 100%;
-            background: var(--accent);
-            color: var(--black);
-            border: none;
-            font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 900;
-            font-size: 16px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            padding: 16px 32px;
-            cursor: pointer;
-            transition: all 0.25s;
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--blue-light) 0%, var(--navy-mid) 100%);
+            color: white;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 15px 24px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+            letter-spacing: 0.01em;
+            box-shadow: 0 4px 16px rgba(29,84,196,0.35);
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            opacity: 0.92;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 22px rgba(29,84,196,0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ─── STATUS MESSAGES ─── */
+        .msg-success {
+            display: flex;
+            align-items: flex-start;
             gap: 10px;
-            margin-top: 20px;
-            position: relative;
-            overflow: hidden;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 10px;
+            padding: 14px 16px;
+            color: #166534;
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
-        .form-submit::before {
-            content: '';
-            position: absolute;
-            left: -100%;
-            top: 0; bottom: 0;
-            width: 100%;
-            background: rgba(255,255,255,0.15);
-            transition: left 0.3s;
+        .msg-error {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 10px;
+            padding: 14px 16px;
+            color: #991b1b;
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
-        .form-submit:hover { background: var(--accent-hot); transform: translateY(-1px); }
-        .form-submit:hover::before { left: 100%; }
-        .form-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-        .form-note {
-            font-size: 11px;
-            color: rgba(255,255,255,0.25);
+        .msg-loading {
             text-align: center;
-            margin-top: 14px;
-            letter-spacing: 0.3px;
+            color: var(--blue-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 8px;
         }
 
-        #loadingMsg {
-            display: none;
-            text-align: center;
-            font-family: 'Space Mono', monospace;
-            font-size: 12px;
-            letter-spacing: 2px;
-            color: var(--electric);
-            padding: 12px;
-            margin-top: 12px;
-        }
-
-        #successMsg {
-            display: none;
-            text-align: center;
-            font-size: 14px;
-            color: #22C55E;
-            padding: 16px;
-            margin-top: 12px;
-            background: rgba(34,197,94,0.08);
-            border: 1px solid rgba(34,197,94,0.2);
-        }
-
-        /* === FOOTER === */
-        footer {
-            background: var(--black);
-            border-top: 1px solid rgba(255,255,255,0.06);
-            padding: 60px 5% 32px;
-        }
-
-        .footer-top {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 60px;
-            max-width: 1200px;
-            margin: 0 auto 40px;
-        }
-
-        .footer-brand {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 900;
-            font-size: 24px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--white);
-            margin-bottom: 16px;
-        }
-
-        .footer-desc {
-            font-size: 13px;
-            color: var(--gray);
-            line-height: 1.7;
-            margin-bottom: 16px;
-        }
-
-        .footer-tagline {
-            font-family: 'Space Mono', monospace;
-            font-size: 11px;
-            letter-spacing: 3px;
-            color: var(--accent);
-            text-transform: uppercase;
+        /* ─── FOOTER ─── */
+        .footer {
+            background: #0b1a3d;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
         .footer-heading {
-            font-family: 'Barlow Condensed', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--white);
-            margin-bottom: 20px;
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 16px;
         }
 
-        .footer-list li {
-            font-size: 13px;
-            color: var(--gray);
-            margin-bottom: 10px;
-            list-style: none;
-            padding-left: 12px;
-            position: relative;
+        .footer-text {
+            font-size: 0.875rem;
+            color: #94a3b8;
+            line-height: 1.7;
         }
 
-        .footer-list li::before {
-            content: '//';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            opacity: 0.5;
-            font-size: 10px;
-        }
-
-        .footer-list a {
-            color: var(--gray);
-            text-decoration: none;
+        .footer-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.875rem;
+            color: #94a3b8;
             transition: color 0.2s;
         }
-        .footer-list a:hover { color: var(--light); }
+        .footer-link:hover { color: white; }
 
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-top: 28px;
-            border-top: 1px solid rgba(255,255,255,0.06);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .footer-tagline {
+            font-style: italic;
+            color: #60a5fa;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-top: 12px;
         }
 
-        .footer-copy {
-            font-size: 12px;
-            color: rgba(255,255,255,0.25);
-            letter-spacing: 1px;
+        .footer-divider {
+            border-top: 1px solid rgba(255,255,255,0.07);
+            margin-top: 40px;
+            padding-top: 24px;
+            text-align: center;
+            font-size: 0.8125rem;
+            color: #475569;
         }
 
-        /* === RESPONSIVE === */
-        @media (max-width: 1024px) {
-            .hero-visual { display: none; }
-            .risks-grid { grid-template-columns: 1fr; }
-            .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
-            .process-steps::before { display: none; }
-            .form-wrap { grid-template-columns: 1fr; }
-            .footer-top { grid-template-columns: 1fr; gap: 32px; }
-        }
-
+        /* ─── RESPONSIVE ─── */
         @media (max-width: 768px) {
-            .hero { padding: 100px 5% 120px; }
-            .hero-stats { flex-wrap: wrap; gap: 20px; }
-            .stat-divider { display: none; }
-            section { padding: 70px 5%; }
-            .form-row { grid-template-columns: 1fr; }
-            .process-steps { grid-template-columns: 1fr; }
-            .form-info, .form-body { padding: 36px 28px; }
-            .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-            nav .nav-cta { display: none; }
+            .hero-title { font-size: 2.25rem !important; }
+            .hero { padding-top: 60px; padding-bottom: 72px; }
+            .form-card { border-radius: 16px; }
+        }
+        @media (max-width: 480px) {
+            .hero-title { font-size: 1.875rem !important; letter-spacing: -0.02em; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAV -->
-    <nav>
-        <div class="nav-logo">
-            <div class="logo-badge">MGP</div>
-            <div class="logo-text">
-                PT Multi Guna Persada
-                <span>Industrial Power Services</span>
+    <!-- Navigation -->
+    <nav class="nav-bar sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+            <div class="flex justify-between h-[72px] items-center">
+                <div class="flex items-center gap-3">
+                    <div class="logo-mark">MGP</div>
+                    <div>
+                        <p class="font-heading font-bold text-[var(--navy)] text-[0.95rem] leading-tight">PT. MULTI GUNA <br>PERSADA</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center">
+                    <a href="#form-section" class="nav-cta">Konsultasi Gratis</a>
+                </div>
             </div>
         </div>
-        <a href="#form-section" class="nav-cta">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-            Ajukan Inspeksi
-        </a>
     </nav>
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-grid"></div>
+    <!-- Hero Section -->
+    <section class="hero text-white pt-20 pb-24 px-5 sm:px-8 lg:px-10">
+        <div class="max-w-4xl mx-auto text-center hero-content">
+            <div class="badge mb-8">
+                <span class="badge-dot"></span>
+                Penawaran Terbatas
+            </div>
 
-        <div style="position:relative; z-index:2; max-width:660px;">
-            <div class="hero-tag">Industrial Electrical Audit</div>
-            
-            <h1 class="hero-headline">
-                <span class="line-solid">Genset Anda</span>
-                <span class="line-accent">Siap Tempur</span>
-                <span class="line-solid">Saat Darurat?</span>
+            <h1 class="hero-title text-[2.75rem] md:text-[3.5rem] lg:text-[4rem] text-white mb-7">
+                Pemeriksaan Genset <span class="highlight">GRATIS</span><br class="hidden md:block">
+                oleh Teknisi Profesional
             </h1>
 
-            <p class="hero-sub">
-                Kegagalan sistem cadangan daya terjadi <strong>tanpa peringatan</strong>. Audit teknis kami mengidentifikasi risiko tersembunyi sebelum menjadi bencana operasional yang menghentikan seluruh produksi.
+            <p class="text-[1.125rem] md:text-[1.25rem] text-blue-100 mb-11 max-w-2xl mx-auto leading-relaxed">
+                Solusi kelistrikan terpercaya untuk pabrik, gedung, hotel & kawasan industri Anda agar selalu beroperasi tanpa henti.
             </p>
 
-            <div class="hero-ctas">
-                <a href="#form-section" class="btn-primary">
-                    Dapatkan Penilaian Unit
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#form-section" class="hero-cta-primary">
+                    Jadwalkan Sekarang
+                    <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
                 </a>
-                <a href="#pain-section" class="btn-ghost">
-                    Lihat Risiko Downtime
+                <a href="#trust-section" class="hero-cta-secondary">
+                    Lihat Portofolio Kami
+                    <i data-lucide="chevron-down" style="width:18px;height:18px;"></i>
                 </a>
             </div>
         </div>
+    </section>
 
-        <!-- Right visual card -->
-        <div class="hero-visual" style="position: absolute; right: 5%; top: 50%; transform: translateY(-50%);">
-            <div class="circuit-card">
-                <div class="circuit-label">
-                    <span class="status-dot"></span>System Health Monitor
-                </div>
-                <div class="circuit-metric">
-                    <span class="metric-name">Starter Battery</span>
-                    <div class="metric-bar-wrap"><div class="metric-bar" style="width:28%; animation-delay:0.2s"></div></div>
-                    <span class="metric-val" style="color:#EF4444">28%</span>
-                </div>
-                <div class="circuit-metric">
-                    <span class="metric-name">Fuel Filter</span>
-                    <div class="metric-bar-wrap"><div class="metric-bar" style="width:51%; animation-delay:0.4s"></div></div>
-                    <span class="metric-val" style="color:#F59E0B">51%</span>
-                </div>
-                <div class="circuit-metric">
-                    <span class="metric-name">Cooling System</span>
-                    <div class="metric-bar-wrap"><div class="metric-bar" style="width:74%; animation-delay:0.6s"></div></div>
-                    <span class="metric-val" style="color:#22C55E">74%</span>
-                </div>
-                <div class="circuit-metric">
-                    <span class="metric-name">AVR Output</span>
-                    <div class="metric-bar-wrap"><div class="metric-bar" style="width:63%; animation-delay:0.8s"></div></div>
-                    <span class="metric-val" style="color:#F59E0B">63%</span>
-                </div>
-                <div style="margin-top:20px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.08);">
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-family:'Space Mono',monospace; font-size:10px; color:#EF4444; letter-spacing:1px;">⚠ 2 CRITICAL ALERTS</span>
-                        <span style="font-family:'Space Mono',monospace; font-size:10px; color:rgba(255,255,255,0.3);">LAST AUDIT: 214 DAYS AGO</span>
+    <!-- Trust Section -->
+    <section id="trust-section" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+            <div class="text-center mb-14">
+                <h2 class="font-heading text-[1.875rem] md:text-[2.25rem] font-bold text-[var(--navy)] mb-4">Dipercaya Sejak 2012</h2>
+                <p class="text-[var(--text-muted)] max-w-2xl mx-auto text-[1rem] leading-relaxed">Kami telah melayani ratusan proyek pengadaan, pemeliharaan, dan perbaikan genset di seluruh Indonesia dengan tenaga ahli bersertifikat.</p>
+            </div>
+
+            <!-- Statistics -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mb-4">
+                <div class="stat-card">
+                    <div class="stat-icon-wrap">
+                        <i data-lucide="calendar" style="width:22px;height:22px;color:var(--blue-light);"></i>
                     </div>
+                    <div class="stat-number">13+</div>
+                    <div class="stat-label">Tahun Pengalaman</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrap">
+                        <i data-lucide="check-circle" style="width:22px;height:22px;color:var(--blue-light);"></i>
+                    </div>
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Proyek Selesai</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrap">
+                        <i data-lucide="users" style="width:22px;height:22px;color:var(--blue-light);"></i>
+                    </div>
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Dukungan Teknis</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrap">
+                        <i data-lucide="map-pin" style="width:22px;height:22px;color:var(--blue-light);"></i>
+                    </div>
+                    <div class="stat-number">Nasional</div>
+                    <div class="stat-label">Jangkauan Area</div>
                 </div>
             </div>
-        </div>
 
-        <div class="hero-stats">
-            <div class="stat-item">
-                <span class="stat-num">14+</span>
-                <span class="stat-label">Tahun Beroperasi</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-                <span class="stat-num">&lt;24H</span>
-                <span class="stat-label">Respon Tim Teknis</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-                <span class="stat-num">100%</span>
-                <span class="stat-label">Laporan Terdetil</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-                <span class="stat-num">0</span>
-                <span class="stat-label">Kewajiban Kontrak Awal</span>
+            <!-- Client List -->
+            <div class="clients-strip">
+                <p class="clients-label">Telah digunakan dan dipercaya oleh</p>
+                <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-5">
+                    <span class="client-name">PLN UIP</span>
+                    <span class="text-gray-200 text-lg hidden sm:block">·</span>
+                    <span class="client-name">Pertamina</span>
+                    <span class="text-gray-200 text-lg hidden sm:block">·</span>
+                    <span class="client-name">Aneka Tambang</span>
+                    <span class="text-gray-200 text-lg hidden sm:block">·</span>
+                    <span class="client-name">RS Bhayangkara</span>
+                    <span class="text-gray-200 text-lg hidden sm:block">·</span>
+                    <span class="client-name">Hotel Westin Bali</span>
+                    <span class="text-gray-200 text-lg hidden sm:block">·</span>
+                    <span class="client-name">RS JIS Solo</span>
+                    <span class="text-gray-200 text-lg hidden sm:block">·</span>
+                    <span class="client-name">Bank DKI</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- RISKS + SOLUTION -->
-    <section id="pain-section" class="risks-section">
-        <div style="max-width:1200px; margin:0 auto;">
-            <div style="margin-bottom:56px;">
-                <p class="section-eyebrow">// Risk Analysis</p>
-                <h2 class="section-title">
-                    Masalah Yang Baru<br>Terdeteksi Saat<br><span style="color:var(--accent)">Sudah Terlambat</span>
-                </h2>
-            </div>
+    <!-- Form Section -->
+    <section id="form-section" class="form-section py-20 px-5 sm:px-8 lg:px-10">
+        <div class="max-w-4xl mx-auto">
+            <div class="form-card md:flex">
 
-            <div class="risks-grid">
-                <div>
-                    <p style="font-size:15px; color:var(--gray); line-height:1.8; margin-bottom:36px;">
-                        Sistem backup power yang tidak dirawat adalah jebakan tersembunyi. Kelalaian pada komponen kritikal dapat menghentikan seluruh operasional fasilitas dalam hitungan detik.
-                    </p>
-
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
-                        <div class="risk-card">
-                            <div class="risk-number">RISIKO 01</div>
-                            <div class="risk-title">Baterai Starter Korosi</div>
-                            <p class="risk-desc">Kegagalan akibat korosi yang tidak terdeteksi selama berbulan-bulan.</p>
-                        </div>
-                        <div class="risk-card">
-                            <div class="risk-number">RISIKO 02</div>
-                            <div class="risk-title">Kontaminasi Bahan Bakar</div>
-                            <p class="risk-desc">Filter tersumbat saat beban puncak — genset gagal start dalam momen kritis.</p>
-                        </div>
-                        <div class="risk-card">
-                            <div class="risk-number">RISIKO 03</div>
-                            <div class="risk-title">Kebocoran Pendingin</div>
-                            <p class="risk-desc">Kebocoran halus yang memicu overheat instan di bawah beban penuh.</p>
-                        </div>
-                        <div class="risk-card">
-                            <div class="risk-number">RISIKO 04</div>
-                            <div class="risk-title">Degradasi AVR</div>
-                            <p class="risk-desc">Penurunan performa merusak perangkat elektronik sensitif dalam gedung.</p>
-                        </div>
-                    </div>
-
-                    <div style="margin-top:24px; padding:20px 24px; border-left:3px solid #EF4444; background:rgba(239,68,68,0.05);">
-                        <p style="font-size:14px; color:#FCA5A5; font-style:italic; line-height:1.6;">
-                            "Masalah kritis pada sistem cadangan daya biasanya baru disadari saat kegagalan sistem utama terjadi — dan segalanya sudah terlambat."
+                <!-- Left Info Panel -->
+                <div class="info-panel text-white p-10 md:w-[42%] flex flex-col justify-between">
+                    <div class="info-panel-inner">
+                        <h3 class="font-heading text-[1.375rem] font-bold mb-5 leading-snug">Amankan Operasional Bisnis Anda Hari Ini.</h3>
+                        <p class="text-blue-200 mb-8 leading-relaxed text-[0.9375rem]">
+                            Jangan tunggu sampai terjadi pemadaman mendadak. Tim teknisi kami siap melakukan inspeksi menyeluruh pada unit Genset Anda.
                         </p>
+                        <div class="space-y-4">
+                            <div class="check-item">
+                                <div class="check-icon">
+                                    <i data-lucide="check" style="width:13px;height:13px;color:#fbbf24;stroke-width:3;"></i>
+                                </div>
+                                <span class="text-[0.875rem] text-gray-100 leading-relaxed">Pengecekan Baterai & Sistem Starter</span>
+                            </div>
+                            <div class="check-item">
+                                <div class="check-icon">
+                                    <i data-lucide="check" style="width:13px;height:13px;color:#fbbf24;stroke-width:3;"></i>
+                                </div>
+                                <span class="text-[0.875rem] text-gray-100 leading-relaxed">Pengecekan Oli & Filter</span>
+                            </div>
+                            <div class="check-item">
+                                <div class="check-icon">
+                                    <i data-lucide="check" style="width:13px;height:13px;color:#fbbf24;stroke-width:3;"></i>
+                                </div>
+                                <span class="text-[0.875rem] text-gray-100 leading-relaxed">Identifikasi Potensi Kerusakan</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-panel-inner mt-12 space-y-3">
+                        <p class="text-[0.8125rem] text-blue-300 font-medium mb-1">Punya pertanyaan mendesak?</p>
+                        <div class="contact-row">
+                            <div class="contact-icon-wrap">
+                                <i data-lucide="mail" style="width:15px;height:15px;color:#93c5fd;"></i>
+                            </div>
+                            <span class="font-medium text-[0.875rem] text-gray-100">ade.oktarini@gmail.com</span>
+                        </div>
+                        <div class="contact-row">
+                            <div class="contact-icon-wrap">
+                                <i data-lucide="phone" style="width:15px;height:15px;color:#93c5fd;"></i>
+                            </div>
+                            <span class="font-medium text-[0.875rem] text-gray-100">WA: 0812 1996 5256</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="solution-panel">
-                    <p style="font-family:'Space Mono',monospace; font-size:10px; letter-spacing:3px; color:var(--electric); text-transform:uppercase; margin-bottom:16px; opacity:0.7;">
-                        // Solution Framework
-                    </p>
-                    <h3 style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:32px; text-transform:uppercase; letter-spacing:-0.5px; color:var(--white); margin-bottom:12px; line-height:1;">
-                        Mitigasi Risiko<br>Melalui Audit Teknis
-                    </h3>
-                    <p style="font-size:13px; color:var(--gray); line-height:1.7; margin-bottom:32px;">
-                        Proses inspeksi dirancang untuk memastikan setiap komponen berada dalam kondisi <strong style="color:var(--electric);">ready-to-run</strong>.
-                    </p>
+                <!-- Right Form Panel -->
+                <div class="p-8 md:p-10 md:w-[58%]">
+                    <h3 class="font-heading text-[1.375rem] font-bold text-[var(--navy)] mb-1">Booking Pemeriksaan Gratis Sekarang</h3>
+                    <p class="text-[var(--text-muted)] mb-8 text-[0.875rem] leading-relaxed">Isi detail di bawah ini, tim kami akan segera menghubungi Anda untuk penjadwalan.</p>
 
-                    <div class="solution-item">
-                        <div class="solution-icon">
-                            <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                    <form id="bookingForm" class="space-y-5">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="company_name" class="field-label">Nama Perusahaan <span class="text-red-500">*</span></label>
+                                <input type="text" id="company_name" name="company_name" required class="field-input">
+                            </div>
+                            <div>
+                                <label for="pic_name" class="field-label">Nama PIC <span class="text-red-500">*</span></label>
+                                <input type="text" id="pic_name" name="pic_name" required class="field-input">
+                            </div>
                         </div>
-                        <div class="solution-text">
-                            <strong>Verifikasi Sistem Kelistrikan</strong>
-                            Pengecekan integritas panel kontrol, kabel, dan komponen elektrikal secara menyeluruh.
-                        </div>
-                    </div>
-                    <div class="solution-item">
-                        <div class="solution-icon">
-                            <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke-width="1.5"/><path d="m21 21-4.35-4.35" stroke-width="1.5" stroke-linecap="round"/></svg>
-                        </div>
-                        <div class="solution-text">
-                            <strong>Analisa Oli & Sistem Filtrasi</strong>
-                            Pemeriksaan kualitas pelumas dan efisiensi filter untuk mencegah kerusakan mesin.
-                        </div>
-                    </div>
-                    <div class="solution-item">
-                        <div class="solution-icon">
-                            <svg viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-width="1.5"/><polyline points="14,2 14,8 20,8" stroke-width="1.5"/><line x1="16" y1="13" x2="8" y2="13" stroke-width="1.5"/><line x1="16" y1="17" x2="8" y2="17" stroke-width="1.5"/></svg>
-                        </div>
-                        <div class="solution-text">
-                            <strong>Laporan Kondisi & Rekomendasi</strong>
-                            Dokumen inspeksi lengkap dengan prioritas langkah preventif berdasarkan temuan.
-                        </div>
-                    </div>
-                    <div class="solution-item">
-                        <div class="solution-icon">
-                            <svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-width="1.5"/></svg>
-                        </div>
-                        <div class="solution-text">
-                            <strong>Uji Beban & Performa</strong>
-                            Pengujian langsung di bawah kondisi beban untuk validasi performa aktual unit.
-                        </div>
-                    </div>
 
-                    <div style="margin-top:28px; padding:16px; background:rgba(0,191,255,0.05); border:1px solid rgba(0,191,255,0.15);">
-                        <p style="font-size:12px; color:rgba(200,216,232,0.5); letter-spacing:0.5px;">
-                            * Ketersediaan layanan bergantung pada area jangkauan teknis dan jadwal inspeksi yang tersedia.
-                        </p>
-                    </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="whatsapp" class="field-label">No WhatsApp <span class="text-red-500">*</span></label>
+                                <input type="tel" id="whatsapp" name="whatsapp" required class="field-input" placeholder="0812xxxxxx">
+                            </div>
+                            <div>
+                                <label for="email" class="field-label">Email <span class="text-red-500">*</span></label>
+                                <input type="email" id="email" name="email" required class="field-input">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="location" class="field-label">Lokasi / Kota <span class="text-red-500">*</span></label>
+                                <input type="text" id="location" name="location" required class="field-input" placeholder="Misal: Jakarta Timur">
+                            </div>
+                            <div>
+                                <label for="capacity" class="field-label">Kapasitas Genset (KVA) <span class="text-red-500">*</span></label>
+                                <input type="text" id="capacity" name="capacity" required class="field-input" placeholder="Misal: 250 KVA">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="issue" class="field-label">Kondisi / Kendala Saat Ini <span class="text-red-500">*</span></label>
+                            <textarea id="issue" name="issue" rows="3" required class="field-input" placeholder="Jelaskan kendala yang dialami atau jadwal terakhir maintenance..."></textarea>
+                        </div>
+
+                        <button type="submit" id="submitBtn" class="submit-btn">
+                            <span>Kirim Permintaan</span>
+                            <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
+                        </button>
+
+                        <div id="loadingMsg" class="hidden msg-loading">Mengirim data... Mohon tunggu.</div>
+
+                        <div id="successMsg" class="hidden msg-success">
+                            <i data-lucide="check-circle-2" style="width:20px;height:20px;color:#16a34a;flex-shrink:0;margin-top:1px;"></i>
+                            <span>✅ Terima kasih! Permintaan Anda berhasil dikirim. Tim kami akan segera menghubungi Anda.</span>
+                        </div>
+
+                        <div id="errorMsg" class="hidden msg-error">
+                            <i data-lucide="alert-circle" style="width:20px;height:20px;color:#dc2626;flex-shrink:0;margin-top:1px;"></i>
+                            <span>❌ Maaf, terjadi kesalahan saat mengirim data. Silakan coba lagi atau hubungi via WhatsApp.</span>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PROCESS -->
-    <section class="process-section">
-        <div class="process-wrap">
-            <div style="text-align:center; margin-bottom:20px;">
-                <p class="section-eyebrow">// Proses Kerja</p>
-                <h2 class="section-title">Bagaimana Kami<br><span style="color:var(--accent)">Bekerja</span></h2>
-            </div>
-
-            <div class="process-steps">
-                <div class="process-step">
-                    <div class="step-circle">01</div>
-                    <div class="step-title">Pengajuan Form</div>
-                    <p class="step-desc">Isi formulir dengan spesifikasi unit dan lokasi. Data ini membantu kami menyiapkan teknisi yang sesuai.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-circle">02</div>
-                    <div class="step-title">Verifikasi & Jadwal</div>
-                    <p class="step-desc">Tim kami menghubungi PIC dalam kurang dari 24 jam untuk konfirmasi jadwal inspeksi lapangan.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-circle">03</div>
-                    <div class="step-title">Inspeksi Lapangan</div>
-                    <p class="step-desc">Teknisi bersertifikat melakukan pemeriksaan komprehensif pada semua sistem kritikal unit.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-circle">04</div>
-                    <div class="step-title">Laporan & Tindak Lanjut</div>
-                    <p class="step-desc">Anda menerima laporan teknis lengkap dengan prioritas rekomendasi dan opsi penanganan.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FORM -->
-    <section id="form-section" class="form-section">
-        <div style="text-align:center; margin-bottom:56px; position:relative; z-index:1;">
-            <p class="section-eyebrow">// Permohonan Audit</p>
-            <h2 class="section-title">Jadwalkan Inspeksi<br><span style="color:var(--accent)">Unit Anda</span></h2>
-        </div>
-
-        <div class="form-wrap" style="position:relative; z-index:1;">
-            <!-- Info panel -->
-            <div class="form-info">
-                <div class="form-info-eyebrow">// Kenapa Memilih MGP</div>
-                <div class="form-info-title">Validasi Kesehatan Unit Anda</div>
-                <p class="form-info-text">
-                    Lengkapi formulir untuk mendapatkan jadwal pemeriksaan dari tim teknis kami. Tidak ada kewajiban apapun hingga kesepakatan terjalin.
-                </p>
-
-                <div class="info-feature">
-                    <div class="info-feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke-width="1.5"/><polyline points="12,6 12,12 16,14" stroke-width="1.5"/></svg>
-                    </div>
-                    <span class="info-feature-text">Respon konfirmasi &lt; 24 jam</span>
-                </div>
-                <div class="info-feature">
-                    <div class="info-feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-width="1.5"/></svg>
-                    </div>
-                    <span class="info-feature-text">Tanpa kewajiban kontrak awal</span>
-                </div>
-                <div class="info-feature">
-                    <div class="info-feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-width="1.5"/><polyline points="14,2 14,8 20,8" stroke-width="1.5"/></svg>
-                    </div>
-                    <span class="info-feature-text">Laporan inspeksi detail & tertulis</span>
-                </div>
-                <div class="info-feature">
-                    <div class="info-feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-width="1.5"/><circle cx="9" cy="7" r="4" stroke-width="1.5"/><path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke-width="1.5"/><path d="M16 3.13a4 4 0 0 1 0 7.75" stroke-width="1.5"/></svg>
-                    </div>
-                    <span class="info-feature-text">Teknisi berpengalaman &amp; bersertifikat</span>
-                </div>
-
-                <div class="info-contacts">
-                    <a href="mailto:ade.oktarini@gmail.com" class="info-contact-link">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke-width="1.5"/><polyline points="22,6 12,13 2,6" stroke-width="1.5"/></svg>
-                        ade.oktarini@gmail.com
-                    </a>
-                    <a href="https://wa.me/6281219965256" target="_blank" class="info-contact-link">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke-width="1.5"/></svg>
-                        0812 1996 5256 (WhatsApp)
-                    </a>
-                </div>
-            </div>
-
-            <!-- Form -->
-            <div class="form-body">
-                <div class="form-title">Permohonan Audit Teknis</div>
-                <p class="form-subtitle">Informasi ini membantu kami menyiapkan teknisi yang sesuai dengan spesifikasi unit Anda.</p>
-
-                <form id="bookingForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label" for="company_name">Nama Perusahaan <span>*</span></label>
-                            <input type="text" id="company_name" name="company_name" required class="form-input" placeholder="PT. Contoh Industri">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="pic_name">Nama PIC <span>*</span></label>
-                            <input type="text" id="pic_name" name="pic_name" required class="form-input" placeholder="Nama penanggung jawab">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label" for="whatsapp">Nomor Kontak <span>*</span></label>
-                            <input type="tel" id="whatsapp" name="whatsapp" required class="form-input" placeholder="0812xxxxxxxx">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="email">Email Perusahaan <span>*</span></label>
-                            <input type="email" id="email" name="email" required class="form-input" placeholder="you@company.com">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label" for="location">Lokasi Unit <span>*</span></label>
-                            <input type="text" id="location" name="location" required class="form-input" placeholder="Kota / Kawasan Industri">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="capacity">Kapasitas (KVA) <span>*</span></label>
-                            <input type="text" id="capacity" name="capacity" required class="form-input" placeholder="Contoh: 500 KVA">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="form-label" for="issue">Catatan Tambahan</label>
-                        <textarea id="issue" name="issue" class="form-textarea" placeholder="Kondisi unit saat ini, gejala yang dirasakan, atau kebutuhan spesifik..."></textarea>
-                    </div>
-
-                    <button type="submit" id="submitBtn" class="form-submit">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        Konfirmasi Pengajuan
-                    </button>
-
-                    <p class="form-note">Pengajuan ini tidak bersifat mengikat. Verifikasi awal dilakukan sebelum jadwal ditetapkan.</p>
-                    <div id="loadingMsg">MEMPROSES PENGAJUAN...</div>
-                    <div id="successMsg">✓ &nbsp;Pengajuan diterima. Tim teknis kami akan menghubungi PIC dalam waktu dekat.</div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-top">
+    <!-- Footer -->
+    <footer class="footer py-14">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 grid grid-cols-1 md:grid-cols-3 gap-10">
             <div>
-                <div class="footer-brand">PT Multi Guna Persada</div>
-                <p class="footer-desc">Penyedia solusi infrastruktur daya dan pemeliharaan industri profesional. Melayani berbagai sektor manufaktur, komersial, dan infrastruktur kritis di Indonesia.</p>
-                <div class="footer-tagline">YOUR TRUST IS OUR ASSET</div>
+                <h4 class="footer-heading">PT Multi Guna Persada</h4>
+                <p class="footer-text">Membangun dan mendukung perusahaan di Indonesia dengan menyediakan layanan & produk IT serta Industri terbaik.</p>
+                <p class="footer-tagline">"Your trust is our asset"</p>
             </div>
             <div>
-                <div class="footer-heading">Layanan</div>
-                <ul class="footer-list">
-                    <li>Inspeksi & Sertifikasi Genset</li>
-                    <li>Sistem ATS/AMF & Sinkronisasi</li>
-                    <li>Kontrak Maintenance Tahunan</li>
-                    <li>Solusi Cadangan Daya Kritis</li>
-                    <li>Audit Sistem Kelistrikan</li>
+                <h4 class="footer-heading">Hubungi Kami</h4>
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-3 text-[0.875rem] text-[#94a3b8]">
+                        <i data-lucide="map-pin" style="width:16px;height:16px;color:#475569;flex-shrink:0;margin-top:2px;"></i>
+                        <span>Jl. Sentra Primer Timur STCP 8 No. 2 Kel. Pulogebang, Kec. Cakung, Jakarta Timur</span>
+                    </li>
+                    <li>
+                        <a href="https://wa.me/6281219965256" target="_blank" class="footer-link">
+                            <svg style="width:16px;height:16px;color:#22c55e;flex-shrink:0;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.012c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                            <span>Ade Oktarini: 0812 1996 5256</span>
+                        </a>
+                    </li>
+                    <li class="footer-link">
+                        <i data-lucide="mail" style="width:16px;height:16px;color:#475569;flex-shrink:0;"></i>
+                        <span>ade.oktarini@gmail.com</span>
+                    </li>
                 </ul>
             </div>
             <div>
-                <div class="footer-heading">Kontak</div>
-                <ul class="footer-list">
-                    <li>Jl. Sentra Primer Timur STCP 8 No. 2, Pulogebang, Cakung, Jakarta Timur</li>
-                    <li><a href="https://wa.me/6281219965256">0812 1996 5256 (WhatsApp)</a></li>
-                    <li><a href="mailto:ade.oktarini@gmail.com">ade.oktarini@gmail.com</a></li>
+                <h4 class="footer-heading">Layanan Kami</h4>
+                <ul class="space-y-2 text-[0.875rem] text-[#94a3b8]">
+                    <li>Generator Sets (Genset) & Instalasi</li>
+                    <li>ATS / Panel Cos & Synchron</li>
+                    <li>Sparepart & Rental Genset</li>
+                    <li>Maintenance & Servis</li>
                 </ul>
             </div>
         </div>
-        <div class="footer-bottom">
-            <span class="footer-copy">&copy; 2026 PT Multi Guna Persada. Professional Engineering Services.</span>
-            <span class="footer-copy" style="font-family:'Space Mono',monospace; font-size:10px;">EST. 2012 // JAKARTA</span>
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 footer-divider">
+            &copy; 2026 PT Multi Guna Persada. All rights reserved.
         </div>
     </footer>
 
     <script>
+        lucide.createIcons();
+
         document.getElementById('bookingForm').addEventListener('submit', async function(e) {
             e.preventDefault();
+
             const btn = document.getElementById('submitBtn');
             const loading = document.getElementById('loadingMsg');
             const success = document.getElementById('successMsg');
-            
-            const n8nWebhookUrl = 'https://n8n.adaai.id/webhook/genset-booking'; 
+            const error = document.getElementById('errorMsg');
+
+            const n8nWebhookUrl = 'https://n8n.adaai.id/webhook/genset-booking';
+
             const formData = new FormData(this);
             const data = Object.fromEntries(formData.entries());
             data.timestamp = new Date().toISOString();
-            
+
             btn.disabled = true;
-            loading.style.display = 'block';
-            success.style.display = 'none';
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
+            loading.classList.remove('hidden');
+            success.classList.add('hidden');
+            error.classList.add('hidden');
 
             try {
-                const response = await fetch(n8nWebhookUrl, {
+                await fetch(n8nWebhookUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
                 });
-                if (!response.ok) throw new Error('Request failed');
+
                 this.reset();
-                success.style.display = 'block';
-                success.style.color = '#22C55E';
+                success.classList.remove('hidden');
+                lucide.createIcons();
             } catch (err) {
                 console.error(err);
-                success.innerText = "⚠ Terjadi gangguan koneksi. Mohon hubungi nomor WhatsApp tertera.";
-                success.style.display = 'block';
-                success.style.color = '#EF4444';
+                error.classList.remove('hidden');
+                lucide.createIcons();
             } finally {
                 btn.disabled = false;
-                loading.style.display = 'none';
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
+                loading.classList.add('hidden');
+
+                setTimeout(() => { success.classList.add('hidden'); }, 5000);
             }
         });
     </script>
