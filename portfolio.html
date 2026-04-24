@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Reference - PT Multi Guna Persada</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0f2557;
+            --navy-mid: #1a3a7a;
+            --blue: #2563eb;
+            --accent: #f59e0b;
+            --border: #e2e8f0;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #f8faff;
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+        }
+        h1,h2,h3,h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        /* ── HERO HEADER ── */
+        .page-hero {
+            background: linear-gradient(160deg, #07142e 0%, #0d1f4a 50%, #0f2557 100%);
+            position: relative; overflow: hidden;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 56px 56px;
+        }
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            width: 500px; height: 500px;
+            top: -120px; right: -80px;
+            background: radial-gradient(circle, rgba(37,99,235,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero-inner { position: relative; z-index: 10; }
+
+        .back-btn {
+            display: inline-flex; align-items: center; gap: 7px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.8125rem; font-weight: 600;
+            color: rgba(186,210,255,0.8);
+            text-decoration: none;
+            padding: 7px 16px 7px 12px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 999px;
+            transition: background 0.2s, color 0.2s;
+            margin-bottom: 28px;
+        }
+        .back-btn:hover { background: rgba(255,255,255,0.13); color: white; }
+
+        .stat-pill {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: 999px;
+            padding: 6px 14px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.8rem; font-weight: 700;
+            color: rgba(220,235,255,0.9);
+        }
+
+        /* ── FILTERS ── */
+        .filter-bar {
+            background: white;
+            border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 40;
+        }
+        .filter-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.8rem; font-weight: 600;
+            padding: 7px 16px;
+            border-radius: 8px;
+            border: 1.5px solid var(--border);
+            background: white;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+        .filter-btn:hover { border-color: var(--blue); color: var(--blue); background: rgba(37,99,235,0.04); }
+        .filter-btn.active { border-color: var(--blue); color: white; background: var(--blue); }
+
+        .search-input {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            padding: 9px 14px 9px 38px;
+            border: 1.5px solid var(--border);
+            border-radius: 9px;
+            background: #f9fafb;
+            color: var(--text-main);
+            outline: none;
+            transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+            width: 100%;
+        }
+        .search-input:focus {
+            border-color: var(--blue);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+
+        /* ── CARDS ── */
+        .project-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+            display: flex; flex-direction: column; gap: 12px;
+        }
+        .project-card:hover {
+            box-shadow: 0 8px 32px rgba(15,37,87,0.1);
+            transform: translateY(-2px);
+            border-color: rgba(37,99,235,0.2);
+        }
+        .card-number {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.65rem; font-weight: 800;
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .card-project {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9375rem; font-weight: 700;
+            color: var(--navy);
+            line-height: 1.35;
+        }
+        .card-meta {
+            display: flex; flex-wrap: wrap; gap: 6px;
+            margin-top: 4px;
+        }
+        .badge-product {
+            display: inline-flex; align-items: center; gap: 5px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.7rem; font-weight: 700;
+            letter-spacing: 0.04em; text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: #eff6ff;
+            color: var(--blue);
+            border: 1px solid rgba(37,99,235,0.15);
+        }
+        .badge-capacity {
+            display: inline-flex; align-items: center; gap: 5px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.7rem; font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: #fffbeb;
+            color: #92400e;
+            border: 1px solid rgba(245,158,11,0.2);
+        }
+        .badge-type {
+            display: inline-flex; align-items: center; gap: 5px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.7rem; font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: #f0fdf4;
+            color: #166534;
+            border: 1px solid rgba(34,197,94,0.2);
+        }
+        .badge-it {
+            background: #faf5ff;
+            color: #7e22ce;
+            border: 1px solid rgba(167,139,250,0.25);
+        }
+
+        /* ── SECTION TITLE DIVIDER ── */
+        .section-divider {
+            display: flex; align-items: center; gap: 14px;
+            margin-bottom: 20px; margin-top: 40px;
+        }
+        .section-divider:first-of-type { margin-top: 0; }
+        .divider-icon {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, var(--navy), var(--blue));
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .divider-line { flex: 1; height: 1px; background: var(--border); }
+
+        /* ── BRAND COLOR MAP ── */
+        .brand-perkins  { color: #1d4ed8; }
+        .brand-cummins  { color: #dc2626; }
+        .brand-komatsu  { color: #d97706; }
+        .brand-mitsubishi { color: #7c3aed; }
+        .brand-isuzu    { color: #059669; }
+        .brand-daewoo   { color: #0891b2; }
+        .brand-other    { color: #6b7280; }
+
+        /* ── CTA BOTTOM ── */
+        .cta-bottom {
+            background: linear-gradient(135deg, var(--navy) 0%, #162d6f 100%);
+            border-radius: 20px;
+            position: relative; overflow: hidden;
+        }
+        .cta-bottom::before {
+            content: '';
+            position: absolute;
+            width: 300px; height: 300px;
+            top: -80px; right: -60px;
+            background: radial-gradient(circle, rgba(37,99,235,0.3) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .cta-btn-primary {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--accent); color: var(--navy);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700; font-size: 0.9375rem;
+            padding: 13px 28px; border-radius: 10px;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 4px 16px rgba(245,158,11,0.35);
+        }
+        .cta-btn-primary:hover { background: #d97706; transform: translateY(-1px); }
+        .cta-btn-back {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.85);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600; font-size: 0.9375rem;
+            padding: 12px 24px; border-radius: 10px;
+            border: 1.5px solid rgba(255,255,255,0.2);
+            transition: background 0.2s, color 0.2s;
+        }
+        .cta-btn-back:hover { background: rgba(255,255,255,0.18); color: white; }
+
+        /* ── REVEAL ── */
+        .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .rv-1 { transition-delay: 0.05s; }
+        .rv-2 { transition-delay: 0.1s; }
+        .rv-3 { transition-delay: 0.15s; }
+        .rv-4 { transition-delay: 0.2s; }
+        .rv-5 { transition-delay: 0.25s; }
+        .rv-6 { transition-delay: 0.3s; }
+
+        /* hidden by filter */
+        .card-hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <!-- Page Header -->
+    <header class="page-hero text-white px-5 sm:px-8 lg:px-10 pt-12 pb-14">
+        <div class="max-w-7xl mx-auto hero-inner">
+            <a href="landing-mgp-v2.html" class="back-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+                Kembali ke Beranda
+            </a>
+            <div class="flex items-center gap-3 mb-4">
+                <div style="background:linear-gradient(135deg,#0f2557,#2563eb);width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1rem;color:white;flex-shrink:0;">MGP</div>
+                <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.8rem;font-weight:600;color:rgba(186,210,255,0.7);letter-spacing:0.04em;text-transform:uppercase;">PT. Multi Guna Persada</p>
+            </div>
+            <h1 style="font-size:clamp(1.75rem,4vw,2.75rem);font-weight:800;letter-spacing:-0.03em;line-height:1.1;margin-bottom:12px;">Project Reference</h1>
+            <p style="color:rgba(186,214,255,0.8);font-size:1rem;max-width:520px;line-height:1.65;margin-bottom:24px;">Rekam jejak nyata kami di berbagai industri, dari Sabang hingga Papua — ratusan proyek selesai dengan penuh kepercayaan.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                <div class="stat-pill">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    108+ Proyek Industrial
+                </div>
+                <div class="stat-pill">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                    25+ Proyek IT
+                </div>
+                <div class="stat-pill">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    Seluruh Indonesia
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 py-3">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;">
+                <!-- Search -->
+                <div style="position:relative;flex:1;min-width:180px;max-width:260px;">
+                    <svg style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#9ca3af;" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Cari proyek...">
+                </div>
+                <!-- Filter buttons -->
+                <button class="filter-btn active" data-filter="all" onclick="setFilter(this,'all')">Semua</button>
+                <button class="filter-btn" data-filter="supply" onclick="setFilter(this,'supply')">Supply</button>
+                <button class="filter-btn" data-filter="install" onclick="setFilter(this,'install')">Instalasi</button>
+                <button class="filter-btn" data-filter="sparepart" onclick="setFilter(this,'sparepart')">Sparepart</button>
+                <button class="filter-btn" data-filter="it" onclick="setFilter(this,'it')">IT Division</button>
+                <!-- Count -->
+                <span id="countDisplay" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.8rem;font-weight:600;color:var(--text-muted);margin-left:auto;white-space:nowrap;"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 py-12">
+
+        <!-- Industrial Division -->
+        <div class="section-divider">
+            <div class="divider-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <div>
+                <h2 style="font-size:1.125rem;font-weight:800;color:var(--navy);letter-spacing:-0.02em;">Industrial Division</h2>
+                <p style="font-size:0.8rem;color:var(--text-muted);margin-top:1px;">Generator Sets, Sparepart, Forklift & Panel</p>
+            </div>
+            <div class="divider-line"></div>
+            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.75rem;font-weight:700;color:var(--blue);white-space:nowrap;background:#eff6ff;padding:4px 12px;border-radius:999px;border:1px solid rgba(37,99,235,0.15);">108 Projects</span>
+        </div>
+
+        <div id="industrialGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;">
+
+            <!-- Projects injected by JS -->
+
+        </div>
+
+        <!-- IT Division -->
+        <div class="section-divider" style="margin-top:52px;">
+            <div class="divider-icon" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/><line x1="12" y1="17" x2="12" y2="3"/></svg>
+            </div>
+            <div>
+                <h2 style="font-size:1.125rem;font-weight:800;color:var(--navy);letter-spacing:-0.02em;">IT Division</h2>
+                <p style="font-size:0.8rem;color:var(--text-muted);margin-top:1px;">Digital Signage, Network, CCTV & Access System</p>
+            </div>
+            <div class="divider-line"></div>
+            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.75rem;font-weight:700;color:#7c3aed;white-space:nowrap;background:#faf5ff;padding:4px 12px;border-radius:999px;border:1px solid rgba(167,139,250,0.25);">25 Projects</span>
+        </div>
+
+        <div id="itGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;">
+        </div>
+
+    </main>
+
+    <!-- CTA Bottom -->
+    <section class="px-5 sm:px-8 lg:px-10 pb-16">
+        <div class="max-w-7xl mx-auto">
+            <div class="cta-bottom p-10 md:p-14 text-white text-center reveal">
+                <div style="position:relative;z-index:10;">
+                    <p style="font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(186,210,255,0.7);margin-bottom:12px;">Siap Bergabung?</p>
+                    <h2 style="font-size:clamp(1.5rem,3vw,2.25rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:12px;">Jadikan bisnis Anda bagian dari daftar ini.</h2>
+                    <p style="color:rgba(186,214,255,0.75);max-width:460px;margin:0 auto 28px;font-size:0.9375rem;line-height:1.65;">Dapatkan pemeriksaan genset gratis sekarang dan rasakan standar layanan yang telah dipercaya ratusan klien kami.</p>
+                    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;">
+                        <a href="landing-mgp-v2.html#form-section" class="cta-btn-primary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                            Booking Pemeriksaan Gratis
+                        </a>
+                        <a href="landing-mgp-v2.html" class="cta-btn-back">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+                            Kembali ke Beranda
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background:#0b1a3d;border-top:1px solid rgba(255,255,255,0.05);padding:20px;text-align:center;font-size:0.8125rem;color:#475569;">
+        &copy; 2026 PT Multi Guna Persada. All rights reserved.
+    </footer>
+
+<script>
+// ── DATA ──
+const industrial = [
+    {n:1, project:"RS JIS, Solo (Yabinstra)", product:"PERKINS", capacity:"1250 KVA", type:"Supply"},
+    {n:2, project:"RS Bhayangkara, Sukabumi", product:"CUMMINS", capacity:"150 KVA", type:"Supply & Install"},
+    {n:3, project:"RS Bhayangkara, Palembang", product:"CUMMINS", capacity:"100 KVA", type:"Supply & Install"},
+    {n:4, project:"Hotel Aminda", product:"PERKINS", capacity:"500 KVA", type:"Supply"},
+    {n:5, project:"Aneka Tambang (PT. Gag Nikel)", product:"CUMMINS", capacity:"250 KVA", type:"Supply"},
+    {n:6, project:"PT. Gag Nikel", product:"CUMMINS", capacity:"250 KVA", type:"Supply"},
+    {n:7, project:"PT. Gag Nikel", product:"CUMMINS", capacity:"250 KVA", type:"Supply"},
+    {n:8, project:"RSIA Bandung", product:"PERKINS", capacity:"100 KVA", type:"Supply"},
+    {n:9, project:"Rusun ASN", product:"CUMMINS", capacity:"250 KVA", type:"Supply"},
+    {n:10, project:"Rusun Tunawisma Kemensos", product:"FG WILSON", capacity:"100 KVA", type:"Supply"},
+    {n:11, project:"Villa Pribadi", product:"ISUZU", capacity:"62.5 KVA", type:"Supply & Install"},
+    {n:12, project:"Perumahan (JIS Cilandak)", product:"PERKINS", capacity:"150 KVA", type:"Supply & Install"},
+    {n:13, project:"PT. Charoen Pokphand", product:"PERKINS", capacity:"30 KVA", type:"Supply"},
+    {n:14, project:"PT. Charoen Pokphand", product:"PERKINS", capacity:"10 KVA", type:"Supply"},
+    {n:15, project:"Hotel Mahakam 24", product:"PERKINS", capacity:"200 KVA", type:"Supply & Install"},
+    {n:16, project:"Apartemen Cilangkap", product:"CUMMINS", capacity:"500 KVA", type:"Supply"},
+    {n:17, project:"Hotel Westin, Ubud, Bali", product:"DAEWOO", capacity:"750 KVA", type:"Supply & Install"},
+    {n:18, project:"Rumah Pribadi", product:"CUMMINS", capacity:"80 KVA", type:"Supply & Install"},
+    {n:19, project:"Rumah Pribadi", product:"ISUZU", capacity:"100 KVA", type:"Supply & Install"},
+    {n:20, project:"Rumah Pribadi", product:"ISUZU", capacity:"62.5 KVA", type:"Supply & Install"},
+    {n:21, project:"PT. Tri Adi Bersama (Anter Aja)", product:"YANMAR", capacity:"5 KVA", type:"Supply"},
+    {n:22, project:"PT. Lobunta Kencana Raya", product:"CUMMINS", capacity:"100 KVA", type:"Supply"},
+    {n:23, project:"Pertamina Jambi", product:"CUMMINS", capacity:"250 KVA", type:"Supply"},
+    {n:24, project:"PT. Kaltimex Energy", product:"KOMATSU", capacity:"1000 KVA", type:"Sparepart"},
+    {n:25, project:"PT. Kencana Agri", product:"PERKINS", capacity:"30 KVA", type:"Supply"},
+    {n:26, project:"PT. Adibama Surabaya", product:"CUMMINS", capacity:"60 KVA", type:"Supply"},
+    {n:27, project:"PT. Aboy Construction", product:"CUMMINS / ISUZU", capacity:"60 KVA", type:"Supply"},
+    {n:28, project:"PT. Anaktuha Sawit", product:"PERKINS", capacity:"30 KVA", type:"Supply"},
+    {n:29, project:"PT. Antam Tbk", product:"CUMMINS", capacity:"250 KVA", type:"Supply & Install"},
+    {n:30, project:"PT. Agrina Sawit Perkasa", product:"CUMMINS", capacity:"30 KVA", type:"Supply"},
+    {n:31, project:"PT. Kirana Megatar", product:"CUMMINS", capacity:"500 KVA", type:"Sparepart"},
+    {n:32, project:"Menara BNI Pejompongan", product:"PERKINS", capacity:"1500 KVA", type:"Supply & Install"},
+    {n:33, project:"PT. Alfa Polimer Indonesia", product:"PERKINS", capacity:"200 KVA", type:"Sparepart"},
+    {n:34, project:"PT. Cikarang Dry Port", product:"PERKINS", capacity:"500 KVA", type:"Sparepart"},
+    {n:35, project:"PT. Dharma Dwi Putra", product:"CUMMINS", capacity:"100 KVA", type:"Supply"},
+    {n:36, project:"PT. Dua Rajawali", product:"CUMMINS / PERKINS", capacity:"100–200 KVA", type:"Supply & Install"},
+    {n:37, project:"PT. DP Pertamina", product:"CUMMINS", capacity:"250 KVA", type:"Supply"},
+    {n:38, project:"PT. Envitech Perkasa", product:"PERKINS", capacity:"800 KVA", type:"Supply & Install"},
+    {n:39, project:"PT. Gag Nikel", product:"CUMMINS", capacity:"250 KVA", type:"Sparepart"},
+    {n:40, project:"PT. Hansulindo & Jo", product:"PERKINS", capacity:"60 KVA", type:"Supply"},
+    {n:41, project:"PT. Indo Global Traktor", product:"PERKINS", capacity:"1000 KVA", type:"Supply"},
+    {n:42, project:"PT. JX Nippon Oil & Energy", product:"FORKLIFT", capacity:"2 TON", type:"Battery"},
+    {n:43, project:"RS. Indriati, Solo", product:"MITSUBISHI", capacity:"1250 KVA", type:"Supply & Install"},
+    {n:44, project:"PT. Mufen Tirta Indonesia", product:"CUMMINS", capacity:"40 KVA", type:"Supply & Install"},
+    {n:45, project:"PT. Monumen Energi Nusantara", product:"CUMMINS", capacity:"1000 KVA", type:"Sparepart"},
+    {n:46, project:"PT. Godrej Consumer Indonesia", product:"PERKINS", capacity:"60 KVA", type:"Supply & Install"},
+    {n:47, project:"Yayasan Perawat Nasional (Jabar)", product:"CUMMINS", capacity:"40 KVA", type:"Supply & Install"},
+    {n:48, project:"PT. Putra Persada Perkasa", product:"KOMATSU", capacity:"1000 KVA", type:"Sparepart"},
+    {n:49, project:"PT. Prima Link Nusantara", product:"KOMATSU", capacity:"1000 KVA", type:"Sparepart"},
+    {n:50, project:"Pemda PLTD Waropen", product:"KOMATSU", capacity:"500–1000 KVA", type:"Sparepart"},
+    {n:51, project:"RS. Medikids", product:"PERKINS", capacity:"30 KVA", type:"Supply & Install"},
+    {n:52, project:"PT. Sarico Indah", product:"MERCY", capacity:"500 KVA", type:"Sparepart"},
+    {n:53, project:"PT. Sumitomo Cikarang", product:"KOMATSU", capacity:"—", type:"Sparepart"},
+    {n:54, project:"PT. Sun Power Intim", product:"KOMATSU", capacity:"1000 KVA", type:"Sparepart"},
+    {n:55, project:"PT. Utama Prima Mandiri", product:"KOMATSU", capacity:"1000 KVA", type:"Sparepart"},
+    {n:56, project:"PT. Waykanan Sawitindo Mas", product:"PERKINS", capacity:"30 KVA", type:"Supply"},
+    {n:57, project:"PT. Wesa Sejahtera", product:"KOMATSU", capacity:"1000 KVA", type:"Sparepart"},
+    {n:58, project:"PT. Defincy Sigar Pratama", product:"CUMMINS", capacity:"250 KVA", type:"Supply"},
+    {n:59, project:"PT. Astra Modern Land", product:"GENSET", capacity:"5.5 KVA", type:"Supply"},
+    {n:60, project:"BPJS Ketenagakerjaan Ceger", product:"CUMMINS", capacity:"85 KVA", type:"Supply"},
+    {n:61, project:"Quadro Indo Perkasa", product:"MG POWER", capacity:"15 KVA", type:"Supply"},
+    {n:62, project:"Primautama Indo Mandiri", product:"KOMATSU", capacity:"1000 KVA", type:"Sparepart"},
+    {n:63, project:"PT. Samulos Rambuti Makmur", product:"ISUZU", capacity:"30 KVA", type:"Supply"},
+    {n:64, project:"PT. Samulos Rambuti Makmur", product:"CUMMINS", capacity:"50 KVA", type:"Supply"},
+    {n:65, project:"PT. Mitra Atlas Nusantara", product:"MITSUBISHI", capacity:"1000 KVA", type:"Rental"},
+    {n:66, project:"PT. Rajawali Sakti Utama", product:"CUMMINS", capacity:"100–120 KVA", type:"Supply"},
+    {n:67, project:"PT. Libra Dwikarya", product:"CUMMINS", capacity:"80 KVA", type:"Supply"},
+    {n:68, project:"PT. Bintang Global Teknik", product:"CUMMINS", capacity:"125 KVA", type:"Supply"},
+    {n:69, project:"PT. Swadaya Dwipantara", product:"PERKINS", capacity:"250 KVA", type:"Supply"},
+    {n:70, project:"PT. WayKanan Sawitindo", product:"KOMATSU", capacity:"705 KVA", type:"Sparepart"},
+    {n:71, project:"PT. Kurnia Teknik Cilacap", product:"MG POWER", capacity:"10 KVA", type:"Supply"},
+    {n:72, project:"PT. Graha Persada Papua Mandiri", product:"KOMATSU", capacity:"1000 KVA", type:"Sparepart"},
+    {n:73, project:"PT. Sahabat Anugrah Traktor", product:"KOMATSU", capacity:"1000 KVA", type:"Sparepart"},
+    {n:74, project:"PT. Genta Mulia (The East Tower)", product:"MITSUBISHI", capacity:"1700 KVA", type:"Supply"},
+    {n:75, project:"Plaza Semanggi", product:"MITSUBISHI", capacity:"200 KVA", type:"Supply"},
+    {n:76, project:"PT. Gumilar Adi Sejahtera", product:"CUMMINS", capacity:"60 KVA", type:"Supply"},
+    {n:77, project:"Tonsco International Sirkuit (Sentul)", product:"CUMMINS", capacity:"60 KVA", type:"Supply"},
+    {n:78, project:"PT. Selamat Sampurna", product:"CUMMINS", capacity:"1250 KVA", type:"Supply"},
+    {n:79, project:"PT. Bangun Artha Mandiri", product:"CUMMINS", capacity:"800 KVA", type:"Supply"},
+    {n:80, project:"PT. Alma Cipta Sejahtera", product:"CUMMINS", capacity:"250 KVA", type:"Supply"},
+    {n:81, project:"Perum Perumnas", product:"CUMMINS", capacity:"200 KVA", type:"Supply"},
+    {n:82, project:"PT. Dos Ni Roha", product:"ISUZU", capacity:"20 KVA", type:"Supply"},
+    {n:83, project:"PT. Kirana Musi Persada", product:"FORKLIFT", capacity:"—", type:"Sparepart"},
+    {n:84, project:"PT. Tambuak Ekatama", product:"CUMMINS", capacity:"200 KVA", type:"Supply"},
+    {n:85, project:"PT. Mitra Stania Prima", product:"KOMATSU", capacity:"1000 KVA", type:"Sparepart"},
+    {n:86, project:"PT. Serayu Teknologi Indonesia", product:"PERKINS", capacity:"45 KVA", type:"Supply & Syncrone"},
+    {n:87, project:"CV. Central Jaya", product:"KOMATSU", capacity:"1000 KVA", type:"Sparepart"},
+    {n:88, project:"PT. Tangguh Duta Merlin", product:"CUMMINS", capacity:"80 KVA", type:"Supply"},
+    {n:89, project:"Rumah Dinas Bupati Bekasi", product:"MITSUBISHI", capacity:"40 KVA", type:"Supply"},
+    {n:90, project:"Gedung Shopee Solo", product:"CUMMINS", capacity:"650 KVA", type:"Supply & Install"},
+    {n:91, project:"PLN UIP 3 B, Sulawesi", product:"CUMMINS", capacity:"100 KVA", type:"Supply & Install"},
+    {n:92, project:"PLN Lombok, NTB", product:"CUMMINS", capacity:"80 KVA", type:"Supply & Install"},
+    {n:93, project:"PT. Primautama Indo Mandiri", product:"PERKINS TRAILER", capacity:"10 KVA", type:"Supply"},
+    {n:94, project:"Bank DKI", product:"PERKINS", capacity:"80 KVA", type:"Supply & Install"},
+    {n:95, project:"PT. Bangun Artha Hutama", product:"ISUZU OLING", capacity:"60 KVA", type:"Supply"},
+    {n:97, project:"PT. Desalite Tirtamas Teknologi", product:"PERKINS", capacity:"15 KVA", type:"Supply"},
+    {n:98, project:"PT. Lam Jagar Natio", product:"CUMMINS", capacity:"200 KVA", type:"Supply & Install"},
+    {n:99, project:"PT. Putra Persada Perkasa", product:"KOMATSU", capacity:"1000 KVA", type:"Service Overhaul"},
+    {n:100, project:"PT. Global Energi Makmur", product:"Tower Lamp Diesel Genset", capacity:"5.1 KVA", type:"Supply"},
+    {n:101, project:"PT. Desalite Tirtamas Teknologi", product:"PERKINS", capacity:"20 KVA", type:"Supply"},
+    {n:102, project:"PT. Indo Global Traktor", product:"PERKINS", capacity:"80 KVA", type:"Supply"},
+    {n:103, project:"PT. Sentana Anugrah Indonesia", product:"CUMMINS", capacity:"250 KVA", type:"Supply"},
+    {n:104, project:"CV. Laras", product:"PERKINS", capacity:"20 KVA", type:"Supply"},
+    {n:105, project:"UPTD Puskesmas Caringin", product:"WEIFANG", capacity:"30 KVA", type:"Supply"},
+    {n:106, project:"PT. Bayu Boga Lestari", product:"CUMMINS", capacity:"100 KVA", type:"Supply"},
+    {n:107, project:"CV. Berkah Kasih Abadi", product:"PERKINS", capacity:"10 KVA", type:"Supply"},
+    {n:108, project:"PT. Primautama Indo Mandiri", product:"PERKINS", capacity:"10 KVA", type:"Supply"},
+];
+
+const itProjects = [
+    {n:1, project:"PT. Asai Indonesia", product:"IT", capacity:""},
+    {n:2, project:"PT. Avaso Technology", product:"IT", capacity:""},
+    {n:3, project:"PT. Astra Daihatsu Motor", product:"IT", capacity:""},
+    {n:4, project:"PT Aplikausa Lontastara (Kopkarla)", product:"IT", capacity:""},
+    {n:5, project:"RS. St. Carolus", product:"IT", capacity:""},
+    {n:6, project:"PT. Delta Merlin", product:"IT", capacity:""},
+    {n:7, project:"PT. Equator Marindo", product:"IT", capacity:""},
+    {n:8, project:"PT. Electrolux Indonesia", product:"IT", capacity:""},
+    {n:9, project:"PT. GS Electech Indonesia", product:"IT", capacity:""},
+    {n:10, project:"PT. Honda Lock Indonesia", product:"IT", capacity:""},
+    {n:11, project:"Hotel Sheraton Gandaria", product:"IT", capacity:""},
+    {n:12, project:"Hotel Holiday Inn", product:"IT", capacity:""},
+    {n:13, project:"PT. Indo Tamasya", product:"IT", capacity:""},
+    {n:14, project:"PT. MNC Land Lido", product:"IT (CCTV)", capacity:"FO & CCTV"},
+    {n:15, project:"Pullman Jakarta Central Park", product:"IT (CCTV)", capacity:"Ballroom + Restaurant"},
+    {n:16, project:"PT. Breamar Shipping", product:"IT Network", capacity:""},
+    {n:17, project:"PT. Wijaya Karya", product:"IT", capacity:""},
+    {n:18, project:"PT. Pubagot Jaya Abdi", product:"IT", capacity:""},
+    {n:19, project:"Central Retail Indonesia", product:"Access Gate / IT", capacity:"Grand Indonesia – East Mall"},
+    {n:20, project:"Pullman Jakarta Central Park", product:"IT (CCTV)", capacity:""},
+    {n:21, project:"Berdikari", product:"IT", capacity:""},
+    {n:22, project:"PT Collectius Asset Management", product:"IT", capacity:""},
+    {n:23, project:"Reindo Syariah", product:"IT", capacity:""},
+    {n:24, project:"Sri Intan Perkasa", product:"IT", capacity:""},
+    {n:25, project:"Bank DKI", product:"IT (CCTV)", capacity:""},
+];
+
+// ── BRAND COLOR HELPER ──
+function brandClass(p) {
+    const b = p.toUpperCase();
+    if (b.includes('PERKINS')) return 'brand-perkins';
+    if (b.includes('CUMMINS')) return 'brand-cummins';
+    if (b.includes('KOMATSU')) return 'brand-komatsu';
+    if (b.includes('MITSUBISHI')) return 'brand-mitsubishi';
+    if (b.includes('ISUZU')) return 'brand-isuzu';
+    if (b.includes('DAEWOO')) return 'brand-daewoo';
+    return 'brand-other';
+}
+
+function typeTag(type) {
+    const t = type.toLowerCase();
+    if (t.includes('sparepart') || t.includes('battery')) return `<span class="badge-type" style="background:#fef3c7;color:#92400e;border-color:rgba(245,158,11,0.2);">${type}</span>`;
+    if (t.includes('install') || t.includes('syncrone') || t.includes('overhaul')) return `<span class="badge-type">${type}</span>`;
+    if (t.includes('rental')) return `<span class="badge-type" style="background:#fdf2f8;color:#9d174d;border-color:rgba(236,72,153,0.2);">${type}</span>`;
+    return `<span class="badge-type" style="background:#f0f9ff;color:#0369a1;border-color:rgba(14,165,233,0.2);">${type}</span>`;
+}
+
+// ── RENDER INDUSTRIAL ──
+function renderIndustrial(data) {
+    const grid = document.getElementById('industrialGrid');
+    grid.innerHTML = data.map((d, i) => `
+        <div class="project-card reveal rv-${(i%6)+1}" data-type="${d.type.toLowerCase()}" data-division="industrial" data-search="${d.project.toLowerCase()} ${d.product.toLowerCase()} ${d.capacity.toLowerCase()}">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                <div class="card-number">#${String(d.n).padStart(3,'0')}</div>
+                ${typeTag(d.type)}
+            </div>
+            <div class="card-project">${d.project}</div>
+            <div class="card-meta">
+                <span class="badge-product ${brandClass(d.product)}" style="border-color:currentColor;opacity:0.9;">${d.product}</span>
+                ${d.capacity && d.capacity !== '—' ? `<span class="badge-capacity">${d.capacity}</span>` : ''}
+            </div>
+        </div>
+    `).join('');
+    triggerReveal();
+}
+
+// ── RENDER IT ──
+function renderIT(data) {
+    const grid = document.getElementById('itGrid');
+    grid.innerHTML = data.map((d, i) => `
+        <div class="project-card reveal rv-${(i%6)+1}" data-type="it" data-division="it" data-search="${d.project.toLowerCase()} ${d.product.toLowerCase()} ${d.capacity.toLowerCase()}">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                <div class="card-number">#${String(d.n).padStart(2,'0')}</div>
+                <span class="badge-product badge-it">${d.product}</span>
+            </div>
+            <div class="card-project">${d.project}</div>
+            ${d.capacity ? `<div class="card-meta"><span class="badge-capacity">${d.capacity}</span></div>` : ''}
+        </div>
+    `).join('');
+    triggerReveal();
+}
+
+// ── FILTER LOGIC ──
+let currentFilter = 'all';
+let currentSearch = '';
+
+function setFilter(btn, f) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = f;
+    applyFilter();
+}
+
+document.getElementById('searchInput').addEventListener('input', function() {
+    currentSearch = this.value.toLowerCase().trim();
+    applyFilter();
+});
+
+function applyFilter() {
+    const cards = document.querySelectorAll('.project-card');
+    let visible = 0;
+    cards.forEach(card => {
+        const type = card.dataset.type || '';
+        const div  = card.dataset.division || '';
+        const srch = card.dataset.search || '';
+
+        let show = true;
+        if (currentFilter === 'supply')     show = type.includes('supply') && !type.includes('install');
+        else if (currentFilter === 'install') show = type.includes('install') || type.includes('syncrone') || type.includes('overhaul');
+        else if (currentFilter === 'sparepart') show = type.includes('sparepart') || type.includes('battery');
+        else if (currentFilter === 'it')    show = div === 'it';
+
+        if (show && currentSearch) show = srch.includes(currentSearch);
+
+        card.classList.toggle('card-hidden', !show);
+        if (show) visible++;
+    });
+    document.getElementById('countDisplay').textContent = `${visible} proyek ditemukan`;
+}
+
+// ── REVEAL ──
+function triggerReveal() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+        });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+// ── INIT ──
+renderIndustrial(industrial);
+renderIT(itProjects);
+applyFilter();
+triggerReveal();
+</script>
+</body>
+</html>
