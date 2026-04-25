@@ -3,1194 +3,627 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pemeriksaan Genset Gratis - PT Multi Guna Persada</title>
+    <title>Project Reference - PT Multi Guna Persada</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --navy: #0f2557;
             --navy-mid: #1a3a7a;
-            --blue: #1d54c4;
-            --blue-light: #2563eb;
+            --blue: #2563eb;
             --accent: #f59e0b;
-            --accent-hover: #d97706;
-            --surface: #f8faff;
             --border: #e2e8f0;
             --text-main: #111827;
             --text-muted: #6b7280;
-            --text-light: #9ca3af;
         }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
+        * { box-sizing: border-box; }
         body {
             font-family: 'DM Sans', sans-serif;
-            background-color: #f8faff;
+            background: #f8faff;
             color: var(--text-main);
             -webkit-font-smoothing: antialiased;
         }
+        h1,h2,h3,h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
 
-        h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
-
-        /* ─── NAV ─── */
-        .nav-bar {
-            background: rgba(255,255,255,0.97);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
+        /* ── HERO HEADER ── */
+        .page-hero {
+            background: linear-gradient(160deg, #07142e 0%, #0d1f4a 50%, #0f2557 100%);
+            position: relative; overflow: hidden;
         }
-        .logo-mark {
-            background: linear-gradient(135deg, var(--navy) 0%, var(--blue-light) 100%);
-            color: white;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 800;
-            font-size: 1rem;
-            width: 44px; height: 44px;
-            border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
-        }
-        .nav-cta {
-            background: var(--blue-light);
-            color: white;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 600;
-            font-size: 0.875rem;
-            padding: 10px 22px;
-            border-radius: 8px;
-            transition: background 0.2s, transform 0.15s;
-        }
-        .nav-cta:hover { background: var(--navy-mid); transform: translateY(-1px); }
-
-        /* ─── HERO ─── */
-        .hero {
-            background: linear-gradient(160deg, #07142e 0%, #0d1f4a 45%, #0f2557 100%);
-            position: relative;
-            overflow: hidden;
-            min-height: 600px;
-        }
-
-        /* Background mesh glow */
-        .hero-glow-1 {
-            position: absolute;
-            width: 600px; height: 600px;
-            top: -150px; right: -100px;
-            background: radial-gradient(circle, rgba(37,99,235,0.2) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-        .hero-glow-2 {
-            position: absolute;
-            width: 400px; height: 400px;
-            bottom: -100px; left: 5%;
-            background: radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        /* Grid lines */
-        .hero-grid {
-            position: absolute;
-            inset: 0;
+        .page-hero::before {
+            content: '';
+            position: absolute; inset: 0;
             background-image:
                 linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
             background-size: 56px 56px;
-            pointer-events: none;
         }
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            width: 500px; height: 500px;
+            top: -120px; right: -80px;
+            background: radial-gradient(circle, rgba(37,99,235,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero-inner { position: relative; z-index: 10; }
 
-        .hero-content { position: relative; z-index: 10; }
-
-        .badge {
-            display: inline-flex; align-items: center; gap: 6px;
-            background: rgba(245,158,11,0.15);
-            border: 1px solid rgba(245,158,11,0.35);
+        .back-btn {
+            display: inline-flex; align-items: center; gap: 7px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.8125rem; font-weight: 600;
+            color: rgba(186,210,255,0.8);
+            text-decoration: none;
+            padding: 7px 16px 7px 12px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.15);
             border-radius: 999px;
-            padding: 5px 14px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.75rem; font-weight: 700;
-            letter-spacing: 0.08em; text-transform: uppercase;
-            color: #fcd34d;
+            transition: background 0.2s, color 0.2s;
+            margin-bottom: 28px;
         }
-        .badge-dot {
-            width: 6px; height: 6px;
-            background: #fbbf24; border-radius: 50%;
-            animation: pulse-dot 1.8s ease-in-out infinite;
-        }
-        @keyframes pulse-dot {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.7); }
-        }
+        .back-btn:hover { background: rgba(255,255,255,0.13); color: white; }
 
-        .hero-title {
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
-        }
-        .hero-title .highlight { color: var(--accent); }
-
-        .hero-cta-primary {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: var(--accent); color: var(--navy);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 700; font-size: 1rem;
-            padding: 16px 32px; border-radius: 10px;
-            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 20px rgba(245,158,11,0.4);
-        }
-        .hero-cta-primary:hover {
-            background: var(--accent-hover); transform: translateY(-2px);
-            box-shadow: 0 8px 28px rgba(245,158,11,0.5);
-        }
-        .hero-cta-secondary {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: transparent; color: rgba(255,255,255,0.85);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 600; font-size: 1rem;
-            padding: 15px 28px; border-radius: 10px;
-            border: 1.5px solid rgba(255,255,255,0.2);
-            transition: background 0.2s, border-color 0.2s, color 0.2s;
-        }
-        .hero-cta-secondary:hover {
+        .stat-pill {
+            display: inline-flex; align-items: center; gap: 6px;
             background: rgba(255,255,255,0.08);
-            border-color: rgba(255,255,255,0.4); color: white;
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: 999px;
+            padding: 6px 14px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.8rem; font-weight: 700;
+            color: rgba(220,235,255,0.9);
         }
 
-        /* ─── GENSET SVG ILLUSTRATION ─── */
-        .genset-illustration {
-            position: relative;
-            width: 100%; max-width: 480px;
-            filter: drop-shadow(0 20px 60px rgba(37,99,235,0.35));
+        /* ── FILTERS ── */
+        .filter-bar {
+            background: white;
+            border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 40;
+        }
+        .filter-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.8rem; font-weight: 600;
+            padding: 7px 16px;
+            border-radius: 8px;
+            border: 1.5px solid var(--border);
+            background: white;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+        .filter-btn:hover { border-color: var(--blue); color: var(--blue); background: rgba(37,99,235,0.04); }
+        .filter-btn.active { border-color: var(--blue); color: white; background: var(--blue); }
+
+        .search-input {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            padding: 9px 14px 9px 38px;
+            border: 1.5px solid var(--border);
+            border-radius: 9px;
+            background: #f9fafb;
+            color: var(--text-main);
+            outline: none;
+            transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+            width: 100%;
+        }
+        .search-input:focus {
+            border-color: var(--blue);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
         }
 
-        /* Engine rotation */
-        @keyframes spin-slow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        .fan-spin {
-            transform-origin: center;
-            transform-box: fill-box;
-            animation: spin-slow 3s linear infinite;
-        }
-        .fan-spin-reverse {
-            transform-origin: center;
-            transform-box: fill-box;
-            animation: spin-slow 4s linear infinite reverse;
-        }
-
-        /* Power indicator blink */
-        @keyframes power-blink {
-            0%, 100% { opacity: 1; filter: drop-shadow(0 0 6px #22c55e); }
-            50% { opacity: 0.3; filter: none; }
-        }
-        .power-led { animation: power-blink 1.2s ease-in-out infinite; }
-
-        /* Exhaust smoke puff */
-        @keyframes smoke-rise {
-            0% { transform: translateY(0) scale(0.5); opacity: 0.6; }
-            100% { transform: translateY(-40px) scale(1.4); opacity: 0; }
-        }
-        .smoke-1 { animation: smoke-rise 2s ease-out infinite; animation-delay: 0s; }
-        .smoke-2 { animation: smoke-rise 2s ease-out infinite; animation-delay: 0.7s; }
-        .smoke-3 { animation: smoke-rise 2s ease-out infinite; animation-delay: 1.4s; }
-
-        /* Electricity zap */
-        @keyframes zap-flash {
-            0%, 90%, 100% { opacity: 0; }
-            5%, 15% { opacity: 1; }
-            20% { opacity: 0.3; }
-            25% { opacity: 1; }
-        }
-        .zap-line { animation: zap-flash 2.5s ease-in-out infinite; }
-        .zap-line-2 { animation: zap-flash 2.5s ease-in-out infinite; animation-delay: 1.2s; }
-
-        /* Glow pulse on genset body */
-        @keyframes body-glow {
-            0%, 100% { filter: drop-shadow(0 0 8px rgba(37,99,235,0.4)); }
-            50% { filter: drop-shadow(0 0 20px rgba(37,99,235,0.7)); }
-        }
-        .genset-body { animation: body-glow 3s ease-in-out infinite; }
-
-        /* Floating animation for the whole illustration */
-        @keyframes float-updown {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        .float-anim { animation: float-updown 4s ease-in-out infinite; }
-
-        /* Volt meter needle */
-        @keyframes needle-sweep {
-            0%, 100% { transform: rotate(-45deg); }
-            30% { transform: rotate(40deg); }
-            60% { transform: rotate(15deg); }
-            80% { transform: rotate(55deg); }
-        }
-        .meter-needle {
-            transform-origin: 50% 85%;
-            transform-box: fill-box;
-            animation: needle-sweep 4s ease-in-out infinite;
-        }
-
-        /* Data badge float */
-        @keyframes badge-float {
-            0%, 100% { transform: translateY(0) rotate(-2deg); }
-            50% { transform: translateY(-8px) rotate(2deg); }
-        }
-        .data-badge { animation: badge-float 3s ease-in-out infinite; }
-        .data-badge-2 { animation: badge-float 3.5s ease-in-out infinite; animation-delay: 1s; }
-
-        /* Scan line sweep */
-        @keyframes scan-sweep {
-            0% { transform: translateY(-100%); opacity: 0; }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { transform: translateY(200%); opacity: 0; }
-        }
-        .scan-line { animation: scan-sweep 3s ease-in-out infinite; animation-delay: 1s; }
-
-        /* ─── TRUST SECTION ─── */
-        .stat-card {
-            background: white; border: 1px solid var(--border);
-            border-radius: 16px; padding: 28px 20px; text-align: center;
-            transition: box-shadow 0.2s, transform 0.2s;
-        }
-        .stat-card:hover { box-shadow: 0 8px 32px rgba(15,37,87,0.1); transform: translateY(-2px); }
-        .stat-icon-wrap {
-            width: 52px; height: 52px;
-            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+        /* ── CARDS ── */
+        .project-card {
+            background: white;
+            border: 1px solid var(--border);
             border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 16px;
+            padding: 20px;
+            transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+            display: flex; flex-direction: column; gap: 12px;
         }
-        .stat-number {
-            font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
-            font-size: 2rem; color: var(--navy); letter-spacing: -0.03em;
-            line-height: 1; margin-bottom: 6px;
+        .project-card:hover {
+            box-shadow: 0 8px 32px rgba(15,37,87,0.1);
+            transform: translateY(-2px);
+            border-color: rgba(37,99,235,0.2);
         }
-        .stat-label { font-size: 0.8rem; font-weight: 500; color: var(--text-muted); }
-        .clients-strip { border-top: 1px solid var(--border); padding-top: 40px; margin-top: 48px; }
-        .clients-label {
+        .card-number {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.65rem; font-weight: 800;
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .card-project {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9375rem; font-weight: 700;
+            color: var(--navy);
+            line-height: 1.35;
+        }
+        .card-meta {
+            display: flex; flex-wrap: wrap; gap: 6px;
+            margin-top: 4px;
+        }
+        .badge-product {
+            display: inline-flex; align-items: center; gap: 5px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 0.7rem; font-weight: 700;
-            letter-spacing: 0.12em; text-transform: uppercase;
-            color: var(--text-light); text-align: center; margin-bottom: 24px;
+            letter-spacing: 0.04em; text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: #eff6ff;
+            color: var(--blue);
+            border: 1px solid rgba(37,99,235,0.15);
         }
-        .client-name {
-            font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
-            font-size: 0.95rem; color: #94a3b8;
-            transition: color 0.2s; white-space: nowrap;
+        .badge-capacity {
+            display: inline-flex; align-items: center; gap: 5px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.7rem; font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: #fffbeb;
+            color: #92400e;
+            border: 1px solid rgba(245,158,11,0.2);
         }
-        .clients-strip:hover .client-name { color: #64748b; }
+        .badge-type {
+            display: inline-flex; align-items: center; gap: 5px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.7rem; font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: #f0fdf4;
+            color: #166534;
+            border: 1px solid rgba(34,197,94,0.2);
+        }
+        .badge-it {
+            background: #faf5ff;
+            color: #7e22ce;
+            border: 1px solid rgba(167,139,250,0.25);
+        }
 
-        /* ─── FORM SECTION ─── */
-        .form-section { background: linear-gradient(180deg, #f0f4ff 0%, #f8faff 100%); }
-        .form-card {
-            background: white; border-radius: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.04), 0 20px 60px rgba(15,37,87,0.1);
-            overflow: hidden;
+        /* ── SECTION TITLE DIVIDER ── */
+        .section-divider {
+            display: flex; align-items: center; gap: 14px;
+            margin-bottom: 20px; margin-top: 40px;
         }
-        .info-panel {
-            background: linear-gradient(160deg, var(--navy) 0%, #162d6f 100%);
+        .section-divider:first-of-type { margin-top: 0; }
+        .divider-icon {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, var(--navy), var(--blue));
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .divider-line { flex: 1; height: 1px; background: var(--border); }
+
+        /* ── BRAND COLOR MAP ── */
+        .brand-perkins  { color: #1d4ed8; }
+        .brand-cummins  { color: #dc2626; }
+        .brand-komatsu  { color: #d97706; }
+        .brand-mitsubishi { color: #7c3aed; }
+        .brand-isuzu    { color: #059669; }
+        .brand-daewoo   { color: #0891b2; }
+        .brand-other    { color: #6b7280; }
+
+        /* ── CTA BOTTOM ── */
+        .cta-bottom {
+            background: linear-gradient(135deg, var(--navy) 0%, #162d6f 100%);
+            border-radius: 20px;
             position: relative; overflow: hidden;
         }
-        .info-panel::before {
+        .cta-bottom::before {
             content: '';
-            position: absolute; top: -40px; right: -40px;
-            width: 200px; height: 200px;
+            position: absolute;
+            width: 300px; height: 300px;
+            top: -80px; right: -60px;
             background: radial-gradient(circle, rgba(37,99,235,0.3) 0%, transparent 70%);
             border-radius: 50%;
         }
-        .info-panel::after {
-            content: '';
-            position: absolute; bottom: -60px; left: -60px;
-            width: 240px; height: 240px;
-            background: radial-gradient(circle, rgba(29,84,196,0.25) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-        .info-panel-inner { position: relative; z-index: 10; }
-        .check-item { display: flex; align-items: flex-start; gap: 12px; }
-        .check-icon {
-            width: 22px; height: 22px;
-            background: rgba(245,158,11,0.2); border: 1.5px solid rgba(245,158,11,0.4);
-            border-radius: 6px; display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0; margin-top: 1px;
-        }
-        .contact-row { display: flex; align-items: center; gap: 10px; font-size: 0.875rem; }
-        .contact-icon-wrap {
-            width: 34px; height: 34px; background: rgba(255,255,255,0.08);
-            border-radius: 8px; display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
-        }
-
-        /* ─── FORM FIELDS ─── */
-        .field-label {
-            display: block; font-size: 0.8125rem; font-weight: 600;
-            color: #374151; margin-bottom: 6px; letter-spacing: 0.01em;
-        }
-        .field-input {
-            width: 100%; padding: 11px 14px;
-            background: #f9fafb; border: 1.5px solid #e5e7eb;
-            border-radius: 9px; font-family: 'DM Sans', sans-serif;
-            font-size: 0.9375rem; color: var(--text-main);
-            transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
-            outline: none; -webkit-appearance: none;
-        }
-        .field-input::placeholder { color: #9ca3af; }
-        .field-input:focus {
-            border-color: var(--blue-light); background: white;
-            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
-        }
-        .field-input:hover:not(:focus) { border-color: #cbd5e1; background: white; }
-        textarea.field-input { resize: vertical; min-height: 100px; line-height: 1.6; }
-
-        .submit-btn {
-            width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
-            background: linear-gradient(135deg, var(--blue-light) 0%, var(--navy-mid) 100%);
-            color: white; font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 700; font-size: 1rem; padding: 15px 24px;
-            border-radius: 10px; border: none; cursor: pointer;
-            transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 16px rgba(29,84,196,0.35);
-        }
-        .submit-btn:hover:not(:disabled) {
-            opacity: 0.92; transform: translateY(-1px);
-            box-shadow: 0 6px 22px rgba(29,84,196,0.4);
-        }
-        .submit-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
-
-        .msg-success {
-            display: flex; align-items: flex-start; gap: 10px;
-            background: #f0fdf4; border: 1px solid #bbf7d0;
-            border-radius: 10px; padding: 14px 16px;
-            color: #166534; font-size: 0.9rem; font-weight: 500;
-        }
-        .msg-error {
-            display: flex; align-items: flex-start; gap: 10px;
-            background: #fef2f2; border: 1px solid #fecaca;
-            border-radius: 10px; padding: 14px 16px;
-            color: #991b1b; font-size: 0.9rem; font-weight: 500;
-        }
-        .msg-loading {
-            text-align: center; color: var(--blue-light);
-            font-size: 0.9rem; font-weight: 500; padding: 8px;
-        }
-
-        /* ─── FOOTER ─── */
-        .footer { background: #0b1a3d; border-top: 1px solid rgba(255,255,255,0.05); }
-        .footer-heading { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; color: white; font-size: 1rem; margin-bottom: 16px; }
-        .footer-text { font-size: 0.875rem; color: #94a3b8; line-height: 1.7; }
-        .footer-link { display: flex; align-items: center; gap: 10px; font-size: 0.875rem; color: #94a3b8; transition: color 0.2s; }
-        .footer-link:hover { color: white; }
-        .footer-tagline { font-style: italic; color: #60a5fa; font-size: 0.875rem; font-weight: 500; margin-top: 12px; }
-        .footer-divider { border-top: 1px solid rgba(255,255,255,0.07); margin-top: 40px; padding-top: 24px; text-align: center; font-size: 0.8125rem; color: #475569; }
-
-        /* ─── SCROLL REVEAL ─── */
-        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
-
-        /* ─── HERO ENTRY ANIMATIONS ─── */
-        @keyframes hero-fade-up {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .hero-anim-1 { animation: hero-fade-up 0.7s ease forwards; animation-delay: 0.1s; opacity: 0; }
-        .hero-anim-2 { animation: hero-fade-up 0.7s ease forwards; animation-delay: 0.3s; opacity: 0; }
-        .hero-anim-3 { animation: hero-fade-up 0.7s ease forwards; animation-delay: 0.5s; opacity: 0; }
-        .hero-anim-4 { animation: hero-fade-up 0.7s ease forwards; animation-delay: 0.7s; opacity: 0; }
-        .hero-anim-5 { animation: hero-fade-up 0.7s ease forwards; animation-delay: 0.9s; opacity: 0; }
-
-        /* ─── SERVICE TICKER STRIP ─── */
-        .service-ticker-wrap {
-            width: 100%;
-            overflow: hidden;
-            margin-top: 28px;
-            position: relative;
-        }
-        /* fade edges */
-        .service-ticker-wrap::before,
-        .service-ticker-wrap::after {
-            content: '';
-            position: absolute;
-            top: 0; bottom: 0;
-            width: 60px;
-            z-index: 2;
-            pointer-events: none;
-        }
-        .service-ticker-wrap::before {
-            left: 0;
-            background: linear-gradient(90deg, #07142e 0%, transparent 100%);
-        }
-        .service-ticker-wrap::after {
-            right: 0;
-            background: linear-gradient(-90deg, #07142e 0%, transparent 100%);
-        }
-
-        .service-ticker-track {
-            display: flex;
-            gap: 12px;
-            width: max-content;
-            animation: ticker-scroll 18s linear infinite;
-        }
-        .service-ticker-track:hover { animation-play-state: paused; }
-
-        @keyframes ticker-scroll {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .sticker-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.14);
-            border-radius: 999px;
-            padding: 8px 18px 8px 10px;
-            white-space: nowrap;
-            flex-shrink: 0;
-            transition: background 0.2s, border-color 0.2s;
-        }
-        .sticker-pill:hover {
-            background: rgba(255,255,255,0.12);
-            border-color: rgba(255,255,255,0.25);
-        }
-
-        .sticker-icon {
-            width: 26px; height: 26px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .sticker-pill span {
+        .cta-btn-primary {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--accent); color: var(--navy);
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.775rem;
-            font-weight: 700;
-            color: rgba(220,235,255,0.95);
-            letter-spacing: 0.02em;
+            font-weight: 700; font-size: 0.9375rem;
+            padding: 13px 28px; border-radius: 10px;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 4px 16px rgba(245,158,11,0.35);
         }
+        .cta-btn-primary:hover { background: #d97706; transform: translateY(-1px); }
+        .cta-btn-back {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.85);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600; font-size: 0.9375rem;
+            padding: 12px 24px; border-radius: 10px;
+            border: 1.5px solid rgba(255,255,255,0.2);
+            transition: background 0.2s, color 0.2s;
+        }
+        .cta-btn-back:hover { background: rgba(255,255,255,0.18); color: white; }
 
-        /* Ticker entry */
-        @keyframes ticker-reveal {
-            from { opacity: 0; transform: translateY(16px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-        .ticker-reveal {
-            animation: ticker-reveal 0.6s ease 1.0s both;
-        }
+        /* ── REVEAL ── */
+        .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .rv-1 { transition-delay: 0.05s; }
+        .rv-2 { transition-delay: 0.1s; }
+        .rv-3 { transition-delay: 0.15s; }
+        .rv-4 { transition-delay: 0.2s; }
+        .rv-5 { transition-delay: 0.25s; }
+        .rv-6 { transition-delay: 0.3s; }
 
-        /* Blink for Rental Genset */
-        @keyframes rental-blink {
-            0%, 100% { background: rgba(251,113,133,0.2); border-color: rgba(251,113,133,0.35); box-shadow: none; }
-            40%      { background: rgba(251,113,133,0.35); border-color: rgba(251,113,133,0.6); box-shadow: 0 0 14px rgba(251,113,133,0.4); }
-        }
-        .pill-rental {
-            animation: rental-blink 1.6s ease-in-out infinite !important;
-        }
-        .pill-rental span {
-            color: #fda4af !important;
-        }
-
-        /* Separator dot */
-        .ticker-sep {
-            display: flex;
-            align-items: center;
-            color: rgba(255,255,255,0.2);
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-
-        @media (max-width: 768px) {
-            .hero { min-height: auto; }
-            .genset-illustration { max-width: 320px; margin: 0 auto; }
-            .data-badge, .data-badge-2 { display: none; }
-            .service-ticker-wrap { margin-top: 20px; }
-            .service-ticker-wrap::before, .service-ticker-wrap::after { width: 32px; }
-        }
+        /* hidden by filter */
+        .card-hidden { display: none !important; }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="nav-bar sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
-            <div class="flex justify-between h-[72px] items-center">
-                <div class="flex items-center gap-3">
-                    <div class="logo-mark">MGP</div>
-                    <div>
-                        <p style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;color:var(--navy);font-size:0.95rem;line-height:1.3;">PT. MULTI GUNA <br>PERSADA</p>
-                    </div>
+    <!-- Page Header -->
+    <header class="page-hero text-white px-5 sm:px-8 lg:px-10 pt-12 pb-14">
+        <div class="max-w-7xl mx-auto hero-inner">
+            <a href="landing-mgp-v2.html" class="back-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+                Kembali ke Beranda
+            </a>
+            <div class="flex items-center gap-3 mb-4">
+                <div style="background:linear-gradient(135deg,#0f2557,#2563eb);width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1rem;color:white;flex-shrink:0;">MGP</div>
+                <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.8rem;font-weight:600;color:rgba(186,210,255,0.7);letter-spacing:0.04em;text-transform:uppercase;">PT. Multi Guna Persada</p>
+            </div>
+            <h1 style="font-size:clamp(1.75rem,4vw,2.75rem);font-weight:800;letter-spacing:-0.03em;line-height:1.1;margin-bottom:12px;">Project Reference</h1>
+            <p style="color:rgba(186,214,255,0.8);font-size:1rem;max-width:520px;line-height:1.65;margin-bottom:24px;">Rekam jejak nyata kami di berbagai industri, dari Sabang hingga Papua — ratusan proyek selesai dengan penuh kepercayaan.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                <div class="stat-pill">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    108+ Proyek Industrial
                 </div>
-                <div class="hidden md:flex items-center">
-                    <a href="#form-section" class="nav-cta">Konsultasi Gratis</a>
+                <div class="stat-pill">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                    25+ Proyek IT
+                </div>
+                <div class="stat-pill">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    Seluruh Indonesia
                 </div>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section class="hero text-white pt-16 pb-20 px-5 sm:px-8 lg:px-10">
-        <div class="hero-glow-1"></div>
-        <div class="hero-glow-2"></div>
-        <div class="hero-grid"></div>
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 py-3">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;">
+                <!-- Search -->
+                <div style="position:relative;flex:1;min-width:180px;max-width:260px;">
+                    <svg style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#9ca3af;" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Cari proyek...">
+                </div>
+                <!-- Filter buttons -->
+                <button class="filter-btn active" data-filter="all" onclick="setFilter(this,'all')">Semua</button>
+                <button class="filter-btn" data-filter="supply" onclick="setFilter(this,'supply')">Supply</button>
+                <button class="filter-btn" data-filter="install" onclick="setFilter(this,'install')">Instalasi</button>
+                <button class="filter-btn" data-filter="sparepart" onclick="setFilter(this,'sparepart')">Sparepart</button>
+                <button class="filter-btn" data-filter="it" onclick="setFilter(this,'it')">IT Division</button>
+                <!-- Count -->
+                <span id="countDisplay" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.8rem;font-weight:600;color:var(--text-muted);margin-left:auto;white-space:nowrap;"></span>
+            </div>
+        </div>
+    </div>
 
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 py-12">
+
+        <!-- Industrial Division -->
+        <div class="section-divider">
+            <div class="divider-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <div>
+                <h2 style="font-size:1.125rem;font-weight:800;color:var(--navy);letter-spacing:-0.02em;">Industrial Division</h2>
+                <p style="font-size:0.8rem;color:var(--text-muted);margin-top:1px;">Generator Sets, Sparepart, Forklift & Panel</p>
+            </div>
+            <div class="divider-line"></div>
+            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.75rem;font-weight:700;color:var(--blue);white-space:nowrap;background:#eff6ff;padding:4px 12px;border-radius:999px;border:1px solid rgba(37,99,235,0.15);">108 Projects</span>
+        </div>
+
+        <div id="industrialGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;">
+
+            <!-- Projects injected by JS -->
+
+        </div>
+
+        <!-- IT Division -->
+        <div class="section-divider" style="margin-top:52px;">
+            <div class="divider-icon" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/><line x1="12" y1="17" x2="12" y2="3"/></svg>
+            </div>
+            <div>
+                <h2 style="font-size:1.125rem;font-weight:800;color:var(--navy);letter-spacing:-0.02em;">IT Division</h2>
+                <p style="font-size:0.8rem;color:var(--text-muted);margin-top:1px;">Digital Signage, Network, CCTV & Access System</p>
+            </div>
+            <div class="divider-line"></div>
+            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.75rem;font-weight:700;color:#7c3aed;white-space:nowrap;background:#faf5ff;padding:4px 12px;border-radius:999px;border:1px solid rgba(167,139,250,0.25);">25 Projects</span>
+        </div>
+
+        <div id="itGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;">
+        </div>
+
+    </main>
+
+    <!-- CTA Bottom -->
+    <section class="px-5 sm:px-8 lg:px-10 pb-16">
         <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-
-                <!-- Left: Copy -->
-                <div class="hero-content flex-1 text-center lg:text-left">
-                    <div class="hero-anim-1 mb-7">
-                        <div class="badge" style="display:inline-flex;">
-                            <span class="badge-dot"></span>
-                            Penawaran Terbatas
-                        </div>
-                    </div>
-
-                    <h1 class="hero-title hero-anim-2 text-[2.5rem] md:text-[3.25rem] lg:text-[3.75rem] text-white mb-6">
-                        Pemeriksaan Genset <span class="highlight">GRATIS</span><br class="hidden md:block">
-                        oleh Teknisi Profesional
-                    </h1>
-
-                    <p class="hero-anim-3 text-[1.0625rem] md:text-[1.1875rem] text-blue-100 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                        Solusi kelistrikan terpercaya untuk pabrik, gedung, hotel & kawasan industri Anda agar selalu beroperasi tanpa henti.
-                    </p>
-
-                    <div class="hero-anim-4 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
-                        <a href="#form-section" class="hero-cta-primary">
-                            Jadwalkan Sekarang
-                            <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
+            <div class="cta-bottom p-10 md:p-14 text-white text-center reveal">
+                <div style="position:relative;z-index:10;">
+                    <p style="font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(186,210,255,0.7);margin-bottom:12px;">Siap Bergabung?</p>
+                    <h2 style="font-size:clamp(1.5rem,3vw,2.25rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:12px;">Jadikan bisnis Anda bagian dari daftar ini.</h2>
+                    <p style="color:rgba(186,214,255,0.75);max-width:460px;margin:0 auto 28px;font-size:0.9375rem;line-height:1.65;">Dapatkan pemeriksaan genset gratis sekarang dan rasakan standar layanan yang telah dipercaya ratusan klien kami.</p>
+                    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;">
+                        <a href="landing-mgp-v2.html#form-section" class="cta-btn-primary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                            Booking Pemeriksaan Gratis
                         </a>
-                        <a href="portfolio.html" class="hero-cta-secondary">
-                            Lihat Portofolio Kami
-                            <i data-lucide="chevron-down" style="width:18px;height:18px;"></i>
+                        <a href="landing-mgp-v2.html" class="cta-btn-back">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+                            Kembali ke Beranda
                         </a>
                     </div>
-                </div>
-
-                <!-- Right: Genset Illustration -->
-                <div class="hero-content hero-anim-5 flex-shrink-0 lg:w-[460px] relative">
-
-                    <!-- Floating data badges -->
-                    <div class="data-badge absolute -top-4 -left-6 z-20 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl px-4 py-2.5 flex items-center gap-2.5">
-                        <div style="width:8px;height:8px;background:#22c55e;border-radius:50%;box-shadow:0 0 8px #22c55e;flex-shrink:0;"></div>
-                        <div>
-                            <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.625rem;font-weight:700;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.08em;line-height:1;">Status</p>
-                            <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.875rem;font-weight:700;color:white;line-height:1.3;margin-top:2px;">Siap Beroperasi</p>
-                        </div>
-                    </div>
-
-                    <div class="data-badge-2 absolute -bottom-2 -right-4 z-20 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl px-4 py-2.5 flex items-center gap-2.5">
-                        <div style="width:32px;height:32px;background:rgba(245,158,11,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                        </div>
-                        <div>
-                            <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.625rem;font-weight:700;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.08em;line-height:1;">Output</p>
-                            <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.875rem;font-weight:700;color:white;line-height:1.3;margin-top:2px;">220V / 50Hz</p>
-                        </div>
-                    </div>
-
-                    <!-- Main SVG Illustration -->
-                    <div class="float-anim genset-illustration">
-                        <svg viewBox="0 0 480 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
-                            <defs>
-                                <!-- Genset body gradient -->
-                                <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#1e3a6e"/>
-                                    <stop offset="100%" stop-color="#0f2040"/>
-                                </linearGradient>
-                                <!-- Side panel gradient -->
-                                <linearGradient id="panelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" stop-color="#2a4a8a"/>
-                                    <stop offset="100%" stop-color="#162d60"/>
-                                </linearGradient>
-                                <!-- Engine block gradient -->
-                                <linearGradient id="engineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#374151"/>
-                                    <stop offset="100%" stop-color="#1f2937"/>
-                                </linearGradient>
-                                <!-- Top cover gradient -->
-                                <linearGradient id="topGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" stop-color="#3b5998"/>
-                                    <stop offset="100%" stop-color="#1e3a7a"/>
-                                </linearGradient>
-                                <!-- Wheel gradient -->
-                                <radialGradient id="wheelGrad" cx="50%" cy="50%" r="50%">
-                                    <stop offset="0%" stop-color="#4b5563"/>
-                                    <stop offset="100%" stop-color="#1f2937"/>
-                                </radialGradient>
-                                <!-- Glow filter -->
-                                <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
-                                    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-                                    <feMerge>
-                                        <feMergeNode in="coloredBlur"/>
-                                        <feMergeNode in="SourceGraphic"/>
-                                    </feMerge>
-                                </filter>
-                                <filter id="glow-strong" x="-50%" y="-50%" width="200%" height="200%">
-                                    <feGaussianBlur stdDeviation="7" result="coloredBlur"/>
-                                    <feMerge>
-                                        <feMergeNode in="coloredBlur"/>
-                                        <feMergeNode in="SourceGraphic"/>
-                                    </feMerge>
-                                </filter>
-                                <!-- Scan line clip -->
-                                <clipPath id="bodyClip">
-                                    <rect x="60" y="100" width="360" height="210" rx="12"/>
-                                </clipPath>
-                                <!-- Metal texture -->
-                                <pattern id="metalPattern" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
-                                    <line x1="0" y1="6" x2="6" y2="0" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
-                                </pattern>
-                            </defs>
-
-                            <!-- Shadow beneath genset -->
-                            <ellipse cx="240" cy="360" rx="180" ry="16" fill="rgba(0,0,0,0.4)"/>
-
-                            <!-- ── MAIN GENSET BODY ── -->
-                            <!-- Base/Frame -->
-                            <rect x="55" y="268" width="370" height="55" rx="6" fill="#0a1628"/>
-                            <rect x="65" y="272" width="350" height="47" rx="5" fill="#111d36"/>
-                            <!-- Frame cross beams -->
-                            <rect x="100" y="272" width="6" height="47" fill="rgba(255,255,255,0.05)"/>
-                            <rect x="180" y="272" width="6" height="47" fill="rgba(255,255,255,0.05)"/>
-                            <rect x="295" y="272" width="6" height="47" fill="rgba(255,255,255,0.05)"/>
-                            <rect x="375" y="272" width="6" height="47" fill="rgba(255,255,255,0.05)"/>
-
-                            <!-- Wheels -->
-                            <circle cx="105" cy="320" r="20" fill="url(#wheelGrad)"/>
-                            <circle cx="105" cy="320" r="13" fill="#111d36"/>
-                            <circle cx="105" cy="320" r="5" fill="#374151"/>
-                            <circle cx="375" cy="320" r="20" fill="url(#wheelGrad)"/>
-                            <circle cx="375" cy="320" r="13" fill="#111d36"/>
-                            <circle cx="375" cy="320" r="5" fill="#374151"/>
-
-                            <!-- Main body box -->
-                            <rect x="60" y="100" width="360" height="175" rx="12" fill="url(#bodyGrad)" class="genset-body"/>
-                            <rect x="60" y="100" width="360" height="175" rx="12" fill="url(#metalPattern)"/>
-
-                            <!-- Top cover -->
-                            <rect x="60" y="92" width="360" height="24" rx="8" fill="url(#topGrad)"/>
-                            <rect x="80" y="98" width="320" height="4" rx="2" fill="rgba(255,255,255,0.06)"/>
-
-                            <!-- Scan line effect -->
-                            <rect x="60" y="100" width="360" height="3" rx="1" fill="rgba(37,99,235,0.4)" clip-path="url(#bodyClip)" class="scan-line"/>
-
-                            <!-- ── LEFT PANEL: ENGINE SIDE ── -->
-                            <rect x="65" y="108" width="155" height="155" rx="8" fill="url(#engineGrad)"/>
-
-                            <!-- Engine block -->
-                            <rect x="72" y="116" width="140" height="90" rx="6" fill="#2d3748"/>
-                            <!-- Cylinder fins -->
-                            <rect x="78" y="120" width="128" height="8" rx="2" fill="#374151"/>
-                            <rect x="78" y="132" width="128" height="8" rx="2" fill="#374151"/>
-                            <rect x="78" y="144" width="128" height="8" rx="2" fill="#374151"/>
-                            <rect x="78" y="156" width="128" height="8" rx="2" fill="#374151"/>
-                            <rect x="78" y="168" width="128" height="8" rx="2" fill="#374151"/>
-                            <!-- Cylinder highlight lines -->
-                            <rect x="78" y="120" width="128" height="1" fill="rgba(255,255,255,0.08)"/>
-                            <rect x="78" y="132" width="128" height="1" fill="rgba(255,255,255,0.08)"/>
-                            <rect x="78" y="144" width="128" height="1" fill="rgba(255,255,255,0.08)"/>
-                            <rect x="78" y="156" width="128" height="1" fill="rgba(255,255,255,0.08)"/>
-                            <rect x="78" y="168" width="128" height="1" fill="rgba(255,255,255,0.08)"/>
-
-                            <!-- Fan/Radiator assembly -->
-                            <circle cx="142" cy="215" r="36" fill="#1a2540"/>
-                            <circle cx="142" cy="215" r="32" fill="#1e2d50" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
-                            <!-- Fan blades -->
-                            <g class="fan-spin">
-                                <ellipse cx="142" cy="215" rx="6" ry="26" fill="#2d4070" opacity="0.85"/>
-                                <ellipse cx="142" cy="215" rx="6" ry="26" fill="#2d4070" opacity="0.85" transform="rotate(45 142 215)"/>
-                                <ellipse cx="142" cy="215" rx="6" ry="26" fill="#2d4070" opacity="0.85" transform="rotate(90 142 215)"/>
-                                <ellipse cx="142" cy="215" rx="6" ry="26" fill="#2d4070" opacity="0.85" transform="rotate(135 142 215)"/>
-                            </g>
-                            <circle cx="142" cy="215" r="9" fill="#111d36"/>
-                            <circle cx="142" cy="215" r="5" fill="#374151"/>
-                            <circle cx="142" cy="215" r="2" fill="#6b7280"/>
-
-                            <!-- Exhaust pipe -->
-                            <rect x="68" y="104" width="20" height="38" rx="4" fill="#1f2937"/>
-                            <rect x="72" y="100" width="12" height="14" rx="3" fill="#374151"/>
-                            <!-- Smoke puffs -->
-                            <circle cx="78" cy="90" r="5" fill="rgba(156,163,175,0.25)" class="smoke-1"/>
-                            <circle cx="82" cy="78" r="4" fill="rgba(156,163,175,0.15)" class="smoke-2"/>
-                            <circle cx="75" cy="65" r="3.5" fill="rgba(156,163,175,0.1)" class="smoke-3"/>
-
-                            <!-- ── RIGHT PANEL: CONTROL / ALTERNATOR SIDE ── -->
-                            <rect x="228" y="108" width="185" height="155" rx="8" fill="url(#panelGrad)"/>
-
-                            <!-- Control panel face -->
-                            <rect x="235" y="115" width="170" height="100" rx="6" fill="#0d1a35"/>
-                            <rect x="235" y="115" width="170" height="100" rx="6" stroke="rgba(37,99,235,0.3)" stroke-width="1"/>
-
-                            <!-- Voltmeter gauge -->
-                            <circle cx="275" cy="155" r="28" fill="#0a1525"/>
-                            <circle cx="275" cy="155" r="26" fill="none" stroke="rgba(37,99,235,0.25)" stroke-width="1"/>
-                            <!-- Gauge arc segments -->
-                            <path d="M250 170 A 26 26 0 0 1 300 170" fill="none" stroke="#1e3a6e" stroke-width="6" stroke-linecap="round"/>
-                            <path d="M250 170 A 26 26 0 0 1 273 130" fill="none" stroke="#1d4ed8" stroke-width="6" stroke-linecap="round"/>
-                            <path d="M273 130 A 26 26 0 0 1 295 140" fill="none" stroke="#22c55e" stroke-width="6" stroke-linecap="round" filter="url(#glow)"/>
-                            <!-- Needle -->
-                            <line x1="275" y1="155" x2="275" y2="133" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" class="meter-needle" filter="url(#glow)"/>
-                            <circle cx="275" cy="155" r="4" fill="#f59e0b" filter="url(#glow)"/>
-                            <!-- Gauge label -->
-                            <text x="275" y="172" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="7" font-weight="700" fill="rgba(255,255,255,0.5)" letter-spacing="1">VOLT</text>
-
-                            <!-- Frequency display -->
-                            <rect x="313" y="128" width="80" height="36" rx="5" fill="#060f20"/>
-                            <rect x="313" y="128" width="80" height="36" rx="5" stroke="rgba(37,99,235,0.25)" stroke-width="1"/>
-                            <text x="353" y="142" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(100,150,255,0.5)" letter-spacing="2">FREQUENCY</text>
-                            <text x="353" y="157" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#60a5fa" letter-spacing="1" filter="url(#glow)">50.0 Hz</text>
-
-                            <!-- Status LEDs row -->
-                            <rect x="313" y="172" width="80" height="32" rx="5" fill="#060f20" stroke="rgba(37,99,235,0.2)" stroke-width="1"/>
-                            <!-- LED: Running -->
-                            <circle cx="328" cy="183" r="5" fill="#22c55e" class="power-led" filter="url(#glow)"/>
-                            <text x="337" y="182" font-family="'Plus Jakarta Sans',sans-serif" font-size="6" fill="rgba(255,255,255,0.5)" font-weight="600">RUN</text>
-                            <!-- LED: Load -->
-                            <circle cx="328" cy="196" r="5" fill="#f59e0b" filter="url(#glow)"/>
-                            <text x="337" y="196" font-family="'Plus Jakarta Sans',sans-serif" font-size="6" fill="rgba(255,255,255,0.5)" font-weight="600">LOAD</text>
-                            <!-- LED: Fault -->
-                            <circle cx="370" cy="183" r="5" fill="#374151"/>
-                            <text x="379" y="182" font-family="'Plus Jakarta Sans',sans-serif" font-size="6" fill="rgba(255,255,255,0.3)" font-weight="600">FAULT</text>
-
-                            <!-- Alternator section -->
-                            <rect x="236" y="222" width="170" height="32" rx="4" fill="#0a1525" stroke="rgba(37,99,235,0.2)" stroke-width="1"/>
-                            <!-- Alternator label -->
-                            <text x="250" y="242" font-family="'Plus Jakarta Sans',sans-serif" font-size="8" fill="rgba(255,255,255,0.4)" font-weight="600" letter-spacing="1.5">ALTERNATOR</text>
-                            <!-- Alternator coil symbol -->
-                            <path d="M340 231 Q 346 226 352 231 Q 358 236 364 231 Q 370 226 376 231 Q 382 236 388 231 Q 394 226 400 231" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" filter="url(#glow)" class="zap-line"/>
-
-                            <!-- Center divider (coupling) -->
-                            <rect x="221" y="108" width="14" height="160" rx="4" fill="#111d36"/>
-                            <rect x="224" y="120" width="8" height="12" rx="2" fill="#1e3a6e"/>
-                            <rect x="224" y="140" width="8" height="12" rx="2" fill="#1e3a6e"/>
-                            <rect x="224" y="160" width="8" height="12" rx="2" fill="#1e3a6e"/>
-                            <rect x="224" y="180" width="8" height="12" rx="2" fill="#1e3a6e"/>
-                            <rect x="224" y="200" width="8" height="12" rx="2" fill="#1e3a6e"/>
-                            <rect x="224" y="220" width="8" height="12" rx="2" fill="#1e3a6e"/>
-
-                            <!-- Fuel tank (bottom front) -->
-                            <rect x="70" y="250" width="80" height="20" rx="4" fill="#1a2540"/>
-                            <rect x="73" y="253" width="74" height="14" rx="3" fill="#0d1a35"/>
-                            <!-- Fuel level indicator -->
-                            <rect x="75" y="255" width="55" height="10" rx="2" fill="#1d4ed8" opacity="0.7"/>
-                            <rect x="75" y="255" width="55" height="10" rx="2" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
-                            <text x="110" y="262" text-anchor="middle" font-family="monospace" font-size="6" fill="rgba(255,255,255,0.6)">FUEL 78%</text>
-
-                            <!-- Output terminals -->
-                            <rect x="340" y="252" width="95" height="20" rx="4" fill="#1a2540"/>
-                            <circle cx="360" cy="262" r="6" fill="#374151" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-                            <circle cx="360" cy="262" r="3" fill="#1f2937"/>
-                            <circle cx="380" cy="262" r="6" fill="#374151" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-                            <circle cx="380" cy="262" r="3" fill="#1f2937"/>
-                            <circle cx="400" cy="262" r="6" fill="#374151" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-                            <circle cx="400" cy="262" r="3" fill="#1f2937"/>
-                            <!-- Ground terminal -->
-                            <circle cx="420" cy="262" r="6" fill="#854d0e" stroke="rgba(255,180,0,0.3)" stroke-width="1"/>
-                            <text x="390" y="275" text-anchor="middle" font-family="monospace" font-size="6" fill="rgba(255,255,255,0.35)">L1  L2  L3  GND</text>
-
-                            <!-- ── ELECTRICAL DISCHARGE LINES ── -->
-                            <!-- Zap lines emanating from output terminals -->
-                            <g class="zap-line" filter="url(#glow)">
-                                <polyline points="426,255 438,248 432,252 444,244" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </g>
-                            <g class="zap-line-2" filter="url(#glow)">
-                                <polyline points="426,262 440,258 434,261 448,255" fill="none" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </g>
-
-                            <!-- Warning label sticker -->
-                            <rect x="155" y="252" width="80" height="18" rx="3" fill="#7c2d12"/>
-                            <rect x="155" y="252" width="80" height="18" rx="3" fill="none" stroke="#dc2626" stroke-width="1"/>
-                            <text x="195" y="264" text-anchor="middle" font-family="monospace" font-size="7" fill="#fca5a5" letter-spacing="1" font-weight="bold">⚠ HIGH VOLTAGE</text>
-
-                            <!-- Brand plate -->
-                            <rect x="240" y="272" width="90" height="22" rx="4" fill="#0a1525" stroke="rgba(37,99,235,0.3)" stroke-width="1"/>
-                            <text x="285" y="279" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="5.5" fill="rgba(255,255,255,0.35)" letter-spacing="1.5" font-weight="600">PT. MULTI GUNA</text>
-                            <text x="285" y="289" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="7" fill="rgba(100,150,255,0.7)" letter-spacing="1" font-weight="700">PERSADA</text>
-
-                            <!-- Ground plate / mounting bolt shadows -->
-                            <circle cx="75" cy="318" r="7" fill="#0d1526"/>
-                            <circle cx="75" cy="318" r="4" fill="#1a2540"/>
-                            <circle cx="405" cy="318" r="7" fill="#0d1526"/>
-                            <circle cx="405" cy="318" r="4" fill="#1a2540"/>
-                        </svg>
-                    </div>
-
-                </div>
-
-
-            </div>
-
-            <!-- ── SERVICE TICKER (below genset, all devices) ── -->
-            <div class="service-ticker-wrap ticker-reveal">
-                <div class="service-ticker-track" id="tickerTrack">
-                        <!-- Set 1 -->
-                    <div class="sticker-pill">
-                        <div class="sticker-icon" style="background:rgba(37,99,235,0.25);">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                            </div>
-                            <span>New Genset Unit &amp; Installation</span>
-                        </div>
-                    <span class="ticker-sep">·</span>
-                    <div class="sticker-pill">
-                        <div class="sticker-icon" style="background:rgba(245,158,11,0.2);">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                            </div>
-                            <span>ATS / Panel Cos &amp; Synchron</span>
-                        </div>
-                    <span class="ticker-sep">·</span>
-                    <div class="sticker-pill">
-                        <div class="sticker-icon" style="background:rgba(167,139,250,0.2);">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                            </div>
-                            <span>Sparepart</span>
-                        </div>
-                    <span class="ticker-sep">·</span>
-                    <div class="sticker-pill">
-                        <div class="sticker-icon" style="background:rgba(34,197,94,0.2);">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                            </div>
-                            <span>Maintenance &amp; Service</span>
-                        </div>
-                    <span class="ticker-sep">·</span>
-                    <div class="sticker-pill">
-                        <div class="sticker-icon" style="background:rgba(251,113,133,0.2);">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fb7185" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2z"/><path d="M16 17v2M8 17v2M3 11h18"/></svg>
-                            </div>
-                            <span>Rental Genset</span>
-                        </div>
-                    <span class="ticker-sep">·</span>
-                        <!-- Set 2 (duplicate for seamless loop) -->
-                    <div class="sticker-pill">
-                        <div class="sticker-icon" style="background:rgba(37,99,235,0.25);">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                            </div>
-                            <span>New Genset Unit &amp; Installation</span>
-                        </div>
-                    <span class="ticker-sep">·</span>
-                    <div class="sticker-pill">
-                        <div class="sticker-icon" style="background:rgba(245,158,11,0.2);">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                            </div>
-                            <span>ATS / Panel Cos &amp; Synchron</span>
-                        </div>
-                    <span class="ticker-sep">·</span>
-                    <div class="sticker-pill">
-                        <div class="sticker-icon" style="background:rgba(167,139,250,0.2);">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                            </div>
-                            <span>Sparepart</span>
-                        </div>
-                    <span class="ticker-sep">·</span>
-                    <div class="sticker-pill">
-                        <div class="sticker-icon" style="background:rgba(34,197,94,0.2);">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                            </div>
-                            <span>Maintenance &amp; Service</span>
-                        </div>
-                    <span class="ticker-sep">·</span>
-                    <div class="sticker-pill">
-                        <div class="sticker-icon" style="background:rgba(251,113,133,0.2);">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fb7185" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2z"/><path d="M16 17v2M8 17v2M3 11h18"/></svg>
-                            </div>
-                            <span>Rental Genset</span>
-                        </div>
-                    <span class="ticker-sep">·</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Trust Section -->
-    <section id="trust-section" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
-            <div class="text-center mb-14 reveal">
-                <h2 style="font-size:1.875rem;font-weight:800;color:var(--navy);margin-bottom:1rem;letter-spacing:-0.02em;">Dipercaya Sejak 2012</h2>
-                <p style="color:var(--text-muted);max-width:560px;margin:0 auto;font-size:1rem;line-height:1.7;">Kami telah melayani ratusan proyek pengadaan, pemeliharaan, dan perbaikan genset di seluruh Indonesia dengan tenaga ahli bersertifikat.</p>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mb-4">
-                <div class="stat-card reveal reveal-delay-1">
-                    <div class="stat-icon-wrap">
-                        <i data-lucide="calendar" style="width:22px;height:22px;color:var(--blue-light);"></i>
-                    </div>
-                    <div class="stat-number">13+</div>
-                    <div class="stat-label">Tahun Pengalaman</div>
-                </div>
-                <div class="stat-card reveal reveal-delay-2">
-                    <div class="stat-icon-wrap">
-                        <i data-lucide="check-circle" style="width:22px;height:22px;color:var(--blue-light);"></i>
-                    </div>
-                    <div class="stat-number">100+</div>
-                    <div class="stat-label">Proyek Selesai</div>
-                </div>
-                <div class="stat-card reveal reveal-delay-3">
-                    <div class="stat-icon-wrap">
-                        <i data-lucide="users" style="width:22px;height:22px;color:var(--blue-light);"></i>
-                    </div>
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Dukungan Teknis</div>
-                </div>
-                <div class="stat-card reveal reveal-delay-4">
-                    <div class="stat-icon-wrap">
-                        <i data-lucide="map-pin" style="width:22px;height:22px;color:var(--blue-light);"></i>
-                    </div>
-                    <div class="stat-number">Nasional</div>
-                    <div class="stat-label">Jangkauan Area</div>
-                </div>
-            </div>
-
-            <div class="clients-strip reveal">
-                <p class="clients-label">Telah digunakan dan dipercaya oleh</p>
-                <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px 24px;">
-                    <span class="client-name">PLN UIP</span>
-                    <span style="color:#e2e8f0;font-size:1.1rem;" class="hidden sm:block">·</span>
-                    <span class="client-name">Pertamina</span>
-                    <span style="color:#e2e8f0;font-size:1.1rem;" class="hidden sm:block">·</span>
-                    <span class="client-name">Aneka Tambang</span>
-                    <span style="color:#e2e8f0;font-size:1.1rem;" class="hidden sm:block">·</span>
-                    <span class="client-name">RS Bhayangkara</span>
-                    <span style="color:#e2e8f0;font-size:1.1rem;" class="hidden sm:block">·</span>
-                    <span class="client-name">Hotel Westin Bali</span>
-                    <span style="color:#e2e8f0;font-size:1.1rem;" class="hidden sm:block">·</span>
-                    <span class="client-name">RS JIS Solo</span>
-                    <span style="color:#e2e8f0;font-size:1.1rem;" class="hidden sm:block">·</span>
-                    <span class="client-name">Bank DKI</span>
-                </div>
-                <!-- See More -->
-                <div style="text-align:center;margin-top:24px;">
-                    <a href="portfolio.html" style="
-                        display:inline-flex;align-items:center;gap:6px;
-                        font-family:'Plus Jakarta Sans',sans-serif;
-                        font-size:0.8125rem;font-weight:700;
-                        color:var(--blue-light);letter-spacing:0.03em;
-                        text-decoration:none;
-                        padding:8px 20px;
-                        border:1.5px solid rgba(37,99,235,0.25);
-                        border-radius:999px;
-                        background:rgba(37,99,235,0.04);
-                        transition:background 0.2s,border-color 0.2s,transform 0.15s;
-                    " onmouseover="this.style.background='rgba(37,99,235,0.09)';this.style.borderColor='rgba(37,99,235,0.5)';this.style.transform='translateY(-1px)'"
-                       onmouseout="this.style.background='rgba(37,99,235,0.04)';this.style.borderColor='rgba(37,99,235,0.25)';this.style.transform='none'">
-                        See More
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Form Section -->
-    <section id="form-section" class="form-section py-20 px-5 sm:px-8 lg:px-10">
-        <div class="max-w-4xl mx-auto">
-            <div class="form-card md:flex reveal">
-
-                <!-- Left Info Panel -->
-                <div class="info-panel text-white p-10 md:w-[42%] flex flex-col justify-between">
-                    <div class="info-panel-inner">
-                        <h3 style="font-size:1.375rem;font-weight:700;margin-bottom:1.25rem;line-height:1.35;">Amankan Operasional Bisnis Anda Hari Ini.</h3>
-                        <p style="color:rgba(186,214,255,0.85);margin-bottom:2rem;line-height:1.7;font-size:0.9375rem;">
-                            Jangan tunggu sampai terjadi pemadaman mendadak. Tim teknisi kami siap melakukan inspeksi menyeluruh pada unit Genset Anda.
-                        </p>
-                        <div style="display:flex;flex-direction:column;gap:14px;">
-                            <div class="check-item">
-                                <div class="check-icon">
-                                    <i data-lucide="check" style="width:13px;height:13px;color:#fbbf24;stroke-width:3;"></i>
-                                </div>
-                                <span style="font-size:0.875rem;color:rgba(240,248,255,0.9);line-height:1.5;">Pengecekan Baterai & Sistem Starter</span>
-                            </div>
-                            <div class="check-item">
-                                <div class="check-icon">
-                                    <i data-lucide="check" style="width:13px;height:13px;color:#fbbf24;stroke-width:3;"></i>
-                                </div>
-                                <span style="font-size:0.875rem;color:rgba(240,248,255,0.9);line-height:1.5;">Pengecekan Oli & Filter</span>
-                            </div>
-                            <div class="check-item">
-                                <div class="check-icon">
-                                    <i data-lucide="check" style="width:13px;height:13px;color:#fbbf24;stroke-width:3;"></i>
-                                </div>
-                                <span style="font-size:0.875rem;color:rgba(240,248,255,0.9);line-height:1.5;">Identifikasi Potensi Kerusakan</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="info-panel-inner" style="margin-top:3rem;display:flex;flex-direction:column;gap:10px;">
-                        <p style="font-size:0.8125rem;color:#93c5fd;font-weight:500;margin-bottom:4px;">Punya pertanyaan mendesak?</p>
-                        <a href="mailto:ade.oktarini@gmail.com" class="contact-row" style="text-decoration:none;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">
-                            <div class="contact-icon-wrap" style="background:rgba(147,197,253,0.15);transition:background 0.2s;">
-                                <i data-lucide="mail" style="width:15px;height:15px;color:#93c5fd;"></i>
-                            </div>
-                            <span style="font-weight:500;font-size:0.875rem;color:rgba(240,248,255,0.9);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(147,197,253,0.4);">ade.oktarini@gmail.com</span>
-                        </a>
-                        <a href="https://wa.me/6281219965256?text=Halo%20PT%20Multi%20Guna%20Persada%2C%20saya%20ingin%20bertanya%20mengenai%20layanan%20genset." target="_blank" rel="noopener" class="contact-row" style="text-decoration:none;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">
-                            <div class="contact-icon-wrap" style="background:rgba(34,197,94,0.15);transition:background 0.2s;">
-                                <svg style="width:15px;height:15px;color:#4ade80;flex-shrink:0;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.012c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
-                            </div>
-                            <span style="font-weight:500;font-size:0.875rem;color:rgba(240,248,255,0.9);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(74,222,128,0.4);">WA: 0812 1996 5256</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Right Form Panel -->
-                <div class="p-8 md:p-10 md:w-[58%]">
-                    <h3 style="font-size:1.375rem;font-weight:700;color:var(--navy);margin-bottom:4px;">Booking Pemeriksaan Gratis Sekarang</h3>
-                    <p style="color:var(--text-muted);margin-bottom:2rem;font-size:0.875rem;line-height:1.6;">Isi detail di bawah ini, tim kami akan segera menghubungi Anda untuk penjadwalan.</p>
-
-                    <form id="bookingForm" style="display:flex;flex-direction:column;gap:18px;">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label for="company_name" class="field-label">Nama Perusahaan <span style="color:#ef4444;">*</span></label>
-                                <input type="text" id="company_name" name="company_name" required class="field-input">
-                            </div>
-                            <div>
-                                <label for="pic_name" class="field-label">Nama PIC <span style="color:#ef4444;">*</span></label>
-                                <input type="text" id="pic_name" name="pic_name" required class="field-input">
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label for="whatsapp" class="field-label">No WhatsApp <span style="color:#ef4444;">*</span></label>
-                                <input type="tel" id="whatsapp" name="whatsapp" required class="field-input" placeholder="0812xxxxxx">
-                            </div>
-                            <div>
-                                <label for="email" class="field-label">Email <span style="color:#ef4444;">*</span></label>
-                                <input type="email" id="email" name="email" required class="field-input">
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label for="location" class="field-label">Lokasi / Kota <span style="color:#ef4444;">*</span></label>
-                                <input type="text" id="location" name="location" required class="field-input" placeholder="Misal: Jakarta Timur">
-                            </div>
-                            <div>
-                                <label for="capacity" class="field-label">Kapasitas Genset (KVA) <span style="color:#ef4444;">*</span></label>
-                                <input type="text" id="capacity" name="capacity" required class="field-input" placeholder="Misal: 250 KVA">
-                            </div>
-                        </div>
-                        <div>
-                            <label for="issue" class="field-label">Kondisi / Kendala Saat Ini <span style="color:#ef4444;">*</span></label>
-                            <textarea id="issue" name="issue" rows="3" required class="field-input" placeholder="Jelaskan kendala yang dialami atau jadwal terakhir maintenance..."></textarea>
-                        </div>
-
-                        <button type="submit" id="submitBtn" class="submit-btn" style="background:linear-gradient(135deg,#16a34a 0%,#15803d 100%);box-shadow:0 4px 16px rgba(22,163,74,0.35);">
-                            <svg style="width:18px;height:18px;flex-shrink:0;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.012c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
-                            <span>Kirim via WA</span>
-                        </button>
-
-                        <div id="loadingMsg" class="hidden msg-loading">Mengirim data... Mohon tunggu.</div>
-                        <div id="successMsg" class="hidden msg-success">
-                            <i data-lucide="check-circle-2" style="width:20px;height:20px;color:#16a34a;flex-shrink:0;margin-top:1px;"></i>
-                            <span>✅ Terima kasih! Permintaan Anda berhasil dikirim. Tim kami akan segera menghubungi Anda.</span>
-                        </div>
-                        <div id="errorMsg" class="hidden msg-error">
-                            <i data-lucide="alert-circle" style="width:20px;height:20px;color:#dc2626;flex-shrink:0;margin-top:1px;"></i>
-                            <span>❌ Maaf, terjadi kesalahan saat mengirim data. Silakan coba lagi atau hubungi via WhatsApp.</span>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer py-14">
-        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div>
-                <h4 class="footer-heading">PT Multi Guna Persada</h4>
-                <p class="footer-text">Membangun dan mendukung perusahaan di Indonesia dengan menyediakan layanan & produk IT serta Industri terbaik.</p>
-                <p class="footer-tagline">"Your trust is our asset"</p>
-            </div>
-            <div>
-                <h4 class="footer-heading">Hubungi Kami</h4>
-                <ul style="display:flex;flex-direction:column;gap:10px;">
-                    <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.875rem;color:#94a3b8;">
-                        <i data-lucide="map-pin" style="width:16px;height:16px;color:#475569;flex-shrink:0;margin-top:2px;"></i>
-                        <span>Jl. Sentra Primer Timur STCP 8 No. 2 Kel. Pulogebang, Kec. Cakung, Jakarta Timur</span>
-                    </li>
-                    <li>
-                        <a href="https://wa.me/6281219965256" target="_blank" class="footer-link">
-                            <svg style="width:16px;height:16px;color:#22c55e;flex-shrink:0;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.012c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
-                            <span>Ade Oktarini: 0812 1996 5256</span>
-                        </a>
-                    </li>
-                    <li class="footer-link">
-                        <i data-lucide="mail" style="width:16px;height:16px;color:#475569;flex-shrink:0;"></i>
-                        <span>ade.oktarini@gmail.com</span>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="footer-heading">Layanan Kami</h4>
-                <ul style="display:flex;flex-direction:column;gap:8px;font-size:0.875rem;color:#94a3b8;">
-                    <li>Generator Sets (Genset) & Instalasi</li>
-                    <li>ATS / Panel Cos & Synchron</li>
-                    <li>Sparepart & Rental Genset</li>
-                    <li>Maintenance & Servis</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-divider max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
-            &copy; 2026 PT Multi Guna Persada. All rights reserved.
-        </div>
+    <footer style="background:#0b1a3d;border-top:1px solid rgba(255,255,255,0.05);padding:20px;text-align:center;font-size:0.8125rem;color:#475569;">
+        &copy; 2026 PT Multi Guna Persada. All rights reserved.
     </footer>
 
-    <script>
-        // Icons
-        lucide.createIcons();
+<script>
+// ── DATA ──
+const industrial = [
+    {n:1, project:"RS JIS, Solo (Yabinstra)", product:"PERKINS", capacity:"1250 KVA", type:"Supply"},
+    {n:2, project:"RS Bhayangkara, Sukabumi", product:"CUMMINS", capacity:"150 KVA", type:"Supply & Install"},
+    {n:3, project:"RS Bhayangkara, Palembang", product:"CUMMINS", capacity:"100 KVA", type:"Supply & Install"},
+    {n:4, project:"Hotel Aminda", product:"PERKINS", capacity:"500 KVA", type:"Supply"},
+    {n:5, project:"Aneka Tambang (PT. Gag Nikel)", product:"CUMMINS", capacity:"250 KVA", type:"Supply"},
+    {n:6, project:"PT. Gag Nikel", product:"CUMMINS", capacity:"250 KVA", type:"Supply"},
+    {n:7, project:"PT. Gag Nikel", product:"CUMMINS", capacity:"250 KVA", type:"Supply"},
+    {n:8, project:"RSIA Bandung", product:"PERKINS", capacity:"100 KVA", type:"Supply"},
+    {n:9, project:"Rusun ASN", product:"CUMMINS", capacity:"250 KVA", type:"Supply"},
+    {n:10, project:"Rusun Tunawisma Kemensos", product:"FG WILSON", capacity:"100 KVA", type:"Supply"},
+    {n:11, project:"Villa Pribadi", product:"ISUZU", capacity:"62.5 KVA", type:"Supply & Install"},
+    {n:12, project:"Perumahan (JIS Cilandak)", product:"PERKINS", capacity:"150 KVA", type:"Supply & Install"},
+    {n:13, project:"PT. Charoen Pokphand", product:"PERKINS", capacity:"30 KVA", type:"Supply"},
+    {n:14, project:"PT. Charoen Pokphand", product:"PERKINS", capacity:"10 KVA", type:"Supply"},
+    {n:15, project:"Hotel Mahakam 24", product:"PERKINS", capacity:"200 KVA", type:"Supply & Install"},
+    {n:16, project:"Apartemen Cilangkap", product:"CUMMINS", capacity:"500 KVA", type:"Supply"},
+    {n:17, project:"Hotel Westin, Ubud, Bali", product:"DAEWOO", capacity:"750 KVA", type:"Supply & Install"},
+    {n:18, project:"Rumah Pribadi", product:"CUMMINS", capacity:"80 KVA", type:"Supply & Install"},
+    {n:19, project:"Rumah Pribadi", product:"ISUZU", capacity:"100 KVA", type:"Supply & Install"},
+    {n:20, project:"Rumah Pribadi", product:"ISUZU", capacity:"62.5 KVA", type:"Supply & Install"},
+    {n:21, project:"PT. Tri Adi Bersama (Anter Aja)", product:"YANMAR", capacity:"5 KVA", type:"Supply"},
+    {n:22, project:"PT. Lobunta Kencana Raya", product:"CUMMINS", capacity:"100 KVA", type:"Supply"},
+    {n:23, project:"Pertamina Jambi", product:"CUMMINS", capacity:"250 KVA", type:"Supply"},
+    {n:24, project:"PT. Kaltimex Energy", product:"KOMATSU", capacity:"1000 KVA", type:"Sparepart"},
+    {n:25, project:"PT. Kencana Agri", product:"PERKINS", capacity:"30 KVA", type:"Supply"},
+    {n:26, project:"PT. Adibama Surabaya", product:"CUMMINS", capacity:"60 KVA", type:"Supply"},
+    {n:27, project:"PT. Aboy Construction", product:"CUMMINS / ISUZU", capacity:"60 KVA", type:"Supply"},
+    {n:28, project:"PT. Anaktuha Sawit", product:"PERKINS", capacity:"30 KVA", type:"Supply"},
+    {n:29, project:"PT. Antam Tbk", product:"CUMMINS", capacity:"250 KVA", type:"Supply & Install"},
+    {n:30, project:"PT. Agrina Sawit Perkasa", product:"CUMMINS", capacity:"30 KVA", type:"Supply"},
+    {n:31, project:"PT. Kirana Megatar", product:"CUMMINS", capacity:"500 KVA", type:"Sparepart"},
+    {n:32, project:"Menara BNI Pejompongan", product:"PERKINS", capacity:"1500 KVA", type:"Supply & Install"},
+    {n:33, project:"PT. Alfa Polimer Indonesia", product:"PERKINS", capacity:"200 KVA", type:"Sparepart"},
+    {n:34, project:"PT. Cikarang Dry Port", product:"PERKINS", capacity:"500 KVA", type:"Sparepart"},
+    {n:35, project:"PT. Dharma Dwi Putra", product:"CUMMINS", capacity:"100 KVA", type:"Supply"},
+    {n:36, project:"PT. Dua Rajawali", product:"CUMMINS / PERKINS", capacity:"100–200 KVA", type:"Supply & Install"},
+    {n:37, project:"PT. DP Pertamina", product:"CUMMINS", capacity:"250 KVA", type:"Supply"},
+    {n:38, project:"PT. Envitech Perkasa", product:"PERKINS", capacity:"800 KVA", type:"Supply & Install"},
+    {n:39, project:"PT. Gag Nikel", product:"CUMMINS", capacity:"250 KVA", type:"Sparepart"},
+    {n:40, project:"PT. Hansulindo & Jo", product:"PERKINS", capacity:"60 KVA", type:"Supply"},
+    {n:41, project:"PT. Indo Global Traktor", product:"PERKINS", capacity:"1000 KVA", type:"Supply"},
+    {n:42, project:"PT. JX Nippon Oil & Energy", product:"FORKLIFT", capacity:"2 TON", type:"Battery"},
+    {n:43, project:"RS. Indriati, Solo", product:"MITSUBISHI", capacity:"1250 KVA", type:"Supply & Install"},
+    {n:44, project:"PT. Mufen Tirta Indonesia", product:"CUMMINS", capacity:"40 KVA", type:"Supply & Install"},
+    {n:45, project:"PT. Monumen Energi Nusantara", product:"CUMMINS", capacity:"1000 KVA", type:"Sparepart"},
+    {n:46, project:"PT. Godrej Consumer Indonesia", product:"PERKINS", capacity:"60 KVA", type:"Supply & Install"},
+    {n:47, project:"Yayasan Perawat Nasional (Jabar)", product:"CUMMINS", capacity:"40 KVA", type:"Supply & Install"},
+    {n:48, project:"PT. Putra Persada Perkasa", product:"KOMATSU", capacity:"1000 KVA", type:"Sparepart"},
+    {n:49, project:"PT. Prima Link Nusantara", product:"KOMATSU", capacity:"1000 KVA", type:"Sparepart"},
+    {n:50, project:"Pemda PLTD Waropen", product:"KOMATSU", capacity:"500–1000 KVA", type:"Sparepart"},
+    {n:51, project:"RS. Medikids", product:"PERKINS", capacity:"30 KVA", type:"Supply & Install"},
+    {n:52, project:"PT. Sarico Indah", product:"MERCY", capacity:"500 KVA", type:"Sparepart"},
+    {n:53, project:"PT. Sumitomo Cikarang", product:"KOMATSU", capacity:"—", type:"Sparepart"},
+    {n:54, project:"PT. Sun Power Intim", product:"KOMATSU", capacity:"1000 KVA", type:"Sparepart"},
+    {n:55, project:"PT. Utama Prima Mandiri", product:"KOMATSU", capacity:"1000 KVA", type:"Sparepart"},
+    {n:56, project:"PT. Waykanan Sawitindo Mas", product:"PERKINS", capacity:"30 KVA", type:"Supply"},
+    {n:57, project:"PT. Wesa Sejahtera", product:"KOMATSU", capacity:"1000 KVA", type:"Sparepart"},
+    {n:58, project:"PT. Defincy Sigar Pratama", product:"CUMMINS", capacity:"250 KVA", type:"Supply"},
+    {n:59, project:"PT. Astra Modern Land", product:"GENSET", capacity:"5.5 KVA", type:"Supply"},
+    {n:60, project:"BPJS Ketenagakerjaan Ceger", product:"CUMMINS", capacity:"85 KVA", type:"Supply"},
+    {n:61, project:"Quadro Indo Perkasa", product:"MG POWER", capacity:"15 KVA", type:"Supply"},
+    {n:62, project:"Primautama Indo Mandiri", product:"KOMATSU", capacity:"1000 KVA", type:"Sparepart"},
+    {n:63, project:"PT. Samulos Rambuti Makmur", product:"ISUZU", capacity:"30 KVA", type:"Supply"},
+    {n:64, project:"PT. Samulos Rambuti Makmur", product:"CUMMINS", capacity:"50 KVA", type:"Supply"},
+    {n:65, project:"PT. Mitra Atlas Nusantara", product:"MITSUBISHI", capacity:"1000 KVA", type:"Rental"},
+    {n:66, project:"PT. Rajawali Sakti Utama", product:"CUMMINS", capacity:"100–120 KVA", type:"Supply"},
+    {n:67, project:"PT. Libra Dwikarya", product:"CUMMINS", capacity:"80 KVA", type:"Supply"},
+    {n:68, project:"PT. Bintang Global Teknik", product:"CUMMINS", capacity:"125 KVA", type:"Supply"},
+    {n:69, project:"PT. Swadaya Dwipantara", product:"PERKINS", capacity:"250 KVA", type:"Supply"},
+    {n:70, project:"PT. WayKanan Sawitindo", product:"KOMATSU", capacity:"705 KVA", type:"Sparepart"},
+    {n:71, project:"PT. Kurnia Teknik Cilacap", product:"MG POWER", capacity:"10 KVA", type:"Supply"},
+    {n:72, project:"PT. Graha Persada Papua Mandiri", product:"KOMATSU", capacity:"1000 KVA", type:"Sparepart"},
+    {n:73, project:"PT. Sahabat Anugrah Traktor", product:"KOMATSU", capacity:"1000 KVA", type:"Sparepart"},
+    {n:74, project:"PT. Genta Mulia (The East Tower)", product:"MITSUBISHI", capacity:"1700 KVA", type:"Supply"},
+    {n:75, project:"Plaza Semanggi", product:"MITSUBISHI", capacity:"200 KVA", type:"Supply"},
+    {n:76, project:"PT. Gumilar Adi Sejahtera", product:"CUMMINS", capacity:"60 KVA", type:"Supply"},
+    {n:77, project:"Tonsco International Sirkuit (Sentul)", product:"CUMMINS", capacity:"60 KVA", type:"Supply"},
+    {n:78, project:"PT. Selamat Sampurna", product:"CUMMINS", capacity:"1250 KVA", type:"Supply"},
+    {n:79, project:"PT. Bangun Artha Mandiri", product:"CUMMINS", capacity:"800 KVA", type:"Supply"},
+    {n:80, project:"PT. Alma Cipta Sejahtera", product:"CUMMINS", capacity:"250 KVA", type:"Supply"},
+    {n:81, project:"Perum Perumnas", product:"CUMMINS", capacity:"200 KVA", type:"Supply"},
+    {n:82, project:"PT. Dos Ni Roha", product:"ISUZU", capacity:"20 KVA", type:"Supply"},
+    {n:83, project:"PT. Kirana Musi Persada", product:"FORKLIFT", capacity:"—", type:"Sparepart"},
+    {n:84, project:"PT. Tambuak Ekatama", product:"CUMMINS", capacity:"200 KVA", type:"Supply"},
+    {n:85, project:"PT. Mitra Stania Prima", product:"KOMATSU", capacity:"1000 KVA", type:"Sparepart"},
+    {n:86, project:"PT. Serayu Teknologi Indonesia", product:"PERKINS", capacity:"45 KVA", type:"Supply & Syncrone"},
+    {n:87, project:"CV. Central Jaya", product:"KOMATSU", capacity:"1000 KVA", type:"Sparepart"},
+    {n:88, project:"PT. Tangguh Duta Merlin", product:"CUMMINS", capacity:"80 KVA", type:"Supply"},
+    {n:89, project:"Rumah Dinas Bupati Bekasi", product:"MITSUBISHI", capacity:"40 KVA", type:"Supply"},
+    {n:90, project:"Gedung Shopee Solo", product:"CUMMINS", capacity:"650 KVA", type:"Supply & Install"},
+    {n:91, project:"PLN UIP 3 B, Sulawesi", product:"CUMMINS", capacity:"100 KVA", type:"Supply & Install"},
+    {n:92, project:"PLN Lombok, NTB", product:"CUMMINS", capacity:"80 KVA", type:"Supply & Install"},
+    {n:93, project:"PT. Primautama Indo Mandiri", product:"PERKINS TRAILER", capacity:"10 KVA", type:"Supply"},
+    {n:94, project:"Bank DKI", product:"PERKINS", capacity:"80 KVA", type:"Supply & Install"},
+    {n:95, project:"PT. Bangun Artha Hutama", product:"ISUZU OLING", capacity:"60 KVA", type:"Supply"},
+    {n:97, project:"PT. Desalite Tirtamas Teknologi", product:"PERKINS", capacity:"15 KVA", type:"Supply"},
+    {n:98, project:"PT. Lam Jagar Natio", product:"CUMMINS", capacity:"200 KVA", type:"Supply & Install"},
+    {n:99, project:"PT. Putra Persada Perkasa", product:"KOMATSU", capacity:"1000 KVA", type:"Service Overhaul"},
+    {n:100, project:"PT. Global Energi Makmur", product:"Tower Lamp Diesel Genset", capacity:"5.1 KVA", type:"Supply"},
+    {n:101, project:"PT. Desalite Tirtamas Teknologi", product:"PERKINS", capacity:"20 KVA", type:"Supply"},
+    {n:102, project:"PT. Indo Global Traktor", product:"PERKINS", capacity:"80 KVA", type:"Supply"},
+    {n:103, project:"PT. Sentana Anugrah Indonesia", product:"CUMMINS", capacity:"250 KVA", type:"Supply"},
+    {n:104, project:"CV. Laras", product:"PERKINS", capacity:"20 KVA", type:"Supply"},
+    {n:105, project:"UPTD Puskesmas Caringin", product:"WEIFANG", capacity:"30 KVA", type:"Supply"},
+    {n:106, project:"PT. Bayu Boga Lestari", product:"CUMMINS", capacity:"100 KVA", type:"Supply"},
+    {n:107, project:"CV. Berkah Kasih Abadi", product:"PERKINS", capacity:"10 KVA", type:"Supply"},
+    {n:108, project:"PT. Primautama Indo Mandiri", product:"PERKINS", capacity:"10 KVA", type:"Supply"},
+];
 
-        // Scroll reveal
-        const revealEls = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    e.target.classList.add('visible');
-                    observer.unobserve(e.target);
-                }
-            });
-        }, { threshold: 0.12 });
-        revealEls.forEach(el => observer.observe(el));
+const itProjects = [
+    {n:1, project:"PT. Asai Indonesia", product:"IT", capacity:""},
+    {n:2, project:"PT. Avaso Technology", product:"IT", capacity:""},
+    {n:3, project:"PT. Astra Daihatsu Motor", product:"IT", capacity:""},
+    {n:4, project:"PT Aplikausa Lontastara (Kopkarla)", product:"IT", capacity:""},
+    {n:5, project:"RS. St. Carolus", product:"IT", capacity:""},
+    {n:6, project:"PT. Delta Merlin", product:"IT", capacity:""},
+    {n:7, project:"PT. Equator Marindo", product:"IT", capacity:""},
+    {n:8, project:"PT. Electrolux Indonesia", product:"IT", capacity:""},
+    {n:9, project:"PT. GS Electech Indonesia", product:"IT", capacity:""},
+    {n:10, project:"PT. Honda Lock Indonesia", product:"IT", capacity:""},
+    {n:11, project:"Hotel Sheraton Gandaria", product:"IT", capacity:""},
+    {n:12, project:"Hotel Holiday Inn", product:"IT", capacity:""},
+    {n:13, project:"PT. Indo Tamasya", product:"IT", capacity:""},
+    {n:14, project:"PT. MNC Land Lido", product:"IT (CCTV)", capacity:"FO & CCTV"},
+    {n:15, project:"Pullman Jakarta Central Park", product:"IT (CCTV)", capacity:"Ballroom + Restaurant"},
+    {n:16, project:"PT. Breamar Shipping", product:"IT Network", capacity:""},
+    {n:17, project:"PT. Wijaya Karya", product:"IT", capacity:""},
+    {n:18, project:"PT. Pubagot Jaya Abdi", product:"IT", capacity:""},
+    {n:19, project:"Central Retail Indonesia", product:"Access Gate / IT", capacity:"Grand Indonesia – East Mall"},
+    {n:20, project:"Pullman Jakarta Central Park", product:"IT (CCTV)", capacity:""},
+    {n:21, project:"Berdikari", product:"IT", capacity:""},
+    {n:22, project:"PT Collectius Asset Management", product:"IT", capacity:""},
+    {n:23, project:"Reindo Syariah", product:"IT", capacity:""},
+    {n:24, project:"Sri Intan Perkasa", product:"IT", capacity:""},
+    {n:25, project:"Bank DKI", product:"IT (CCTV)", capacity:""},
+];
 
-        // Form submission — kirim via WhatsApp
-        document.getElementById('bookingForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+// ── BRAND COLOR HELPER ──
+function brandClass(p) {
+    const b = p.toUpperCase();
+    if (b.includes('PERKINS')) return 'brand-perkins';
+    if (b.includes('CUMMINS')) return 'brand-cummins';
+    if (b.includes('KOMATSU')) return 'brand-komatsu';
+    if (b.includes('MITSUBISHI')) return 'brand-mitsubishi';
+    if (b.includes('ISUZU')) return 'brand-isuzu';
+    if (b.includes('DAEWOO')) return 'brand-daewoo';
+    return 'brand-other';
+}
 
-            const get = id => document.getElementById(id).value.trim();
+function typeTag(type) {
+    const t = type.toLowerCase();
+    if (t.includes('sparepart') || t.includes('battery')) return `<span class="badge-type" style="background:#fef3c7;color:#92400e;border-color:rgba(245,158,11,0.2);">${type}</span>`;
+    if (t.includes('install') || t.includes('syncrone') || t.includes('overhaul')) return `<span class="badge-type">${type}</span>`;
+    if (t.includes('rental')) return `<span class="badge-type" style="background:#fdf2f8;color:#9d174d;border-color:rgba(236,72,153,0.2);">${type}</span>`;
+    return `<span class="badge-type" style="background:#f0f9ff;color:#0369a1;border-color:rgba(14,165,233,0.2);">${type}</span>`;
+}
 
-            const company  = get('company_name');
-            const pic      = get('pic_name');
-            const wa       = get('whatsapp');
-            const email    = get('email');
-            const location = get('location');
-            const capacity = get('capacity');
-            const issue    = get('issue');
+// ── RENDER INDUSTRIAL ──
+function renderIndustrial(data) {
+    const grid = document.getElementById('industrialGrid');
+    grid.innerHTML = data.map((d, i) => `
+        <div class="project-card reveal rv-${(i%6)+1}" data-type="${d.type.toLowerCase()}" data-division="industrial" data-search="${d.project.toLowerCase()} ${d.product.toLowerCase()} ${d.capacity.toLowerCase()}">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                <div class="card-number">#${String(d.n).padStart(3,'0')}</div>
+                ${typeTag(d.type)}
+            </div>
+            <div class="card-project">${d.project}</div>
+            <div class="card-meta">
+                <span class="badge-product ${brandClass(d.product)}" style="border-color:currentColor;opacity:0.9;">${d.product}</span>
+                ${d.capacity && d.capacity !== '—' ? `<span class="badge-capacity">${d.capacity}</span>` : ''}
+            </div>
+        </div>
+    `).join('');
+    triggerReveal();
+}
 
-            const msg =
-`Halo PT Multi Guna Persada,
+// ── RENDER IT ──
+function renderIT(data) {
+    const grid = document.getElementById('itGrid');
+    grid.innerHTML = data.map((d, i) => `
+        <div class="project-card reveal rv-${(i%6)+1}" data-type="it" data-division="it" data-search="${d.project.toLowerCase()} ${d.product.toLowerCase()} ${d.capacity.toLowerCase()}">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                <div class="card-number">#${String(d.n).padStart(2,'0')}</div>
+                <span class="badge-product badge-it">${d.product}</span>
+            </div>
+            <div class="card-project">${d.project}</div>
+            ${d.capacity ? `<div class="card-meta"><span class="badge-capacity">${d.capacity}</span></div>` : ''}
+        </div>
+    `).join('');
+    triggerReveal();
+}
 
-Saya ingin booking *Pemeriksaan Genset Gratis* 🔧
+// ── FILTER LOGIC ──
+let currentFilter = 'all';
+let currentSearch = '';
 
-*Data Perusahaan:*
-• Nama Perusahaan : ${company}
-• Nama PIC        : ${pic}
-• No. WhatsApp    : ${wa}
-• Email           : ${email}
-• Lokasi / Kota   : ${location}
-• Kapasitas Genset: ${capacity}
+function setFilter(btn, f) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = f;
+    applyFilter();
+}
 
-*Kondisi / Kendala:*
-${issue}
+document.getElementById('searchInput').addEventListener('input', function() {
+    currentSearch = this.value.toLowerCase().trim();
+    applyFilter();
+});
 
-Mohon segera dihubungi. Terima kasih!`;
+function applyFilter() {
+    const cards = document.querySelectorAll('.project-card');
+    let visible = 0;
+    cards.forEach(card => {
+        const type = card.dataset.type || '';
+        const div  = card.dataset.division || '';
+        const srch = card.dataset.search || '';
 
-            const waNumber = '6281219965256';
-            const url = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(msg);
+        let show = true;
+        if (currentFilter === 'supply')     show = type.includes('supply') && !type.includes('install');
+        else if (currentFilter === 'install') show = type.includes('install') || type.includes('syncrone') || type.includes('overhaul');
+        else if (currentFilter === 'sparepart') show = type.includes('sparepart') || type.includes('battery');
+        else if (currentFilter === 'it')    show = div === 'it';
 
-            window.open(url, '_blank');
+        if (show && currentSearch) show = srch.includes(currentSearch);
+
+        card.classList.toggle('card-hidden', !show);
+        if (show) visible++;
+    });
+    document.getElementById('countDisplay').textContent = `${visible} proyek ditemukan`;
+}
+
+// ── REVEAL ──
+function triggerReveal() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
         });
-    </script>
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+// ── INIT ──
+renderIndustrial(industrial);
+renderIT(itProjects);
+applyFilter();
+triggerReveal();
+</script>
 </body>
 </html>
