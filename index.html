@@ -2,19 +2,22 @@
 <html lang="id" class="scroll-smooth">
 <head>
     
-    <!-- Google Tag Manager -->
-<script>
-(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id=GTM-T5JZFDZC'+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-T5JZFDZC');
-</script>
-<!-- End Google Tag Manager -->
+    
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pemeriksaan Genset Gratis - PT Multi Guna Persada</title>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z99FBVRh3V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  
+  gtag('config', 'G-Z99FBVRh3V');
+</script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -1212,5 +1215,19 @@ Mohon segera dihubungi. Terima kasih!`;
             window.open(url, '_blank');
         });
     </script>
+
+<!-- WhatsApp Click Tracking -->
+<script>
+document.querySelectorAll('a[href*="wa.me"]').forEach(function(link) {
+  link.addEventListener('click', function() {
+    console.log('WhatsApp click tracked!');
+    gtag('event', 'whatsapp_click', {
+      'phone_number': '6281219965256',
+      'button_text': this.textContent.trim()
+    });
+  });
+});
+</script>
+        
 </body>
 </html>
