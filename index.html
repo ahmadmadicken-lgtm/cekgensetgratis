@@ -1209,6 +1209,8 @@ Mohon segera dihubungi. Terima kasih!`;
             const waNumber = '6281219965256';
             const url = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(msg);
 
+window.dataLayer = window.dataLayer || [];
+                            window.dataLayer.push({'event': 'whatsapp_click'});
             window.open(url, '_blank');
         });
     </script>
