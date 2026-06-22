@@ -46,6 +46,8 @@ nav {
 .nav-logo-text { color: white; }
 .nav-logo-text .company { font-size: 11px; font-weight: 600; opacity: 0.7; letter-spacing: 1px; text-transform: uppercase; }
 .nav-logo-text .name { font-size: 15px; font-weight: 700; }
+.nav-home { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; font-weight: 500; padding: 8px 16px; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; transition: all 0.2s; }
+.nav-home:hover { color: white; border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.1); }
 .nav-cta {
   background: var(--gold); color: var(--navy); padding: 10px 22px;
   border-radius: 8px; font-weight: 700; font-size: 14px;
@@ -280,17 +282,6 @@ section { padding: 80px 5%; }
 .testi-name { font-size: 14px; font-weight: 700; }
 .testi-role { font-size: 12px; color: var(--gray-600); }
 
-/* FAQ */
-.faq-list { max-width: 760px; margin: 48px auto 0; }
-.faq-item { border: 1px solid var(--gray-200); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
-.faq-q { padding: 20px 24px; font-size: 15px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: white; transition: background 0.2s; }
-.faq-q:hover { background: var(--gray-100); }
-.faq-icon { font-size: 18px; color: var(--blue-light); transition: transform 0.3s; }
-.faq-item.open .faq-icon { transform: rotate(45deg); }
-.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: white; }
-.faq-a-inner { padding: 0 24px 20px; font-size: 14px; color: var(--gray-600); line-height: 1.7; border-top: 1px solid var(--gray-200); padding-top: 16px; }
-.faq-item.open .faq-a { max-height: 200px; }
-
 /* CTA */
 .cta-section {
   background: var(--navy);
@@ -304,7 +295,7 @@ section { padding: 80px 5%; }
 .cta-left p { color: rgba(255,255,255,0.6); font-size: 15px; line-height: 1.7; margin-bottom: 28px; }
 .cta-checklist { list-style: none; margin-bottom: 32px; }
 .cta-checklist li { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.75); font-size: 14px; margin-bottom: 10px; }
-.cta-checklist li::before { content: '&#10003;'; width: 20px; height: 20px; background: rgba(16,185,129,0.2); color: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+.cta-checklist li::before { content: '\2713'; width: 20px; height: 20px; background: rgba(16,185,129,0.2); color: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
 .cta-contact-links { display: flex; gap: 14px; flex-wrap: wrap; }
 .cta-form { background: white; border-radius: 20px; padding: 32px; box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
 .cta-form h3 { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
@@ -380,6 +371,7 @@ footer { background: #060f1f; color: rgba(255,255,255,0.5); padding: 48px 5% 28p
       <div class="name">Panel ATS Profesional</div>
     </div>
   </a>
+  <a href="https://cekgensetgratis.online" class="nav-home">&#8592; Halaman Utama</a>
   <a href="#konsultasi" class="nav-cta">Konsultasi Gratis &#8594;</a>
 </nav>
 
@@ -866,46 +858,7 @@ footer { background: #060f1f; color: rgba(255,255,255,0.5); padding: 48px 5% 28p
 </section>
 
 <!-- FAQ -->
-<section>
-  <div class="container">
-    <div class="text-center">
-      <div class="section-tag">FAQ</div>
-      <h2 class="section-title">Pertanyaan yang Sering Ditanyakan</h2>
-    </div>
-    <div class="faq-list">
-      <div class="faq-item open">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
-          Berapa lama proses pemasangan panel ATS? <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a"><div class="faq-a-inner">Tergantung kapasitas dan kompleksitas. Untuk panel ATS standar (100-800A), proses fabrikasi 1-2 minggu dan instalasi 1-2 hari. Untuk panel kapasitas besar atau custom, bisa 3-4 minggu. Kami akan berikan jadwal estimasi yang akurat setelah survey.</div></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
-          Merek komponen apa yang digunakan? <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a"><div class="faq-a-inner">Kami menggunakan komponen bermerek terpercaya seperti Schneider Electric, ABB, Siemens, Delixi, dan Chint sesuai kebutuhan dan budget klien. Semua komponen bergaransi resmi dari distributor resmi di Indonesia.</div></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
-          Apakah ada garansi untuk panel ATS yang dipasang? <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a"><div class="faq-a-inner">Ya. Kami memberikan garansi pekerjaan dan komponen. Jika ada masalah akibat kesalahan instalasi atau cacat material, kami perbaiki tanpa biaya tambahan. Kami juga menyediakan paket maintenance contract tahunan.</div></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
-          Apakah melayani proyek di luar Jawa? <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a"><div class="faq-a-inner">Ya, kami melayani seluruh Indonesia. Kami memiliki pengalaman proyek di Jawa, Bali, Sumatera, Kalimantan, dan Sulawesi. Biaya mobilisasi teknisi akan disepakati bersama di awal sesuai lokasi proyek.</div></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
-          Bagaimana cara menentukan kapasitas panel ATS yang dibutuhkan? <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a"><div class="faq-a-inner">Kapasitas panel ATS ditentukan dari total beban listrik yang akan dilindungi, kapasitas genset, dan faktor keamanan. Tim kami akan melakukan survey dan kalkulasi beban untuk merekomendasikan spesifikasi panel yang tepat dan efisien.</div></div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- CTA -->
 <section class="cta-section" id="konsultasi">
@@ -922,16 +875,16 @@ footer { background: #060f1f; color: rgba(255,255,255,0.5); padding: 48px 5% 28p
         <li>Pengerjaan cepat, bersih, dan profesional</li>
       </ul>
       <div class="cta-contact-links">
-        <a href="https://wa.me/6289652825677?text=Halo%20PT%20MGP%2C%20saya%20ingin%20konsultasi%20Panel%20ATS" class="btn-primary" target="_blank">
+        <a href="https://wa.me/6281219965256?text=Halo%20PT%20MGP%2C%20saya%20ingin%20konsultasi%20Panel%20ATS" class="btn-primary" target="_blank">
           &#128172; Chat WhatsApp
         </a>
-        <a href="tel:+6289652825677" class="btn-secondary">&#128222; Telepon Langsung</a>
+        <a href="tel:+6281219965256" class="btn-secondary">&#128222; Telepon Langsung</a>
       </div>
       <div style="margin-top: 24px; padding: 16px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
         <div style="font-size:12px; color:rgba(255,255,255,0.4); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">Kontak Langsung</div>
         <div style="color:white; font-size:14px; font-weight:600;">&#128205; Jl. Sentra Primer Timur STCP 8 No. 2, Pulogebang, Cakung, Jakarta Timur</div>
         <div style="color:rgba(255,255,255,0.6); font-size:13px; margin-top:6px;">&#9993;&#65039; ade.oktarini@gmail.com</div>
-        <div style="color:rgba(255,255,255,0.6); font-size:13px;">&#128222; +62 896-5282-5677</div>
+        <div style="color:rgba(255,255,255,0.6); font-size:13px;">&#128222; +62 812-1996-5256</div>
       </div>
     </div>
     <div class="cta-form">
@@ -1020,7 +973,7 @@ footer { background: #060f1f; color: rgba(255,255,255,0.5); padding: 48px 5% 28p
     <div class="footer-links">
       <h4>Kontak</h4>
       <a href="#">&#128205; Cakung, Jakarta Timur</a>
-      <a href="https://wa.me/6289652825677">&#128172; WA: +62 896-5282-5677</a>
+      <a href="https://wa.me/6281219965256">&#128172; WA: +62 812-1996-5256</a>
       <a href="mailto:ade.oktarini@gmail.com">&#9993;&#65039; ade.oktarini@gmail.com</a>
       <a href="https://cekgensetgratis.online">&#127760; cekgensetgratis.online</a>
     </div>
@@ -1032,7 +985,7 @@ footer { background: #060f1f; color: rgba(255,255,255,0.5); padding: 48px 5% 28p
 </footer>
 
 <!-- WA Float -->
-<a href="https://wa.me/6289652825677?text=Halo%20PT%20MGP%2C%20saya%20ingin%20konsultasi%20Panel%20ATS" class="wa-float" target="_blank">
+<a href="https://wa.me/6281219965256?text=Halo%20PT%20MGP%2C%20saya%20ingin%20konsultasi%20Panel%20ATS" class="wa-float" target="_blank">
   <span class="wa-tooltip">&#128172; Chat Konsultasi Gratis!</span>
   &#128172;
 </a>
@@ -1049,12 +1002,11 @@ function submitForm(btn) {
   const wa = form.querySelector('input[type="tel"]').value;
   const need = form.querySelector('select').value;
   const msg = encodeURIComponent('Halo PT MGP, saya ingin konsultasi Panel ATS.\n\nPerusahaan: ' + company + '\nNama: ' + name + '\nNo. WA: ' + wa + '\nKebutuhan: ' + need);
-  window.open('https://wa.me/6289652825677?text=' + msg, '_blank');
+  window.open('https://wa.me/6281219965256?text=' + msg, '_blank');
 }
 document.querySelectorAll('.faq-q').forEach(q => {
   q.addEventListener('click', function() {
     const item = this.parentElement;
-    document.querySelectorAll('.faq-item').forEach(i => { if(i !== item) i.classList.remove('open'); });
     item.classList.toggle('open');
   });
 });
