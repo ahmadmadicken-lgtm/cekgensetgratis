@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel ATS Profesional - PT Multi Guna Persada | Solusi Pemindah Daya Otomatis</title>
+<meta name="description" content="Panel ATS (Automatic Transfer Switch) terpercaya untuk pabrik, gedung, hotel & industri. Dipercaya PLN, Pertamina, RS Bhayangkara. Konsultasi gratis!">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #0a1628;
+  --navy-800: #0f2040;
+  --navy-700: #162b55;
+  --navy-600: #1e3a6e;
+  --blue: #1d6ddb;
+  --blue-light: #3b82f6;
+  --gold: #f59e0b;
+  --gold-light: #fbbf24;
+  --green: #10b981;
+  --red: #ef4444;
+  --white: #ffffff;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-600: #4b5563;
+  --gray-900: #111827;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; color: var(--gray-900); background: #fff; overflow-x: hidden; }
+
+/* NAVBAR */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(10,22,40,0.97); backdrop-filter: blur(12px);
+  padding: 0 5%; display: flex; align-items: center; justify-content: space-between;
+  height: 70px; border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-logo-icon {
+  width: 42px; height: 42px; background: var(--blue);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 16px; color: white; letter-spacing: -1px;
+}
+.nav-logo-text { color: white; }
+.nav-logo-text .company { font-size: 11px; font-weight: 600; opacity: 0.7; letter-spacing: 1px; text-transform: uppercase; }
+.nav-logo-text .name { font-size: 15px; font-weight: 700; }
+.nav-cta {
+  background: var(--gold); color: var(--navy); padding: 10px 22px;
+  border-radius: 8px; font-weight: 700; font-size: 14px;
+  text-decoration: none; transition: all 0.2s;
+}
+.nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+/* HERO */
+.hero {
+  min-height: 100vh; background: var(--navy);
+  background-image: radial-gradient(ellipse at 70% 50%, rgba(29,109,219,0.15) 0%, transparent 60%),
+                    radial-gradient(ellipse at 10% 80%, rgba(245,158,11,0.08) 0%, transparent 50%);
+  display: flex; align-items: center; padding: 100px 5% 60px;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,255,255,0.01) 40px, rgba(255,255,255,0.01) 41px),
+                    repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.01) 40px, rgba(255,255,255,0.01) 41px);
+  pointer-events: none;
+}
+.hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3);
+  color: var(--gold); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 20px;
+}
+.hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.5)} }
+.hero h1 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; color: white; line-height: 1.15; margin-bottom: 20px; }
+.hero h1 span { color: var(--gold); }
+.hero-sub { font-size: 16px; color: rgba(255,255,255,0.65); line-height: 1.7; margin-bottom: 32px; max-width: 480px; }
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+.btn-primary {
+  background: var(--gold); color: var(--navy); padding: 14px 28px;
+  border-radius: 10px; font-weight: 700; font-size: 15px;
+  text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(245,158,11,0.35); }
+.btn-secondary {
+  background: transparent; color: white; padding: 14px 28px;
+  border-radius: 10px; font-weight: 600; font-size: 15px;
+  text-decoration: none; border: 1px solid rgba(255,255,255,0.25);
+  transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-secondary:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.05); }
+.hero-stats { display: flex; gap: 32px; }
+.hero-stat { }
+.hero-stat .num { font-size: 28px; font-weight: 800; color: white; }
+.hero-stat .num span { color: var(--gold); }
+.hero-stat .lbl { font-size: 12px; color: rgba(255,255,255,0.5); }
+
+/* ATS PANEL VISUAL */
+.ats-visual {
+  display: flex; justify-content: center; align-items: center; position: relative;
+}
+.ats-panel {
+  width: 320px; background: #0d1f3c;
+  border: 2px solid #1e3a6e; border-radius: 16px;
+  padding: 20px; box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+  position: relative;
+}
+.ats-panel-header {
+  background: #162b55; border-radius: 10px; padding: 12px 16px;
+  margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between;
+}
+.ats-panel-title { color: white; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+.ats-brand { color: rgba(255,255,255,0.4); font-size: 9px; }
+.ats-display {
+  background: #060f1f; border-radius: 10px; padding: 16px;
+  margin-bottom: 14px; border: 1px solid #1a2f50;
+}
+.ats-display-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.ats-display-row:last-child { margin-bottom: 0; }
+.ats-label { font-size: 9px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.5px; }
+.ats-value { font-size: 13px; font-weight: 700; font-family: monospace; }
+.ats-value.green { color: #10b981; }
+.ats-value.blue { color: #60a5fa; }
+.ats-value.gold { color: #f59e0b; }
+.ats-value.white { color: white; }
+.ats-indicators { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 14px; }
+.ats-ind { background: #060f1f; border-radius: 6px; padding: 8px; text-align: center; border: 1px solid #1a2f50; }
+.ats-ind-dot { width: 8px; height: 8px; border-radius: 50%; margin: 0 auto 4px; }
+.ats-ind-dot.on { background: #10b981; box-shadow: 0 0 8px #10b981; animation: blink 2s infinite; }
+.ats-ind-dot.off { background: #374151; }
+.ats-ind-dot.warn { background: #f59e0b; box-shadow: 0 0 8px #f59e0b; animation: blink 1.5s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.4} }
+.ats-ind-label { font-size: 7px; color: rgba(255,255,255,0.4); text-transform: uppercase; }
+.ats-switches { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ats-switch { background: #060f1f; border: 1px solid #1a2f50; border-radius: 8px; padding: 10px; text-align: center; }
+.ats-switch-label { font-size: 9px; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+.ats-switch-val { font-size: 11px; font-weight: 700; }
+.ats-switch-val.active { color: #10b981; }
+.ats-switch-val.standby { color: #f59e0b; }
+.ats-float-badge {
+  position: absolute; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.4);
+  border-radius: 8px; padding: 8px 14px; color: #10b981; font-size: 12px; font-weight: 600;
+  display: flex; align-items: center; gap: 6px; white-space: nowrap;
+}
+.ats-float-badge::before { content: ''; width: 6px; height: 6px; background: #10b981; border-radius: 50%; animation: pulse 2s infinite; }
+.badge-top { top: -20px; right: -30px; }
+.badge-bottom { bottom: 10px; left: -50px; background: rgba(29,109,219,0.15); border-color: rgba(29,109,219,0.4); color: #60a5fa; }
+.badge-bottom::before { background: #60a5fa; }
+</style>
+</head>
+/* SCROLL TICKER */
+.ticker { background: var(--navy-800); border-top: 1px solid #1e3a6e; border-bottom: 1px solid #1e3a6e; padding: 12px 0; overflow: hidden; }
+.ticker-inner { display: flex; gap: 0; white-space: nowrap; animation: ticker 25s linear infinite; }
+.ticker-item { display: inline-flex; align-items: center; gap: 8px; padding: 0 28px; font-size: 13px; color: rgba(255,255,255,0.6); }
+.ticker-item .icon { font-size: 16px; }
+@keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* SECTION BASE */
+section { padding: 80px 5%; }
+.container { max-width: 1200px; margin: 0 auto; }
+.section-tag { display: inline-block; background: rgba(29,109,219,0.1); color: var(--blue-light); padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 14px; }
+.section-title { font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 800; color: var(--gray-900); line-height: 1.2; margin-bottom: 16px; }
+.section-sub { font-size: 16px; color: var(--gray-600); line-height: 1.7; max-width: 600px; }
+.text-center { text-align: center; }
+.text-center .section-sub { margin: 0 auto; }
+
+/* WHY ATS */
+.why-ats { background: var(--gray-100); }
+.why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 48px; }
+.why-card {
+  background: white; border-radius: 16px; padding: 28px;
+  border: 1px solid var(--gray-200); transition: all 0.3s;
+  display: flex; gap: 20px; align-items: flex-start;
+}
+.why-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--blue-light); }
+.why-icon {
+  width: 52px; height: 52px; border-radius: 12px; display: flex; align-items: center;
+  justify-content: center; font-size: 24px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--navy), var(--navy-700));
+}
+.why-content h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+.why-content p { font-size: 14px; color: var(--gray-600); line-height: 1.6; }
+
+/* SERVICES */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 48px; }
+.service-card {
+  background: var(--navy); border-radius: 16px; padding: 28px;
+  border: 1px solid #1e3a6e; transition: all 0.3s; position: relative; overflow: hidden;
+}
+.service-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--gold));
+}
+.service-card:hover { transform: translateY(-4px); border-color: var(--blue-light); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+.service-icon { font-size: 36px; margin-bottom: 16px; }
+.service-card h3 { font-size: 18px; font-weight: 700; color: white; margin-bottom: 10px; }
+.service-card p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+.service-tag { display: inline-block; margin-top: 16px; background: rgba(29,109,219,0.2); color: #60a5fa; padding: 4px 12px; border-radius: 6px; font-size: 11px; font-weight: 600; }
+
+/* PROCESS */
+.process { background: var(--gray-100); }
+.process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0; margin-top: 48px; position: relative; }
+.process-steps::before {
+  content: ''; position: absolute; top: 36px; left: 10%; right: 10%; height: 2px;
+  background: linear-gradient(90deg, var(--blue), var(--gold));
+  z-index: 0;
+}
+.process-step { text-align: center; position: relative; z-index: 1; padding: 0 16px; }
+.step-num {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--navy-700));
+  border: 3px solid white; display: flex; align-items: center; justify-content: center;
+  font-size: 24px; font-weight: 900; color: white; margin: 0 auto 20px; box-shadow: 0 4px 20px rgba(29,109,219,0.3);
+}
+.process-step h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.process-step p { font-size: 13px; color: var(--gray-600); line-height: 1.5; }
+
+/* PORTFOLIO */
+.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; margin-top: 48px; }
+.portfolio-card {
+  background: white; border-radius: 16px; overflow: hidden;
+  border: 1px solid var(--gray-200); transition: all 0.3s;
+}
+.portfolio-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0,0,0,0.12); }
+.portfolio-img {
+  height: 200px; background: linear-gradient(135deg, var(--navy), var(--navy-700));
+  display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
+}
+.portfolio-img-bg { font-size: 80px; opacity: 0.1; }
+.portfolio-img-content { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 20px; }
+
+/* Mini ATS Panel in Portfolio */
+.mini-panel {
+  background: rgba(6,15,31,0.9); border: 1px solid #1e3a6e; border-radius: 10px;
+  padding: 14px; width: 200px; backdrop-filter: blur(10px);
+}
+.mini-panel-title { color: rgba(255,255,255,0.5); font-size: 8px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; border-bottom: 1px solid #1e3a6e; padding-bottom: 6px; }
+.mini-row { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 9px; }
+.mini-key { color: rgba(255,255,255,0.4); }
+.mini-val { font-weight: 700; font-family: monospace; }
+.mini-val.g { color: #10b981; }
+.mini-val.b { color: #60a5fa; }
+.mini-val.y { color: #f59e0b; }
+.mini-leds { display: flex; gap: 6px; margin-top: 8px; }
+.mini-led { width: 8px; height: 8px; border-radius: 50%; }
+.mini-led.g { background: #10b981; box-shadow: 0 0 6px #10b981; }
+.mini-led.r { background: #374151; }
+.mini-led.y { background: #f59e0b; box-shadow: 0 0 6px #f59e0b; }
+.portfolio-tag { position: absolute; top: 12px; left: 12px; background: var(--gold); color: var(--navy); padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; }
+.portfolio-body { padding: 20px; }
+.portfolio-body h3 { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+.portfolio-body .client { font-size: 13px; color: var(--blue-light); font-weight: 600; margin-bottom: 10px; }
+.portfolio-body p { font-size: 13px; color: var(--gray-600); line-height: 1.6; margin-bottom: 12px; }
+.portfolio-specs { display: flex; gap: 10px; flex-wrap: wrap; }
+.spec-tag { background: var(--gray-100); color: var(--gray-600); padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; }
+
+/* CLIENTS */
+.clients { background: var(--navy); }
+.clients-title { color: rgba(255,255,255,0.5); font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; text-align: center; margin-bottom: 32px; }
+.clients-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+.client-badge {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px; padding: 14px 24px; color: rgba(255,255,255,0.6);
+  font-size: 14px; font-weight: 600; transition: all 0.3s;
+}
+.client-badge:hover { background: rgba(29,109,219,0.15); border-color: rgba(29,109,219,0.4); color: white; }
+
+/* TESTIMONIAL */
+.testimonials { background: var(--gray-100); }
+.testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 48px; }
+.testi-card { background: white; border-radius: 16px; padding: 28px; border: 1px solid var(--gray-200); position: relative; }
+.testi-card::before { content: '"'; position: absolute; top: 16px; right: 20px; font-size: 60px; color: var(--blue-light); opacity: 0.15; font-family: Georgia; line-height: 1; }
+.testi-stars { color: var(--gold); font-size: 14px; margin-bottom: 12px; }
+.testi-text { font-size: 14px; color: var(--gray-600); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+.testi-author { display: flex; align-items: center; gap: 12px; }
+.testi-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--navy), var(--blue)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 16px; }
+.testi-name { font-size: 14px; font-weight: 700; }
+.testi-role { font-size: 12px; color: var(--gray-600); }
+
+/* FAQ */
+.faq-list { max-width: 760px; margin: 48px auto 0; }
+.faq-item { border: 1px solid var(--gray-200); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+.faq-q { padding: 20px 24px; font-size: 15px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: white; transition: background 0.2s; }
+.faq-q:hover { background: var(--gray-100); }
+.faq-icon { font-size: 18px; color: var(--blue-light); transition: transform 0.3s; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: white; }
+.faq-a-inner { padding: 0 24px 20px; font-size: 14px; color: var(--gray-600); line-height: 1.7; border-top: 1px solid var(--gray-200); padding-top: 16px; }
+.faq-item.open .faq-a { max-height: 200px; }
+
+/* CTA */
+.cta-section {
+  background: var(--navy);
+  background-image: radial-gradient(ellipse at 30% 50%, rgba(29,109,219,0.2) 0%, transparent 60%),
+                    radial-gradient(ellipse at 80% 30%, rgba(245,158,11,0.1) 0%, transparent 50%);
+  padding: 80px 5%;
+}
+.cta-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+.cta-left h2 { font-size: clamp(1.8rem,3vw,2.5rem); font-weight: 900; color: white; line-height: 1.2; margin-bottom: 16px; }
+.cta-left h2 span { color: var(--gold); }
+.cta-left p { color: rgba(255,255,255,0.6); font-size: 15px; line-height: 1.7; margin-bottom: 28px; }
+.cta-checklist { list-style: none; margin-bottom: 32px; }
+.cta-checklist li { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.75); font-size: 14px; margin-bottom: 10px; }
+.cta-checklist li::before { content: '✓'; width: 20px; height: 20px; background: rgba(16,185,129,0.2); color: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+.cta-contact-links { display: flex; gap: 14px; flex-wrap: wrap; }
+.cta-form { background: white; border-radius: 20px; padding: 32px; box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
+.cta-form h3 { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
+.cta-form p { font-size: 13px; color: var(--gray-600); margin-bottom: 24px; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: #374151; }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 11px 14px; border: 1.5px solid var(--gray-200); border-radius: 9px;
+  font-size: 14px; font-family: inherit; transition: border-color 0.2s; outline: none;
+  background: #fafafa;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue-light); background: white; }
+.form-group textarea { resize: vertical; min-height: 80px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.btn-submit {
+  width: 100%; background: var(--gold); color: var(--navy); border: none;
+  padding: 14px; border-radius: 10px; font-size: 15px; font-weight: 700;
+  cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.btn-submit:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 8px 25px rgba(245,158,11,0.4); }
+
+/* FOOTER */
+footer { background: #060f1f; color: rgba(255,255,255,0.5); padding: 48px 5% 28px; }
+.footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.footer-brand p { font-size: 13px; line-height: 1.7; margin: 14px 0 20px; max-width: 280px; }
+.footer-links h4 { color: white; font-size: 14px; font-weight: 700; margin-bottom: 16px; }
+.footer-links a { display: block; color: rgba(255,255,255,0.4); font-size: 13px; text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+.footer-links a:hover { color: white; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-size: 12px; flex-wrap: gap; gap: 12px; }
+
+/* WA Float */
+.wa-float {
+  position: fixed; bottom: 28px; right: 28px; z-index: 999;
+  background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; font-size: 28px;
+  box-shadow: 0 6px 24px rgba(37,211,102,0.5); text-decoration: none;
+  transition: transform 0.2s; animation: float-up 3s ease-in-out infinite;
+}
+.wa-float:hover { transform: scale(1.1); }
+@keyframes float-up { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+.wa-tooltip {
+  position: absolute; right: 70px; background: white; color: var(--gray-900);
+  padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 600;
+  white-space: nowrap; box-shadow: 0 4px 16px rgba(0,0,0,0.15); display: none;
+}
+.wa-float:hover .wa-tooltip { display: block; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .ats-visual { display: none; }
+  .cta-inner { grid-template-columns: 1fr; }
+  .process-steps::before { display: none; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+@media (max-width: 600px) {
+  section { padding: 60px 4%; }
+  .hero { padding: 90px 4% 50px; }
+  .hero-stats { flex-wrap: wrap; gap: 20px; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">MGP</div>
+    <div class="nav-logo-text">
+      <div class="company">PT. Multi Guna Persada</div>
+      <div class="name">Panel ATS Profesional</div>
+    </div>
+  </a>
+  <a href="#konsultasi" class="nav-cta">Konsultasi Gratis →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">⚡ Spesialis Panel ATS & Otomasi Daya</div>
+      <h1>Panel <span>ATS</span> Otomatis<br>yang Andal & Presisi</h1>
+      <p class="hero-sub">Pastikan bisnis Anda tidak pernah berhenti karena pemadaman. Panel ATS kami memindahkan sumber daya secara otomatis dalam hitungan detik — tanpa gangguan, tanpa risiko.</p>
+      <div class="hero-btns">
+        <a href="#konsultasi" class="btn-primary">🛡️ Konsultasi Gratis Sekarang</a>
+        <a href="#portfolio" class="btn-secondary">📂 Lihat Portfolio</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num">13<span>+</span></div><div class="lbl">Tahun Pengalaman</div></div>
+        <div class="hero-stat"><div class="num">150<span>+</span></div><div class="lbl">Panel ATS Terpasang</div></div>
+        <div class="hero-stat"><div class="num">100<span>%</span></div><div class="lbl">Garansi Kualitas</div></div>
+      </div>
+    </div>
+    <div class="ats-visual">
+      <div style="position:relative">
+        <div class="ats-float-badge badge-top">✅ PLN → Genset: 3 Detik</div>
+        <div class="ats-panel">
+          <div class="ats-panel-header">
+            <div class="ats-panel-title">⚡ ATS / COS PANEL</div>
+            <div class="ats-brand">PT. MGP</div>
+          </div>
+          <div class="ats-display">
+            <div class="ats-display-row">
+              <div><div class="ats-label">Sumber Aktif</div><div class="ats-value green">● PLN UTILITY</div></div>
+              <div><div class="ats-label">Tegangan</div><div class="ats-value blue">380V</div></div>
+            </div>
+            <div class="ats-display-row">
+              <div><div class="ats-label">Frekuensi</div><div class="ats-value white">50.0 Hz</div></div>
+              <div><div class="ats-label">Beban</div><div class="ats-value gold">72%</div></div>
+            </div>
+            <div class="ats-display-row">
+              <div><div class="ats-label">Status Transfer</div><div class="ats-value green">NORMAL</div></div>
+              <div><div class="ats-label">Waktu Transfer</div><div class="ats-value white">3.2s</div></div>
+            </div>
+          </div>
+          <div class="ats-indicators">
+            <div class="ats-ind"><div class="ats-ind-dot on"></div><div class="ats-ind-label">PLN ON</div></div>
+            <div class="ats-ind"><div class="ats-ind-dot off"></div><div class="ats-ind-label">GEN OFF</div></div>
+            <div class="ats-ind"><div class="ats-ind-dot on"></div><div class="ats-ind-label">LOAD OK</div></div>
+            <div class="ats-ind"><div class="ats-ind-dot warn"></div><div class="ats-ind-label">ALERT</div></div>
+          </div>
+          <div class="ats-switches">
+            <div class="ats-switch"><div class="ats-switch-label">PLN</div><div class="ats-switch-val active">▶ AKTIF</div></div>
+            <div class="ats-switch"><div class="ats-switch-label">GENSET</div><div class="ats-switch-val standby">⏸ STANDBY</div></div>
+          </div>
+        </div>
+        <div class="ats-float-badge badge-bottom">⚡ 3-Phase 380V / 50Hz</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item"><span class="icon">⚡</span> ATS Otomatis</span>
+    <span class="ticker-item"><span class="icon">🔌</span> Panel COS 3 Phase</span>
+    <span class="ticker-item"><span class="icon">⚙️</span> Panel Synchron</span>
+    <span class="ticker-item"><span class="icon">🏭</span> Industri & Pabrik</span>
+    <span class="ticker-item"><span class="icon">🏨</span> Hotel & Gedung</span>
+    <span class="ticker-item"><span class="icon">🏥</span> Rumah Sakit</span>
+    <span class="ticker-item"><span class="icon">🛢️</span> Pertamina</span>
+    <span class="ticker-item"><span class="icon">⚡</span> PLN UIP</span>
+    <span class="ticker-item"><span class="icon">✅</span> Garansi Pekerjaan</span>
+    <span class="ticker-item"><span class="icon">🔧</span> After-Sales Support</span>
+    <span class="ticker-item"><span class="icon">⚡</span> ATS Otomatis</span>
+    <span class="ticker-item"><span class="icon">🔌</span> Panel COS 3 Phase</span>
+    <span class="ticker-item"><span class="icon">⚙️</span> Panel Synchron</span>
+    <span class="ticker-item"><span class="icon">🏭</span> Industri & Pabrik</span>
+    <span class="ticker-item"><span class="icon">🏨</span> Hotel & Gedung</span>
+    <span class="ticker-item"><span class="icon">🏥</span> Rumah Sakit</span>
+    <span class="ticker-item"><span class="icon">🛢️</span> Pertamina</span>
+    <span class="ticker-item"><span class="icon">⚡</span> PLN UIP</span>
+    <span class="ticker-item"><span class="icon">✅</span> Garansi Pekerjaan</span>
+    <span class="ticker-item"><span class="icon">🔧</span> After-Sales Support</span>
+  </div>
+</div>
+
+<!-- WHY ATS -->
+<section class="why-ats" id="layanan">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-tag">Mengapa Panel ATS?</div>
+      <h2 class="section-title">Proteksi Bisnis Anda dari<br>Pemadaman Mendadak</h2>
+      <p class="section-sub">Setiap menit downtime = kerugian nyata. Panel ATS kami hadir sebagai solusi kelistrikan paling andal untuk operasional tanpa henti.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">⚡</div>
+        <div class="why-content">
+          <h3>Transfer Otomatis <3 Detik</h3>
+          <p>Perpindahan dari PLN ke genset secara otomatis dalam kurang dari 3 detik. Proses & mesin Anda tetap berjalan tanpa gangguan berarti.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🛡️</div>
+        <div class="why-content">
+          <h3>Proteksi Peralatan Sensitif</h3>
+          <p>Mencegah back-feeding dan lonjakan arus yang bisa merusak mesin industri, server, dan peralatan medis bernilai tinggi.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🔄</div>
+        <div class="why-content">
+          <h3>Operasi Fully Automatic</h3>
+          <p>Sistem berjalan tanpa perlu operator manusia. Saat PLN padam, panel ATS langsung mendeteksi dan memindahkan beban ke genset.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📊</div>
+        <div class="why-content">
+          <h3>Monitoring Real-Time</h3>
+          <p>Panel dilengkapi display digital untuk monitoring tegangan, arus, frekuensi, dan status transfer setiap saat.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🔧</div>
+        <div class="why-content">
+          <h3>Desain Custom per Kebutuhan</h3>
+          <p>Kapasitas 50A hingga ribuan Ampere, single phase maupun 3 phase. Kami desain sesuai kebutuhan spesifik instalasi Anda.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">✅</div>
+        <div class="why-content">
+          <h3>Garansi & After-Sales</h3>
+          <p>Garansi pekerjaan dan komponen. Tim teknisi kami siap memberikan dukungan purna jual dan maintenance rutin.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section style="background: var(--navy); padding: 80px 5%;">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-tag" style="background: rgba(245,158,11,0.15); color: var(--gold);">Produk & Layanan</div>
+      <h2 class="section-title" style="color: white;">Solusi Panel Lengkap<br>untuk Semua Kebutuhan</h2>
+      <p class="section-sub" style="color: rgba(255,255,255,0.55); margin: 0 auto;">Dari pengadaan hingga instalasi dan maintenance, kami menyediakan solusi panel kelistrikan yang komprehensif.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🔌</div>
+        <h3>Panel ATS Otomatis</h3>
+        <p>Automatic Transfer Switch untuk pemindahan beban PLN-Genset secara otomatis. Tersedia untuk kapasitas 50A – 6.300A.</p>
+        <span class="service-tag">⚡ Waktu Transfer ≤3 Detik</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚙️</div>
+        <h3>Panel COS (Change Over Switch)</h3>
+        <p>Panel perpindahan manual/semi-otomatis antara dua sumber daya. Cocok untuk instalasi dengan kebutuhan switching terjadwal.</p>
+        <span class="service-tag">🔧 Manual & Semi-Auto</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔄</div>
+        <h3>Panel Synchron / Paralel</h3>
+        <p>Untuk instalasi dengan 2 unit genset atau lebih yang dioperasikan secara paralel. Memaksimalkan efisiensi dan redundansi.</p>
+        <span class="service-tag">⚡ Multi-Genset Paralel</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📦</div>
+        <h3>Panel MDP & SDP</h3>
+        <p>Main Distribution Panel dan Sub Distribution Panel untuk distribusi daya yang terstruktur, aman, dan efisien di gedung atau pabrik.</p>
+        <span class="service-tag">🏭 Distribusi Daya</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛠️</div>
+        <h3>Retrofit & Upgrade Panel</h3>
+        <p>Modernisasi panel ATS lama dengan teknologi terbaru. Tambahkan fitur remote monitoring, timer otomatis, dan proteksi lebih canggih.</p>
+        <span class="service-tag">🔄 Upgrade Panel Lama</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔍</div>
+        <h3>Inspeksi & Maintenance</h3>
+        <p>Pemeriksaan rutin panel ATS untuk memastikan semua komponen berfungsi optimal. Deteksi dini kerusakan sebelum terjadi masalah.</p>
+        <span class="service-tag">📋 Preventive Maintenance</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-tag">Cara Kerja Kami</div>
+      <h2 class="section-title">Proses Mudah & Transparan</h2>
+      <p class="section-sub">Dari konsultasi awal hingga panel terpasang dan berjalan — kami dampingi setiap langkahnya.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <h3>Konsultasi Gratis</h3>
+        <p>Ceritakan kebutuhan Anda. Tim kami analisis lokasi, kapasitas, dan kebutuhan panel yang tepat.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <h3>Survey & Desain</h3>
+        <p>Teknisi kami datang ke lokasi, ukur kebutuhan aktual, dan buat desain panel yang presisi.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <h3>Fabrikasi Panel</h3>
+        <p>Panel dirakit oleh teknisi berpengalaman menggunakan komponen bermerek dan bergaransi.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">4</div>
+        <h3>Instalasi & Uji Coba</h3>
+        <p>Pemasangan profesional di lokasi Anda, diikuti pengujian menyeluruh sebelum diserahkan.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">5</div>
+        <h3>After-Sales & Garansi</h3>
+        <p>Support purna jual, training operator, dan garansi pekerjaan untuk ketenangan pikiran Anda.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-tag">Portfolio Panel ATS</div>
+      <h2 class="section-title">Proyek yang Telah Kami Kerjakan</h2>
+      <p class="section-sub">Lebih dari 150 unit panel ATS & COS telah kami rancang, fabrikasi, dan pasang di seluruh Indonesia.</p>
+    </div>
+    <div class="portfolio-grid">
+
+      <!-- Card 1 -->
+      <div class="portfolio-card">
+        <div class="portfolio-img" style="background: linear-gradient(135deg, #050d1f, #0f2040);">
+          <div class="portfolio-tag">⚡ ATS 3 Phase</div>
+          <div class="portfolio-img-content">
+            <div class="mini-panel">
+              <div class="mini-panel-title">ATS Panel - 1600A</div>
+              <div class="mini-row"><span class="mini-key">Sumber Aktif</span><span class="mini-val g">PLN</span></div>
+              <div class="mini-row"><span class="mini-key">Tegangan</span><span class="mini-val b">380V</span></div>
+              <div class="mini-row"><span class="mini-key">Kapasitas</span><span class="mini-val y">1600A</span></div>
+              <div class="mini-row"><span class="mini-key">Transfer</span><span class="mini-val g">2.8s</span></div>
+              <div class="mini-leds"><div class="mini-led g"></div><div class="mini-led r"></div><div class="mini-led g"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-body">
+          <h3>Panel ATS 1600A – 3 Phase</h3>
+          <div class="client">🏭 Pabrik Tekstil, Bekasi</div>
+          <p>Panel ATS kapasitas besar 1600A untuk memastikan lini produksi pabrik tekstil tidak terhenti saat PLN padam. Dilengkapi display digital dan alarm sistem.</p>
+          <div class="portfolio-specs">
+            <span class="spec-tag">1600 Ampere</span>
+            <span class="spec-tag">3 Phase 380V</span>
+            <span class="spec-tag">Schneider MCCB</span>
+            <span class="spec-tag">Auto/Manual Mode</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="portfolio-card">
+        <div class="portfolio-img" style="background: linear-gradient(135deg, #0a1a30, #162b55);">
+          <div class="portfolio-tag">🏥 RS Bhayangkara</div>
+          <div class="portfolio-img-content">
+            <div class="mini-panel">
+              <div class="mini-panel-title">ATS Panel - 800A</div>
+              <div class="mini-row"><span class="mini-key">Sumber Aktif</span><span class="mini-val g">PLN UTILITY</span></div>
+              <div class="mini-row"><span class="mini-key">Tegangan</span><span class="mini-val b">380V</span></div>
+              <div class="mini-row"><span class="mini-key">Kapasitas</span><span class="mini-val y">800A</span></div>
+              <div class="mini-row"><span class="mini-key">Transfer</span><span class="mini-val g">1.5s</span></div>
+              <div class="mini-leds"><div class="mini-led g"></div><div class="mini-led r"></div><div class="mini-led g"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-body">
+          <h3>Panel ATS 800A – Rumah Sakit</h3>
+          <div class="client">🏥 RS Bhayangkara, Jakarta</div>
+          <p>Instalasi panel ATS kritis untuk ruang ICU dan ruang operasi rumah sakit. Waktu transfer ultra-cepat 1.5 detik dengan proteksi penuh untuk peralatan medis.</p>
+          <div class="portfolio-specs">
+            <span class="spec-tag">800 Ampere</span>
+            <span class="spec-tag">Transfer 1.5s</span>
+            <span class="spec-tag">UPS Integration</span>
+            <span class="spec-tag">Critical Load</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="portfolio-card">
+        <div class="portfolio-img" style="background: linear-gradient(135deg, #0d1424, #1a2a45);">
+          <div class="portfolio-tag">🏨 Hotel Westin Bali</div>
+          <div class="portfolio-img-content">
+            <div class="mini-panel">
+              <div class="mini-panel-title">COS Panel - 2000A</div>
+              <div class="mini-row"><span class="mini-key">Config</span><span class="mini-val g">SYNCHRON</span></div>
+              <div class="mini-row"><span class="mini-key">Tegangan</span><span class="mini-val b">380V</span></div>
+              <div class="mini-row"><span class="mini-key">Genset</span><span class="mini-val y">2x 1000 kVA</span></div>
+              <div class="mini-row"><span class="mini-key">Mode</span><span class="mini-val g">PARALLEL</span></div>
+              <div class="mini-leds"><div class="mini-led g"></div><div class="mini-led g"></div><div class="mini-led y"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-body">
+          <h3>Panel Synchron 2x1000 kVA</h3>
+          <div class="client">🏨 Hotel Westin, Bali</div>
+          <p>Sistem panel synchron untuk paralel 2 unit genset 1000 kVA. Menjamin ketersediaan listrik penuh untuk seluruh fasilitas hotel bintang 5 tanpa interupsi.</p>
+          <div class="portfolio-specs">
+            <span class="spec-tag">2 x 1000 kVA</span>
+            <span class="spec-tag">Panel Synchron</span>
+            <span class="spec-tag">Paralleling Genset</span>
+            <span class="spec-tag">AMF Controller</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="portfolio-card">
+        <div class="portfolio-img" style="background: linear-gradient(135deg, #060e1e, #0e1e38);">
+          <div class="portfolio-tag">🛢️ Pertamina</div>
+          <div class="portfolio-img-content">
+            <div class="mini-panel">
+              <div class="mini-panel-title">ATS Panel - ATEX</div>
+              <div class="mini-row"><span class="mini-key">Type</span><span class="mini-val y">EXPLOSION-PROOF</span></div>
+              <div class="mini-row"><span class="mini-key">Tegangan</span><span class="mini-val b">380V / 415V</span></div>
+              <div class="mini-row"><span class="mini-key">Proteksi</span><span class="mini-val g">IP65</span></div>
+              <div class="mini-row"><span class="mini-key">Status</span><span class="mini-val g">AKTIF</span></div>
+              <div class="mini-leds"><div class="mini-led g"></div><div class="mini-led r"></div><div class="mini-led g"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-body">
+          <h3>Panel ATS Hazardous Area – Pertamina</h3>
+          <div class="client">🛢️ PT Pertamina, Cilacap</div>
+          <p>Panel ATS khusus zona berbahaya dengan sertifikasi ATEX untuk area kilang minyak. Desain explosion-proof dengan proteksi IP65 dan material anti-korosif.</p>
+          <div class="portfolio-specs">
+            <span class="spec-tag">ATEX Certified</span>
+            <span class="spec-tag">IP65 Protection</span>
+            <span class="spec-tag">Hazardous Zone</span>
+            <span class="spec-tag">SS304 Enclosure</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="portfolio-card">
+        <div class="portfolio-img" style="background: linear-gradient(135deg, #0b1828, #152438);">
+          <div class="portfolio-tag">⚡ PLN UIP</div>
+          <div class="portfolio-img-content">
+            <div class="mini-panel">
+              <div class="mini-panel-title">Panel MDP - 4000A</div>
+              <div class="mini-row"><span class="mini-key">Kapasitas</span><span class="mini-val y">4000A ACB</span></div>
+              <div class="mini-row"><span class="mini-key">Busbar</span><span class="mini-val b">Copper 4000A</span></div>
+              <div class="mini-row"><span class="mini-key">MCCB</span><span class="mini-val g">Multi-Circuit</span></div>
+              <div class="mini-row"><span class="mini-key">Monitoring</span><span class="mini-val g">SCADA Ready</span></div>
+              <div class="mini-leds"><div class="mini-led g"></div><div class="mini-led g"></div><div class="mini-led g"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-body">
+          <h3>Panel MDP 4000A – Gardu Induk</h3>
+          <div class="client">⚡ PLN UIP, Jawa Tengah</div>
+          <p>Main Distribution Panel berkapasitas 4000A dengan ACB untuk gardu induk PLN. Dilengkapi busbar tembaga custom dan integrasi SCADA untuk monitoring jarak jauh.</p>
+          <div class="portfolio-specs">
+            <span class="spec-tag">4000A ACB</span>
+            <span class="spec-tag">Copper Busbar</span>
+            <span class="spec-tag">SCADA Ready</span>
+            <span class="spec-tag">Type Test</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="portfolio-card">
+        <div class="portfolio-img" style="background: linear-gradient(135deg, #0c1929, #152540);">
+          <div class="portfolio-tag">🏦 Bank DKI</div>
+          <div class="portfolio-img-content">
+            <div class="mini-panel">
+              <div class="mini-panel-title">ATS + UPS Bypass</div>
+              <div class="mini-row"><span class="mini-key">Konfigurasi</span><span class="mini-val g">ATS + UPS</span></div>
+              <div class="mini-row"><span class="mini-key">Load Critical</span><span class="mini-val y">Server Room</span></div>
+              <div class="mini-row"><span class="mini-key">Transfer</span><span class="mini-val g">0ms (UPS)</span></div>
+              <div class="mini-row"><span class="mini-key">Backup</span><span class="mini-val b">30 Menit</span></div>
+              <div class="mini-leds"><div class="mini-led g"></div><div class="mini-led g"></div><div class="mini-led r"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-body">
+          <h3>Panel ATS + UPS Bypass – Data Center</h3>
+          <div class="client">🏦 Bank DKI, Jakarta Pusat</div>
+          <p>Sistem panel terintegrasi ATS dengan UPS bypass untuk perlindungan ganda server room bank. Zero downtime dengan switching 0ms dari UPS dan backup 30 menit.</p>
+          <div class="portfolio-specs">
+            <span class="spec-tag">ATS + UPS Bypass</span>
+            <span class="spec-tag">Zero Downtime</span>
+            <span class="spec-tag">Data Center</span>
+            <span class="spec-tag">N+1 Redundancy</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients">
+  <div class="container">
+    <div class="clients-title">✦ Dipercaya & Digunakan Oleh ✦</div>
+    <div class="clients-grid">
+      <div class="client-badge">⚡ PLN UIP</div>
+      <div class="client-badge">🛢️ Pertamina</div>
+      <div class="client-badge">⛏️ Aneka Tambang</div>
+      <div class="client-badge">🏥 RS Bhayangkara</div>
+      <div class="client-badge">🏨 Hotel Westin Bali</div>
+      <div class="client-badge">🏥 RS JIS Solo</div>
+      <div class="client-badge">🏦 Bank DKI</div>
+      <div class="client-badge">🏭 Pabrik Tekstil Bekasi</div>
+      <div class="client-badge">🏗️ Kawasan Industri MM2100</div>
+      <div class="client-badge">🏢 Gedung Perkantoran Jakarta</div>
+    </div>
+    <div style="text-align:center; margin-top: 48px;">
+      <div style="display:inline-flex; gap:48px; flex-wrap:wrap; justify-content:center;">
+        <div style="text-align:center;">
+          <div style="font-size:3rem; font-weight:900; color:white;">150<span style="color:var(--gold)">+</span></div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.4); margin-top:4px;">Panel ATS Terpasang</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:3rem; font-weight:900; color:white;">13<span style="color:var(--gold)">+</span></div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.4); margin-top:4px;">Tahun Pengalaman</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:3rem; font-weight:900; color:white;">24<span style="color:var(--gold)">/7</span></div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.4); margin-top:4px;">Support Teknis</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:3rem; font-weight:900; color:white;">100<span style="color:var(--gold)">%</span></div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.4); margin-top:4px;">Garansi Kepuasan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-tag">Testimonial</div>
+      <h2 class="section-title">Apa Kata Klien Kami?</h2>
+      <p class="section-sub">Kepercayaan klien adalah aset terbesar kami. Berikut pengalaman mereka bekerja sama dengan PT Multi Guna Persada.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Panel ATS yang dipasang PT MGP sudah berjalan 2 tahun tanpa masalah. Transfer ke genset selalu mulus dan cepat. Tim teknisnya sangat profesional dan responsif."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">B</div>
+          <div><div class="testi-name">Bapak Hendra S.</div><div class="testi-role">Chief Engineer – Pabrik Tekstil Bekasi</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Kami puas sekali dengan Panel ATS untuk ruang ICU kami. Waktu transfernya sangat cepat, tidak sampai 2 detik. Sangat kritis untuk keselamatan pasien kami."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">D</div>
+          <div><div class="testi-name">dr. Agus Setiawan</div><div class="testi-role">Direktur Operasional – RS Bhayangkara</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Panel synchron untuk 2 genset kami bekerja sempurna. Proses paralel berjalan otomatis dan efisien. Sejak terpasang, operasional hotel tidak pernah terganggu listrik."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">R</div>
+          <div><div class="testi-name">Rizky A.</div><div class="testi-role">Engineering Manager – Hotel Westin Bali</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <div class="text-center">
+      <div class="section-tag">FAQ</div>
+      <h2 class="section-title">Pertanyaan yang Sering Ditanyakan</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Berapa lama proses pemasangan panel ATS? <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Tergantung kapasitas dan kompleksitas. Untuk panel ATS standar (100-800A), proses fabrikasi 1-2 minggu dan instalasi 1-2 hari. Untuk panel kapasitas besar atau custom, bisa 3-4 minggu. Kami akan berikan jadwal estimasi yang akurat setelah survey.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Merek komponen apa yang digunakan? <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Kami menggunakan komponen bermerek terpercaya seperti Schneider Electric, ABB, Siemens, Delixi, dan Chint sesuai kebutuhan dan budget klien. Semua komponen bergaransi resmi dari distributor resmi di Indonesia.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Apakah ada garansi untuk panel ATS yang dipasang? <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Ya. Kami memberikan garansi pekerjaan dan komponen. Jika ada masalah akibat kesalahan instalasi atau cacat material, kami perbaiki tanpa biaya tambahan. Kami juga menyediakan paket maintenance contract tahunan.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Apakah melayani proyek di luar Jawa? <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Ya, kami melayani seluruh Indonesia. Kami memiliki pengalaman proyek di Jawa, Bali, Sumatera, Kalimantan, dan Sulawesi. Biaya mobilisasi teknisi akan disepakati bersama di awal sesuai lokasi proyek.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Bagaimana cara menentukan kapasitas panel ATS yang dibutuhkan? <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Kapasitas panel ATS ditentukan dari total beban listrik yang akan dilindungi, kapasitas genset, dan faktor keamanan. Tim kami akan melakukan survey dan kalkulasi beban untuk merekomendasikan spesifikasi panel yang tepat dan efisien.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="konsultasi">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <div class="section-tag" style="background: rgba(245,158,11,0.15); color: var(--gold);">Hubungi Kami Sekarang</div>
+      <h2>Amankan Bisnis Anda<br>dari <span>Pemadaman Listrik</span></h2>
+      <p>Jangan tunggu sampai mesin berhenti atau kerugian terjadi. Konsultasikan kebutuhan panel ATS Anda kepada kami sekarang — gratis, tanpa komitmen.</p>
+      <ul class="cta-checklist">
+        <li>Konsultasi teknis gratis oleh engineer berpengalaman</li>
+        <li>Survey lokasi dan kalkulasi kebutuhan tanpa biaya</li>
+        <li>Penawaran harga transparan & kompetitif</li>
+        <li>Garansi pekerjaan dan support purna jual</li>
+        <li>Pengerjaan cepat, bersih, dan profesional</li>
+      </ul>
+      <div class="cta-contact-links">
+        <a href="https://wa.me/6289652825677?text=Halo%20PT%20MGP%2C%20saya%20ingin%20konsultasi%20Panel%20ATS" class="btn-primary" target="_blank">
+          💬 Chat WhatsApp
+        </a>
+        <a href="tel:+6289652825677" class="btn-secondary">📞 Telepon Langsung</a>
+      </div>
+      <div style="margin-top: 24px; padding: 16px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+        <div style="font-size:12px; color:rgba(255,255,255,0.4); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">Kontak Langsung</div>
+        <div style="color:white; font-size:14px; font-weight:600;">📍 Jl. Sentra Primer Timur STCP 8 No. 2, Pulogebang, Cakung, Jakarta Timur</div>
+        <div style="color:rgba(255,255,255,0.6); font-size:13px; margin-top:6px;">✉️ ade.oktarini@gmail.com</div>
+        <div style="color:rgba(255,255,255,0.6); font-size:13px;">📞 +62 896-5282-5677</div>
+      </div>
+    </div>
+    <div class="cta-form">
+      <h3>🛡️ Minta Penawaran Gratis</h3>
+      <p>Isi form ini dan tim kami akan menghubungi Anda dalam 1x24 jam.</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nama Perusahaan *</label>
+          <input type="text" placeholder="PT. Contoh Indonesia" required>
+        </div>
+        <div class="form-group">
+          <label>Nama PIC *</label>
+          <input type="text" placeholder="Nama Anda" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>No. WhatsApp *</label>
+          <input type="tel" placeholder="08xx-xxxx-xxxx" required>
+        </div>
+        <div class="form-group">
+          <label>Lokasi / Kota *</label>
+          <input type="text" placeholder="Jakarta, Surabaya, dll" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Kebutuhan Panel *</label>
+        <select required>
+          <option value="">-- Pilih Kebutuhan --</option>
+          <option>Panel ATS Otomatis (PLN-Genset)</option>
+          <option>Panel COS (Change Over Switch)</option>
+          <option>Panel Synchron / Paralel Genset</option>
+          <option>Panel MDP / SDP</option>
+          <option>Retrofit / Upgrade Panel Lama</option>
+          <option>Inspeksi & Maintenance Panel</option>
+          <option>Konsultasi Teknis</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Kapasitas Genset (kVA)</label>
+          <input type="text" placeholder="Cth: 500 kVA">
+        </div>
+        <div class="form-group">
+          <label>Tegangan Sistem</label>
+          <select>
+            <option>220V / 380V (3 Phase)</option>
+            <option>220V (1 Phase)</option>
+            <option>415V (3 Phase)</option>
+            <option>Belum tahu</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Keterangan Tambahan</label>
+        <textarea placeholder="Ceritakan kondisi instalasi, kendala yang dihadapi, atau kebutuhan khusus lainnya..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="submitForm(this)">
+        ⚡ Kirim & Dapatkan Penawaran Gratis
+      </button>
+      <p style="font-size:11px; color:#9ca3af; text-align:center; margin-top:12px;">🔒 Data Anda aman dan tidak akan dibagikan kepada pihak ketiga</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:4px;">
+        <div style="width:40px; height:40px; background:var(--blue); border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:900; color:white; font-size:14px;">MGP</div>
+        <div><div style="color:white; font-weight:700; font-size:16px;">PT. Multi Guna Persada</div></div>
+      </div>
+      <p>Spesialis panel ATS, COS, dan sistem kelistrikan industri. Dipercaya sejak 2012 dengan pengalaman 150+ proyek panel di seluruh Indonesia.</p>
+      <div style="color:rgba(255,255,255,0.3); font-size:12px; font-style:italic;">"Your trust is our asset"</div>
+    </div>
+    <div class="footer-links">
+      <h4>Layanan</h4>
+      <a href="#">Panel ATS Otomatis</a>
+      <a href="#">Panel COS</a>
+      <a href="#">Panel Synchron</a>
+      <a href="#">Panel MDP / SDP</a>
+      <a href="#">Retrofit Panel</a>
+      <a href="#">Maintenance</a>
+    </div>
+    <div class="footer-links">
+      <h4>Kontak</h4>
+      <a href="#">📍 Cakung, Jakarta Timur</a>
+      <a href="https://wa.me/6289652825677">💬 WA: +62 896-5282-5677</a>
+      <a href="mailto:ade.oktarini@gmail.com">✉️ ade.oktarini@gmail.com</a>
+      <a href="https://cekgensetgratis.online">🌐 cekgensetgratis.online</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 PT Multi Guna Persada. All rights reserved.</div>
+    <div>⚡ Panel ATS Profesional – Solusi Kelistrikan Industri Indonesia</div>
+  </div>
+</footer>
+
+<!-- WA Float -->
+<a href="https://wa.me/6289652825677?text=Halo%20PT%20MGP%2C%20saya%20ingin%20konsultasi%20Panel%20ATS" class="wa-float" target="_blank">
+  <span class="wa-tooltip">💬 Chat Konsultasi Gratis!</span>
+  💬
+</a>
+
+<script>
+function submitForm(btn) {
+  const form = btn.closest('.cta-form');
+  const inputs = form.querySelectorAll('input[required], select[required]');
+  let valid = true;
+  inputs.forEach(inp => { if(!inp.value.trim()) { inp.style.borderColor='#ef4444'; valid=false; } else { inp.style.borderColor=''; } });
+  if(!valid) { alert('Mohon lengkapi semua field yang wajib diisi.'); return; }
+  const company = form.querySelector('input:nth-of-type(1)').value;
+  const name = form.querySelector('input:nth-of-type(2)').value;
+  const wa = form.querySelector('input[type="tel"]').value;
+  const need = form.querySelector('select').value;
+  const msg = encodeURIComponent('Halo PT MGP, saya ingin konsultasi Panel ATS.\n\nPerusahaan: ' + company + '\nNama: ' + name + '\nNo. WA: ' + wa + '\nKebutuhan: ' + need);
+  window.open('https://wa.me/6289652825677?text=' + msg, '_blank');
+}
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', function() {
+    const item = this.parentElement;
+    document.querySelectorAll('.faq-item').forEach(i => { if(i !== item) i.classList.remove('open'); });
+    item.classList.toggle('open');
+  });
+});
+</script>
+</body>
+</html>
