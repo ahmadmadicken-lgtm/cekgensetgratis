@@ -358,6 +358,31 @@ footer { background: #060f1f; color: rgba(255,255,255,0.5); padding: 48px 5% 28p
   .form-row { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; text-align: center; }
 }
+
+/* Mobile Responsive Nav */
+@media (max-width: 500px) {
+  nav {
+    padding: 0 4%;
+    height: 60px;
+  }
+  .nav-logo-text .company { font-size: 10px; }
+  .nav-logo-text .name { font-size: 13px; }
+  .nav-logo-icon { width: 34px; height: 34px; font-size: 11px; border-radius: 8px; }
+  .nav-home {
+    font-size: 12px;
+    padding: 6px 10px;
+    white-space: nowrap;
+  }
+  .nav-cta {
+    font-size: 12px;
+    padding: 7px 12px;
+    white-space: nowrap;
+  }
+}
+@media (max-width: 380px) {
+  .nav-home { display: none; }
+  .nav-cta { font-size: 12px; padding: 8px 14px; }
+}
 </style>
 </head>
 <body>
