@@ -359,29 +359,22 @@ footer { background: #060f1f; color: rgba(255,255,255,0.5); padding: 48px 5% 28p
   .footer-bottom { flex-direction: column; text-align: center; }
 }
 
+
+
 /* Mobile Responsive Nav */
-@media (max-width: 500px) {
-  nav {
-    padding: 0 4%;
-    height: 60px;
-  }
-  .nav-logo-text .company { font-size: 10px; }
-  .nav-logo-text .name { font-size: 13px; }
-  .nav-logo-icon { width: 34px; height: 34px; font-size: 11px; border-radius: 8px; }
-  .nav-home {
-    font-size: 12px;
-    padding: 6px 10px;
-    white-space: nowrap;
-  }
-  .nav-cta {
-    font-size: 12px;
-    padding: 7px 12px;
-    white-space: nowrap;
-  }
+@media (max-width: 600px) {
+  nav { padding: 0 4%; height: 60px; gap: 8px; }
+  .nav-logo { gap: 8px; }
+  .nav-logo-icon { width: 32px; height: 32px; font-size: 10px; border-radius: 7px; flex-shrink: 0; }
+  .nav-logo-text .company { display: none; }
+  .nav-logo-text .name { font-size: 14px; white-space: nowrap; }
+  .nav-home { font-size: 12px; padding: 6px 10px; border-radius: 6px; white-space: nowrap; }
+  .nav-cta { font-size: 12px; padding: 7px 12px; border-radius: 8px; white-space: nowrap; }
 }
-@media (max-width: 380px) {
-  .nav-home { display: none; }
-  .nav-cta { font-size: 12px; padding: 8px 14px; }
+@media (max-width: 400px) {
+  .nav-logo-text { display: none; }
+  .nav-home { font-size: 11px; padding: 5px 8px; }
+  .nav-cta { font-size: 11px; padding: 6px 10px; }
 }
 </style>
 </head>
