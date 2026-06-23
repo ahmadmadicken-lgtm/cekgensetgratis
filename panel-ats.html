@@ -1012,34 +1012,33 @@ footer { background: #060f1f; color: rgba(255,255,255,0.5); padding: 48px 5% 28p
 <script>
 function submitForm(btn) {
   const form = btn.closest('.cta-form');
-  const inputs = form.querySelectorAll('input[required], select[required]');
+  const reqFields = form.querySelectorAll('input[required], select[required]');
   let valid = true;
-  inputs.forEach(inp => { if(!inp.value.trim()) { inp.style.borderColor='#ef4444'; valid=false; } else { inp.style.borderColor=''; } });
-  if(!valid) { alert('Mohon lengkapi semua field yang wajib diisi.'); return; }
+  reqFields.forEach(f => { if (!f.value.trim()) { f.style.borderColor='#ef4444'; valid=false; } else { f.style.borderColor=''; } });
+  if (!valid) { alert('Mohon lengkapi semua field yang wajib diisi.'); return; }
 
-  const company   = form.querySelector('input:nth-of-type(1)').value.trim();
-  const name      = form.querySelector('input:nth-of-type(2)').value.trim();
-  const wa        = form.querySelector('input[type="tel"]').value.trim();
-  const lokasi    = form.querySelector('input:nth-of-type(4)').value.trim();
-  const selects   = form.querySelectorAll('select');
-  const kebutuhan = selects[0] ? selects[0].value : '-';
-  const tegangan  = selects[1] ? selects[1].value : '-';
-  const kapasitasEl = form.querySelector('input[placeholder*="kVA"]');
-  const kapasitas = kapasitasEl ? kapasitasEl.value.trim() : '';
-  const textarea  = form.querySelector('textarea');
-  const keterangan = textarea ? textarea.value.trim() : '';
+  const allInputs = form.querySelectorAll('input');
+  const company    = allInputs[0].value.trim();
+  const namePIC    = allInputs[1].value.trim();
+  const waNum      = allInputs[2].value.trim();
+  const lokasi     = allInputs[3].value.trim();
+  const kapasitas  = allInputs[4] ? allInputs[4].value.trim() : '';
+  const selects    = form.querySelectorAll('select');
+  const kebutuhan  = selects[0] ? selects[0].value : '';
+  const tegangan   = selects[1] ? selects[1].value : '';
+  const keterangan = (form.querySelector('textarea') || {value:''}).value.trim();
 
   let msg = 'Halo PT MGP, saya ingin konsultasi Panel ATS.\n\n';
   msg += 'Perusahaan: ' + company + '\n';
-  msg += 'Nama PIC: ' + name + '\n';
-  msg += 'No. WA: ' + wa + '\n';
+  msg += 'Nama PIC: ' + namePIC + '\n';
+  msg += 'No. WA: ' + waNum + '\n';
   msg += 'Lokasi: ' + lokasi + '\n';
-  msg += 'Kebutuhan Panel: ' + kebutuhan + '\n';
-  if (kapasitas) msg += 'Kapasitas Genset: ' + kapasitas + '\n';
-  if (tegangan && tegangan !== '--') msg += 'Tegangan Sistem: ' + tegangan + '\n';
+  if (kebutuhan) msg += 'Kebutuhan Panel: ' + kebutuhan + '\n';
+  if (kapasitas)  msg += 'Kapasitas Genset: ' + kapasitas + ' kVA\n';
+  if (tegangan)   msg += 'Tegangan Sistem: ' + tegangan + '\n';
   if (keterangan) msg += 'Keterangan: ' + keterangan;
 
-  window.open('https://wa.me/6281219965256?text=' + encodeURIComponent(msg), '_blank');
+  window.location.href = 'https://wa.me/6281219965256?text=' + encodeURIComponent(msg);
 }
 document.querySelectorAll('.faq-q').forEach(q => {
   q.addEventListener('click', function() {
