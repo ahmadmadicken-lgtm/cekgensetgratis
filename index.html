@@ -73,6 +73,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
         .nav-cta:hover { background: var(--navy-mid); transform: translateY(-1px); }
 
+        .nav-brand-text { font-size: 0.95rem; }
+        .nav-link-ats {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600; font-size: 0.875rem;
+            color: rgba(255,255,255,0.85);
+            padding: 10px 16px; border-radius: 8px;
+            border: 1.5px solid rgba(255,255,255,0.25);
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+            text-decoration: none; white-space: nowrap;
+        }
+        .nav-link-ats:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.5);
+            color: white;
+        }
+        @media (max-width: 640px) {
+            .nav-brand-text { font-size: 0.75rem; }
+            .nav-link-ats { font-size: 0.75rem; padding: 6px 10px; border-radius: 6px; }
+        }
+        @media (max-width: 400px) {
+            .nav-brand-text { font-size: 0.7rem; }
+            .nav-link-ats { font-size: 0.7rem; padding: 5px 8px; }
+        }
+
         /* ─── HERO ─── */
         .hero {
             background: linear-gradient(160deg, #07142e 0%, #0d1f4a 45%, #0f2557 100%);
@@ -542,11 +566,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 <div class="flex items-center gap-3">
                     <img src="logo-ary.png" alt="ARY Genset Specialist" style="height:52px;width:52px;object-fit:contain;border-radius:8px;">
                     <div>
-                        <p style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;color:white;font-size:0.95rem;line-height:1.3;">ARY Genset Specialist</p>
+                        <p class="nav-brand-text" style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;color:white;line-height:1.3;">ARY Genset Specialist</p>
                     </div>
                 </div>
-                <div class="flex items-center gap-3">
-                    <a href="panel-ats.html" style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:0.875rem;color:rgba(255,255,255,0.85);padding:10px 16px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.25);transition:background 0.2s,border-color 0.2s;text-decoration:none;" onmouseover="this.style.background='rgba(255,255,255,0.08)';this.style.borderColor='rgba(255,255,255,0.5)';this.style.color='white'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(255,255,255,0.25)';this.style.color='rgba(255,255,255,0.85)'">Panel ATS</a>
+                <div class="flex items-center gap-2">
+                    <a href="panel-ats.html" class="nav-link-ats">Panel ATS</a>
                     <a href="#form-section" class="nav-cta hidden md:inline-flex">Konsultasi Gratis</a>
                 </div>
             </div>
