@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layanan Electrical & Mekanikal - Pilar Megah Perkasa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0f2557;
+            --navy-mid: #1a3a7a;
+            --blue: #1d54c4;
+            --blue-light: #2563eb;
+            --accent: #f59e0b;
+            --accent-hover: #d97706;
+            --surface: #f8faff;
+            --border: #e2e8f0;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --text-light: #9ca3af;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--surface);
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        /* ─── NAV ─── */
+        .nav-bar {
+            background: rgba(7,20,46,0.97);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .nav-cta {
+            background: var(--blue-light);
+            color: white;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.875rem;
+            padding: 10px 22px;
+            border-radius: 8px;
+            transition: background 0.2s, transform 0.15s;
+            text-decoration: none;
+        }
+        .nav-cta:hover { background: var(--navy-mid); transform: translateY(-1px); }
+        .nav-brand-text { font-size: 0.95rem; }
+        .nav-link-ats {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600; font-size: 0.875rem;
+            color: rgba(255,255,255,0.85);
+            padding: 10px 16px; border-radius: 8px;
+            border: 1.5px solid rgba(255,255,255,0.25);
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+            text-decoration: none; white-space: nowrap;
+        }
+        .nav-link-ats:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); color: white; }
+        @media (max-width: 640px) {
+            .nav-brand-text { font-size: 0.75rem; }
+            .nav-link-ats { font-size: 0.75rem; padding: 6px 10px; border-radius: 6px; }
+        }
+        @media (max-width: 400px) {
+            .nav-brand-text { font-size: 0.7rem; }
+            .nav-link-ats { font-size: 0.7rem; padding: 5px 8px; }
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            background: linear-gradient(160deg, #07142e 0%, #0d1f4a 45%, #0f2557 100%);
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(37,99,235,0.12) 0%, transparent 70%);
+        }
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(245,158,11,0.15);
+            border: 1px solid rgba(245,158,11,0.3);
+            color: #f59e0b;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 999px;
+            margin-bottom: 20px;
+        }
+
+        /* ─── SECTION ─── */
+        .section { padding: 80px 0; }
+        .section-tag {
+            display: inline-block;
+            background: rgba(37,99,235,0.08);
+            color: var(--blue-light);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 999px;
+            margin-bottom: 14px;
+        }
+        .section-title {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 800;
+            color: var(--navy);
+            line-height: 1.2;
+            margin-bottom: 14px;
+        }
+        .section-sub {
+            color: var(--text-muted);
+            font-size: 1rem;
+            max-width: 580px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* ─── BIDANG USAHA CARDS ─── */
+        .usaha-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+            margin-top: 48px;
+        }
+        .usaha-card {
+            background: white;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 2px 12px rgba(15,37,87,0.06);
+        }
+        .usaha-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 48px rgba(15,37,87,0.12);
+        }
+        .usaha-card-header {
+            padding: 28px 28px 0;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .usaha-icon {
+            width: 52px; height: 52px;
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            font-size: 22px;
+        }
+        .usaha-card-body { padding: 20px 28px 28px; }
+        .usaha-card-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+        .usaha-card-sub {
+            font-size: 0.825rem;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+            line-height: 1.6;
+        }
+        .usaha-list { display: flex; flex-direction: column; gap: 9px; }
+        .usaha-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.875rem;
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+        .usaha-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+
+        /* ─── GALLERY / FOTO PEKERJAAN ─── */
+        .gallery-section { background: var(--navy); padding: 80px 0; }
+        .gallery-section .section-tag { background: rgba(245,158,11,0.15); color: #f59e0b; }
+        .gallery-section .section-title { color: white; }
+        .gallery-section .section-sub { color: rgba(255,255,255,0.6); }
+
+        .gallery-tabs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 32px 0 40px;
+        }
+        .gallery-tab {
+            padding: 8px 20px;
+            border-radius: 999px;
+            border: 1.5px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.7);
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: transparent;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .gallery-tab.active, .gallery-tab:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--navy);
+        }
+
+        .gallery-category { display: none; }
+        .gallery-category.active { display: block; }
+
+        .gallery-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(245,158,11,0.15);
+            border: 1px solid rgba(245,158,11,0.3);
+            color: #f59e0b;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 5px 14px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .photo-grid {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+        .photo-grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .photo-grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .photo-grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+        .photo-item {
+            border-radius: 14px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 4/3;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .photo-item:hover img { transform: scale(1.06); }
+        .photo-caption {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(to top, rgba(7,20,46,0.85), transparent);
+            padding: 20px 14px 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .photo-item:hover .photo-caption { opacity: 1; }
+
+        /* Photo placeholder (jika gambar tidak ada) */
+        .photo-placeholder {
+            width: 100%; height: 100%;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.03);
+            color: rgba(255,255,255,0.25);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 10px;
+        }
+        .photo-placeholder span { font-size: 2rem; }
+
+        /* ─── CLIENT SECTION ─── */
+        .clients-section { background: var(--surface); padding: 72px 0; }
+        .client-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 40px;
+        }
+        .client-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--navy);
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .client-card:hover {
+            box-shadow: 0 8px 24px rgba(15,37,87,0.1);
+            transform: translateY(-3px);
+        }
+        .client-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--blue-light);
+            flex-shrink: 0;
+        }
+
+        /* ─── CTA SECTION ─── */
+        .cta-section {
+            background: linear-gradient(135deg, var(--navy) 0%, #1a3a7a 100%);
+            padding: 72px 0;
+            text-align: center;
+        }
+
+        /* ─── FOOTER ─── */
+        .footer { background: #07142e; }
+        .footer-heading {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+        }
+        .footer-text { font-size: 0.875rem; color: #94a3b8; line-height: 1.7; margin-bottom: 12px; }
+        .footer-tagline { font-size: 0.8rem; color: #60a5fa; font-style: italic; }
+        .footer-link {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.875rem; color: #94a3b8; text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-link:hover { color: white; }
+        .footer-divider {
+            border-top: 1px solid rgba(255,255,255,0.07);
+            margin-top: 40px;
+            padding-top: 24px;
+            font-size: 0.8rem;
+            color: #475569;
+            text-align: center;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .photo-grid-3 { grid-template-columns: repeat(2, 1fr); }
+            .photo-grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .section { padding: 56px 0; }
+        }
+        @media (max-width: 480px) {
+            .photo-grid-2, .photo-grid-3, .photo-grid-4 { grid-template-columns: 1fr 1fr; }
+            .usaha-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Reveal animation */
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.5s, transform 0.5s; }
+        .revealed { opacity: 1; transform: none; }
+
+        /* WA Float */
+        .wa-float {
+            position: fixed; bottom: 24px; right: 24px;
+            width: 56px; height: 56px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 6px 24px rgba(34,197,94,0.4);
+            z-index: 999;
+            transition: transform 0.2s;
+        }
+        .wa-float:hover { transform: scale(1.1); }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="nav-bar sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+        <div class="flex justify-between h-[72px] items-center">
+            <a href="index.html" class="flex items-center gap-3" style="text-decoration:none;">
+                <img src="logo-pmp.png" alt="Pilar Megah Perkasa" style="height:52px;width:52px;object-fit:contain;border-radius:8px;">
+                <div>
+                    <p class="nav-brand-text" style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;color:white;line-height:1.3;">Pilar Megah Perkasa</p>
+                </div>
+            </a>
+            <div class="flex items-center gap-2">
+                <a href="panel-ats.html" class="nav-link-ats">Panel ATS</a>
+                <a href="https://wa.me/6288293944481?text=Halo%20ARY%20Genset%20Specialist%2C%20saya%20ingin%20bertanya%20mengenai%20layanan." target="_blank" class="nav-cta hidden md:inline-flex">Hubungi Kami</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="container" style="position:relative;z-index:1;">
+        <div class="max-w-3xl mx-auto text-center">
+            <div class="hero-tag">
+                <span>⚙️</span> Layanan Electrical & Mekanikal
+            </div>
+            <h1 style="font-size:clamp(2rem,5vw,3.2rem);font-weight:800;color:white;line-height:1.15;margin-bottom:20px;">
+                Solusi Lengkap <br>
+                <span style="color:#f59e0b;">Electrical, Mekanikal</span><br>
+                & General Supplier
+            </h1>
+            <p style="color:rgba(255,255,255,0.7);font-size:1.05rem;line-height:1.75;max-width:580px;margin:0 auto 36px;">
+                Didukung tenaga profesional berpengalaman, kami menyediakan jasa perbaikan, perawatan, dan pengadaan kebutuhan electrical & mekanikal untuk industri, oil field, marine, dan berbagai sektor usaha.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#layanan" style="background:var(--accent);color:var(--navy);font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:10px;text-decoration:none;transition:background 0.2s;">Lihat Layanan ↓</a>
+                <a href="#pekerjaan" style="background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.2);color:white;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:10px;text-decoration:none;">Lihat Hasil Kerja</a>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="flex flex-wrap justify-center gap-8 md:gap-16 mt-16">
+            <div style="text-align:center;">
+                <div style="font-size:2.2rem;font-weight:900;color:white;">2022<span style="color:#f59e0b;font-size:1.2rem;">+</span></div>
+                <div style="font-size:0.8rem;color:rgba(255,255,255,0.45);margin-top:4px;">Berdiri Sejak</div>
+            </div>
+            <div style="text-align:center;">
+                <div style="font-size:2.2rem;font-weight:900;color:white;">12<span style="color:#f59e0b;">+</span></div>
+                <div style="font-size:0.8rem;color:rgba(255,255,255,0.45);margin-top:4px;">Klien Terpercaya</div>
+            </div>
+            <div style="text-align:center;">
+                <div style="font-size:2.2rem;font-weight:900;color:white;">3</div>
+                <div style="font-size:0.8rem;color:rgba(255,255,255,0.45);margin-top:4px;">Bidang Usaha</div>
+            </div>
+            <div style="text-align:center;">
+                <div style="font-size:2.2rem;font-weight:900;color:white;">24<span style="color:#f59e0b;">/7</span></div>
+                <div style="font-size:0.8rem;color:rgba(255,255,255,0.45);margin-top:4px;">Siap Melayani</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Bidang Usaha -->
+<section class="section" id="layanan">
+    <div class="container">
+        <div class="text-center reveal">
+            <div class="section-tag">Bidang Usaha</div>
+            <h2 class="section-title">Apa yang Kami Kerjakan</h2>
+            <p class="section-sub">Tiga pilar layanan utama kami yang siap mendukung operasional bisnis Anda secara profesional dan terpercaya.</p>
+        </div>
+
+        <div class="usaha-grid">
+
+            <!-- Card Electrical -->
+            <div class="usaha-card reveal">
+                <div class="usaha-card-header">
+                    <div class="usaha-icon" style="background:rgba(37,99,235,0.1);">⚡</div>
+                    <div>
+                        <div class="usaha-card-title">Electrical</div>
+                    </div>
+                </div>
+                <div class="usaha-card-body">
+                    <p class="usaha-card-sub">Perbaikan dan perawatan sistem kelistrikan untuk alat berat, industri, dan berbagai mesin elektronis.</p>
+                    <div class="usaha-list">
+                        <div class="usaha-item"><div class="usaha-dot" style="background:#2563eb;"></div>Repair starting motor & alternator</div>
+                        <div class="usaha-item"><div class="usaha-dot" style="background:#2563eb;"></div>Rewinding electric motor & generator</div>
+                        <div class="usaha-item"><div class="usaha-dot" style="background:#2563eb;"></div>Repaire & rekondisi wiring harness</div>
+                        <div class="usaha-item"><div class="usaha-dot" style="background:#2563eb;"></div>Service, repair & build up panel</div>
+                        <div class="usaha-item"><div class="usaha-dot" style="background:#2563eb;"></div>Perbaikan sistem pendingin & pemanas</div>
+                        <div class="usaha-item"><div class="usaha-dot" style="background:#2563eb;"></div>Perbaikan welding machine & trafo</div>
+                        <div class="usaha-item"><div class="usaha-dot" style="background:#2563eb;"></div>Perbaikan & pemasangan instalasi listrik</div>
+                        <div class="usaha-item"><div class="usaha-dot" style="background:#2563eb;"></div>Repaire controller / electronic</div>
+                        <div class="usaha-item"><div class="usaha-dot" style="background:#2563eb;"></div>IT solution (CCTV, Internet, Server)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Mekanikal -->
+            <div class="usaha-card reveal">
+                <div class="usaha-card-header">
+                    <div class="usaha-icon" style="background:rgba(245,158,11,0.1);">🔧</div>
+                    <div>
+                        <div class="usaha-card-title">Mekanikal</div>
+                    </div>
+                </div>
+                <div class="usaha-card-body">
+                    <p class="usaha-card-sub">Overhaul, service unit, dan rekondisi komponen mekanikal untuk sektor oil field, mining, marine, dan industri umum.</p>
+                    <div class="usaha-list">
+                        <div class="usaha-item"><div class="usaha-dot" style="background:#f59e0b;"></div>General overhaul engine & power train</div>
+                        <div class="usaha-item"><div class="usaha-dot" style="background:#f59e0b;"></div>General service unit oil field, mining & marine</div>
+                        <div class="usaha-item"><div class="usaha-dot" style="background:#f59e0b;"></div>General service dewatering pump</div>
+                        <div class="usaha-item"><div class="usaha-dot" style="background:#f59e0b;"></div>Rekondisi fuel pump, water pump, oil pump</div>
+                        <div class="usaha-item"><div class="usaha-dot" style="background:#f59e0b;"></div>Rekondisi air compressor & small komponen</div>
+                        <div class="usaha-item"><div class="usaha-dot" style="background:#f59e0b;"></div>Repaire & troubleshooting lifting equipment</div>
+                        <div class="usaha-item"><div class="usaha-dot" style="background:#f59e0b;"></div>Made tools simulator test running engine</div>
+                        <div class="usaha-item"><div class="usaha-dot" style="background:#f59e0b;"></div>Service pump RPH (Gentry fuel station)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card General Supplier -->
+            <div class="usaha-card reveal">
+                <div class="usaha-card-header">
+                    <div class="usaha-icon" style="background:rgba(34,197,94,0.1);">📦</div>
+                    <div>
+                        <div class="usaha-card-title">General Supplier</div>
+                    </div>
+                </div>
+                <div class="usaha-card-body">
+                    <p class="usaha-card-sub">Pengadaan berbagai kebutuhan operasional industri, mulai dari suku cadang hingga kebutuhan administrasi dan pendukung teknis.</p>
+                    <div class="usaha-list">
+                        <div class="usaha-item"><div class="usaha-dot" style="background:#22c55e;"></div>Part electrical (komponen kelistrikan)</div>
+                        <div class="usaha-item"><div class="usaha-dot" style="background:#22c55e;"></div>Part mekanikal (spare part mesin)</div>
+                        <div class="usaha-item"><div class="usaha-dot" style="background:#22c55e;"></div>ATK (Alat Tulis Kantor)</div>
+                        <div class="usaha-item"><div class="usaha-dot" style="background:#22c55e;"></div>Kebutuhan operasional industri lainnya</div>
+                    </div>
+
+                    <!-- Keunggulan -->
+                    <div style="margin-top:24px;padding:16px;background:var(--surface);border-radius:12px;border:1px solid var(--border);">
+                        <p style="font-size:0.8rem;font-weight:700;color:var(--navy);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.05em;">Keunggulan Kami</p>
+                        <div class="usaha-list">
+                            <div class="usaha-item" style="font-size:0.82rem;"><div class="usaha-dot" style="background:var(--blue-light);"></div>Didirikan oleh professional di bidangnya</div>
+                            <div class="usaha-item" style="font-size:0.82rem;"><div class="usaha-dot" style="background:var(--blue-light);"></div>Mengutamakan kejujuran & kepercayaan</div>
+                            <div class="usaha-item" style="font-size:0.82rem;"><div class="usaha-dot" style="background:var(--blue-light);"></div>Harga kompetitif & transparan</div>
+                            <div class="usaha-item" style="font-size:0.82rem;"><div class="usaha-dot" style="background:var(--blue-light);"></div>Komitmen terhadap kepuasan pelanggan</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Scope Pekerjaan -->
+<section class="gallery-section" id="pekerjaan">
+    <div class="container">
+        <div class="text-center reveal">
+            <div class="section-tag">Scope Pekerjaan</div>
+            <h2 class="section-title">Apa yang Kami Kerjakan di Lapangan</h2>
+            <p class="section-sub">Berikut cakupan pekerjaan nyata yang telah dan siap kami tangani secara profesional.</p>
+        </div>
+
+        <!-- Electrical -->
+        <div style="margin-top:56px;" class="reveal">
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:28px;">
+                <div style="width:44px;height:44px;background:rgba(37,99,235,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">⚡</div>
+                <div>
+                    <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.2rem;color:white;margin-bottom:2px;">Electrical</h3>
+                    <p style="font-size:0.8rem;color:rgba(255,255,255,0.45);">Perbaikan & perawatan sistem kelistrikan industri</p>
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;">
+                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+                    <span style="color:#2563eb;font-size:1rem;margin-top:1px;flex-shrink:0;">▸</span>
+                    <div>
+                        <p style="font-size:0.875rem;font-weight:700;color:white;margin-bottom:3px;">Repair Starting Motor & Alternator</p>
+                        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;">Rekondisi starting motor dan alternator untuk alat berat, genset, dan unit industri</p>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+                    <span style="color:#2563eb;font-size:1rem;margin-top:1px;flex-shrink:0;">▸</span>
+                    <div>
+                        <p style="font-size:0.875rem;font-weight:700;color:white;margin-bottom:3px;">Rewinding Electric Motor & Generator</p>
+                        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;">Rewinding motor listrik, generator, magnetic brake, pump, dan blower berbagai kapasitas</p>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+                    <span style="color:#2563eb;font-size:1rem;margin-top:1px;flex-shrink:0;">▸</span>
+                    <div>
+                        <p style="font-size:0.875rem;font-weight:700;color:white;margin-bottom:3px;">Fabricate & Rekondisi Wiring Harness</p>
+                        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;">Pembuatan wiring harness baru dan rekondisi wiring harness alat berat Caterpillar, Komatsu, dll</p>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+                    <span style="color:#2563eb;font-size:1rem;margin-top:1px;flex-shrink:0;">▸</span>
+                    <div>
+                        <p style="font-size:0.875rem;font-weight:700;color:white;margin-bottom:3px;">Service, Repair & Build Up Panel</p>
+                        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;">Pembuatan panel listrik baru, panel COS, panel sinkron, dan perbaikan panel existing</p>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+                    <span style="color:#2563eb;font-size:1rem;margin-top:1px;flex-shrink:0;">▸</span>
+                    <div>
+                        <p style="font-size:0.875rem;font-weight:700;color:white;margin-bottom:3px;">Perbaikan Sistem Pendingin & Pemanas</p>
+                        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;">Servis dan perbaikan unit pendingin industri, freezer kapasitas besar, dan sistem pemanas</p>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+                    <span style="color:#2563eb;font-size:1rem;margin-top:1px;flex-shrink:0;">▸</span>
+                    <div>
+                        <p style="font-size:0.875rem;font-weight:700;color:white;margin-bottom:3px;">Perbaikan Welding Machine & Trafo</p>
+                        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;">Repaire mesin las diesel maupun listrik, transformator, dan peralatan pengelasan lainnya</p>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+                    <span style="color:#2563eb;font-size:1rem;margin-top:1px;flex-shrink:0;">▸</span>
+                    <div>
+                        <p style="font-size:0.875rem;font-weight:700;color:white;margin-bottom:3px;">Repaire Controller & Electronic</p>
+                        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;">Perbaikan dan programming controller genset (DSE, ComAp), ECU alat berat, dan modul elektronik</p>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+                    <span style="color:#2563eb;font-size:1rem;margin-top:1px;flex-shrink:0;">▸</span>
+                    <div>
+                        <p style="font-size:0.875rem;font-weight:700;color:white;margin-bottom:3px;">Pemasangan Instalasi Listrik</p>
+                        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;">Instalasi listrik gedung, workshop, dan area industri sesuai standar keamanan</p>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+                    <span style="color:#2563eb;font-size:1rem;margin-top:1px;flex-shrink:0;">▸</span>
+                    <div>
+                        <p style="font-size:0.875rem;font-weight:700;color:white;margin-bottom:3px;">IT Solution</p>
+                        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;">Pemasangan dan konfigurasi CCTV, jaringan internet, server, dan infrastruktur IT</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div style="border-top:1px solid rgba(255,255,255,0.08);margin:52px 0;"></div>
+
+        <!-- Mekanikal -->
+        <div class="reveal">
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:28px;">
+                <div style="width:44px;height:44px;background:rgba(245,158,11,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🔧</div>
+                <div>
+                    <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.2rem;color:white;margin-bottom:2px;">Mekanikal</h3>
+                    <p style="font-size:0.8rem;color:rgba(255,255,255,0.45);">Overhaul, service, dan rekondisi unit mekanikal industri</p>
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;">
+                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+                    <span style="color:#f59e0b;font-size:1rem;margin-top:1px;flex-shrink:0;">▸</span>
+                    <div>
+                        <p style="font-size:0.875rem;font-weight:700;color:white;margin-bottom:3px;">General Overhaul Engine & Power Train</p>
+                        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;">Overhaul mesin diesel, power train, dan komponen utama unit alat berat berbagai merek</p>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+                    <span style="color:#f59e0b;font-size:1rem;margin-top:1px;flex-shrink:0;">▸</span>
+                    <div>
+                        <p style="font-size:0.875rem;font-weight:700;color:white;margin-bottom:3px;">General Service Unit Oil Field, Mining & Marine</p>
+                        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;">Servis dan perbaikan unit yang beroperasi di sektor migas, pertambangan, dan kelautan</p>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+                    <span style="color:#f59e0b;font-size:1rem;margin-top:1px;flex-shrink:0;">▸</span>
+                    <div>
+                        <p style="font-size:0.875rem;font-weight:700;color:white;margin-bottom:3px;">General Service Dewatering Pump</p>
+                        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;">Servis dan perbaikan pompa dewatering untuk tambang, konstruksi, dan industri</p>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+                    <span style="color:#f59e0b;font-size:1rem;margin-top:1px;flex-shrink:0;">▸</span>
+                    <div>
+                        <p style="font-size:0.875rem;font-weight:700;color:white;margin-bottom:3px;">Rekondisi Small Komponen</p>
+                        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;">Rekondisi fuel pump, water pump, oil pump, air compressor, dan komponen kecil lainnya</p>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+                    <span style="color:#f59e0b;font-size:1rem;margin-top:1px;flex-shrink:0;">▸</span>
+                    <div>
+                        <p style="font-size:0.875rem;font-weight:700;color:white;margin-bottom:3px;">Repaire & Troubleshooting Lifting Equipment</p>
+                        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;">Perbaikan hydraulic crane, truck crane FASSI, mobile crane, dan peralatan angkat lainnya</p>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+                    <span style="color:#f59e0b;font-size:1rem;margin-top:1px;flex-shrink:0;">▸</span>
+                    <div>
+                        <p style="font-size:0.875rem;font-weight:700;color:white;margin-bottom:3px;">Repaire Welding Machine</p>
+                        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;">Perbaikan mesin las diesel dan electric untuk kebutuhan workshop dan lapangan</p>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+                    <span style="color:#f59e0b;font-size:1rem;margin-top:1px;flex-shrink:0;">▸</span>
+                    <div>
+                        <p style="font-size:0.875rem;font-weight:700;color:white;margin-bottom:3px;">Service Pump RPH — Fuel Station</p>
+                        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;">Servis dan perbaikan pump RPH untuk Gentry fuel station dan sistem distribusi bahan bakar</p>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+                    <span style="color:#f59e0b;font-size:1rem;margin-top:1px;flex-shrink:0;">▸</span>
+                    <div>
+                        <p style="font-size:0.875rem;font-weight:700;color:white;margin-bottom:3px;">Made Tools Simulator Test Running Engine</p>
+                        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;">Pembuatan tools simulator khusus untuk uji coba running engine sebelum pemasangan unit</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div style="border-top:1px solid rgba(255,255,255,0.08);margin:52px 0;"></div>
+
+        <!-- General Supplier -->
+        <div class="reveal">
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:28px;">
+                <div style="width:44px;height:44px;background:rgba(34,197,94,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">📦</div>
+                <div>
+                    <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.2rem;color:white;margin-bottom:2px;">General Supplier</h3>
+                    <p style="font-size:0.8rem;color:rgba(255,255,255,0.45);">Pengadaan kebutuhan operasional & suku cadang industri</p>
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;">
+                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+                    <span style="color:#22c55e;font-size:1rem;margin-top:1px;flex-shrink:0;">▸</span>
+                    <div>
+                        <p style="font-size:0.875rem;font-weight:700;color:white;margin-bottom:3px;">Part Electrical</p>
+                        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;">Pengadaan komponen kelistrikan: kabel, MCB, kontaktor, relay, dan komponen panel listrik</p>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+                    <span style="color:#22c55e;font-size:1rem;margin-top:1px;flex-shrink:0;">▸</span>
+                    <div>
+                        <p style="font-size:0.875rem;font-weight:700;color:white;margin-bottom:3px;">Part Mekanikal</p>
+                        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;">Pengadaan spare part mesin: bearing, seal, gasket, v-belt, filter, dan komponen mekanikal lainnya</p>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+                    <span style="color:#22c55e;font-size:1rem;margin-top:1px;flex-shrink:0;">▸</span>
+                    <div>
+                        <p style="font-size:0.875rem;font-weight:700;color:white;margin-bottom:3px;">ATK & Kebutuhan Kantor</p>
+                        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;">Pengadaan alat tulis kantor dan kebutuhan administrasi untuk operasional perusahaan</p>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+                    <span style="color:#22c55e;font-size:1rem;margin-top:1px;flex-shrink:0;">▸</span>
+                    <div>
+                        <p style="font-size:0.875rem;font-weight:700;color:white;margin-bottom:3px;">Kebutuhan Operasional Industri</p>
+                        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;">Pengadaan berbagai kebutuhan operasional pendukung kegiatan industri sesuai permintaan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Klien Kami -->
+<section class="clients-section" id="klien">
+    <div class="container">
+        <div class="text-center reveal">
+            <div class="section-tag">Klien Kami</div>
+            <h2 class="section-title">Dipercaya oleh Berbagai Perusahaan</h2>
+            <p class="section-sub">Kami telah melayani berbagai perusahaan terkemuka di Kalimantan Timur dan sekitarnya.</p>
+        </div>
+        <div class="client-grid reveal">
+            <div class="client-card"><div class="client-dot"></div>PT. Hutama Karya</div>
+            <div class="client-card"><div class="client-dot"></div>PT. Wijaya Karya Industri & Konstruksi</div>
+            <div class="client-card"><div class="client-dot"></div>PT. Kobexindo</div>
+            <div class="client-card"><div class="client-dot"></div>CV. Karib Buana Mandiri</div>
+            <div class="client-card"><div class="client-dot"></div>PT. Bumi Intan Gemilang</div>
+            <div class="client-card"><div class="client-dot"></div>PT. Yari</div>
+            <div class="client-card"><div class="client-dot"></div>PT. Sanggar Sarana Baja</div>
+            <div class="client-card"><div class="client-dot"></div>CV. Mitra Rekajaya Techno</div>
+            <div class="client-card"><div class="client-dot"></div>PT. Sarana Abadi Lestari</div>
+            <div class="client-card"><div class="client-dot"></div>PT. Tjokro Bersaudara</div>
+            <div class="client-card"><div class="client-dot"></div>PT. Satnet</div>
+            <div class="client-card"><div class="client-dot"></div>PT. Bintang Jaya Steel</div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="container">
+        <div class="reveal" style="max-width:600px;margin:0 auto;text-align:center;">
+            <div class="section-tag" style="background:rgba(245,158,11,0.15);color:#f59e0b;">Hubungi Kami</div>
+            <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:white;margin-bottom:16px;line-height:1.25;">
+                Butuh Solusi Electrical<br>atau Mekanikal?
+            </h2>
+            <p style="color:rgba(255,255,255,0.65);font-size:0.95rem;line-height:1.75;margin-bottom:32px;">
+                Konsultasikan kebutuhan Anda kepada kami. Tim profesional kami siap memberikan solusi terbaik dengan harga yang kompetitif.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://wa.me/6288293944481?text=Halo%20ARY%20Genset%20Specialist%2C%20saya%20ingin%20konsultasi%20mengenai%20layanan%20electrical%20dan%20mekanikal." target="_blank"
+                   style="display:inline-flex;align-items:center;gap:10px;background:#22c55e;color:white;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.9rem;padding:14px 28px;border-radius:10px;text-decoration:none;transition:background 0.2s;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.012c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                    Chat via WhatsApp
+                </a>
+                <a href="tel:+6288293944481"
+                   style="display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.2);color:white;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:0.9rem;padding:14px 28px;border-radius:10px;text-decoration:none;">
+                    📞 0882 9394 4481
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer py-14">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div>
+            <h4 class="footer-heading" style="display:flex;align-items:center;gap:10px;">
+                <img src="logo-pmp.png" alt="Pilar Megah Perkasa" style="height:40px;width:40px;object-fit:contain;border-radius:6px;">
+                Pilar Megah Perkasa
+            </h4>
+            <p class="footer-text">Menyediakan solusi genset yang andal melalui layanan profesional, mulai dari penjualan, instalasi, servis, perawatan berkala, hingga overhaul. Kepuasan pelanggan dan keandalan sistem kelistrikan menjadi prioritas kami.</p>
+            <p class="footer-tagline">"Reliable Power, Professional Service"</p>
+        </div>
+        <div>
+            <h4 class="footer-heading">Hubungi Kami</h4>
+            <ul style="display:flex;flex-direction:column;gap:10px;">
+                <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.875rem;color:#94a3b8;">
+                    <span style="margin-top:2px;flex-shrink:0;">📍</span>
+                    <span><strong style="color:#cbd5e1;">Office:</strong> JL. Letkol Pol H.M Asnawi Arbain No. 229 RT.30, Kel. Gunung Bahagia, Kec. Balikpapan Selatan, 76116, Kalimantan Timur</span>
+                </li>
+                <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.875rem;color:#94a3b8;">
+                    <span style="margin-top:2px;flex-shrink:0;">📍</span>
+                    <span><strong style="color:#cbd5e1;">Workshop:</strong> Jl. AMD Projakal, Kel. Batu Ampar, Kec. Balikpapan Utara, RT. 46, Kota Balikpapan, Kalimantan Timur 76127</span>
+                </li>
+                <li>
+                    <a href="https://wa.me/6288293944481" target="_blank" class="footer-link">
+                        <svg style="width:16px;height:16px;color:#22c55e;flex-shrink:0;" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.012c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                        <span>0882 9394 4481</span>
+                    </a>
+                </li>
+                <li class="footer-link">
+                    <span>✉️</span>
+                    <span>admin@cekgensetgratis.online</span>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="footer-heading">Halaman</h4>
+            <ul style="display:flex;flex-direction:column;gap:8px;font-size:0.875rem;color:#94a3b8;">
+                <li><a href="index.html" style="color:#94a3b8;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#94a3b8'">🏠 Beranda — Genset</a></li>
+                <li><a href="panel-ats.html" style="color:#94a3b8;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#94a3b8'">⚡ Panel ATS</a></li>
+                <li><a href="layanan.html" style="color:#f59e0b;text-decoration:none;">⚙️ Electrical & Mekanikal</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-divider max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+        &copy; 2026 Pilar Megah Perkasa. All rights reserved.
+    </div>
+</footer>
+
+<!-- WA Float Button -->
+<a href="https://wa.me/6288293944481?text=Halo%20ARY%20Genset%20Specialist%2C%20saya%20ingin%20konsultasi%20mengenai%20layanan." target="_blank" class="wa-float">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.012c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('revealed'), i * 80);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Lucide icons
+    lucide.createIcons();
+</script>
+</body>
+</html>
